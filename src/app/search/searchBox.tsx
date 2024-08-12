@@ -12,7 +12,7 @@ function SearchBox(){
             className="w-max bg-transparent text-xl placeholder-zinc-400 text-zinc-900 outline-none flex-1 "
           />
             <SearchIcon 
-            className="text-zinc-400 hover:text-zinc-900 size-xl hover:duration-300"    
+            className="text-zinc-400 transition ease-in-out delay-150 hover:scale-150 duration-300 hover:text-zinc-900"    
           />
         </div>
       </div>
