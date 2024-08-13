@@ -1,5 +1,5 @@
 "use client"
-import { Notch } from "../components/Notch";
+import { Notch } from "../../components/Notch";
 import SearchBox from "./searchBox";
 
 function Search() {
