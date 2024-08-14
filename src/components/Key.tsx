@@ -2,11 +2,12 @@ import { FC } from "react"
 
 interface KeyProps {
   keyName?: any
+  click?: any
 }
 
-export const Key: FC<KeyProps> = ({keyName}) => {
+export const Key: FC<KeyProps> = ({keyName, click}) => {
   return(
-    <div className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md hover:opacity-9 m-[2px]">
+    <div onClick={click} className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md hover:opacity-1 m-[2px]">
       <div>{keyName}</div>
     </div>
   )
