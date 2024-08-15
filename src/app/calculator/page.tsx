@@ -5,7 +5,7 @@ import CalculatorComponent from "./calculator"
 
 function Calculator(){
   return (
-    <div className="bg-zinc-900 h-screen">
+    <div className="bg-zinc-300 h-screen">
       <Notch/>
       <CalculatorComponent />
     </div>

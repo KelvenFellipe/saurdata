@@ -4,7 +4,7 @@ import SearchBox from "./searchBox";
 
 function Search() {
   return(
-    <div className="bg-zinc-900 h-screen w-screen">
+    <div className="bg-zinc-300 h-screen">
       <Notch/>
       <SearchBox/>
           

@@ -7,7 +7,7 @@ interface KeyProps {
 
 export const Key: FC<KeyProps> = ({keyName, click}) => {
   return(
-    <div onClick={click} className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md hover:opacity-1 m-1">
+    <div onClick={click} className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md hover:opacity-70 hover:shadow-md hover:duration-500 duration-500 m-1">
       <div>{keyName}</div>
     </div>
   )

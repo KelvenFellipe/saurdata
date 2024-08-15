@@ -109,7 +109,7 @@ function CalculatorComponent() {
 
   return(
     <div className="flex justify-center">
-        <div className="h-fit w-fit bg-zinc-200 rounded-xl ">
+        <div className="h-fit w-fit bg-zinc-100 rounded-xl shadow-md hover:shadow-2xl hover:duration-500 duration-500 ">
           <div className="h-[96px] w-max] p-1 text-right text-3xl text-zinc-900">
             <div className="flex justify-between items-center">
               <History/>
@@ -123,7 +123,7 @@ function CalculatorComponent() {
             <p className="text-5xl">{result}</p>
           </div>
           
-          <div className="grid grid-cols-4 h-fit w-fit p-2">
+          <div className="grid grid-cols-4 h-fit w-fit p-2 select-none" >
             <Key keyName={["%"]}/>
             <Key keyName={[<Plus/>]}/>
             <Key keyName={["CE"]} click={clearResult}/>

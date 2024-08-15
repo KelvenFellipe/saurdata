@@ -3,9 +3,9 @@ import { SearchIcon } from "lucide-react"
 function SearchBox(){
 
   return(
-    <div className=" flex justify-center m-auto">
-      <div className="bg-zinc-100 shadow-2xl rounded-xl justify-center flex">
-        <div className="h-14 w-[800px] bg-white px-4 rounded-xl flex items-center border-2 border-white justify-center shadow-shape gap-3 m-10 hover:shadow-md hover:duration-500 duration-500">
+    <div className="flex justify-center m-auto">
+      <div className="bg-zinc-100 rounded-xl justify-center flex shadow-md hover:shadow-2xl hover:duration-500 duration-500">
+        <div className="h-14 w-[800px] bg-white p-4 rounded-xl flex items-center border-2 border-white justify-center shadow-shape gap-3 m-5 hover:shadow-md hover:duration-500 duration-500">
           <input
             placeholder="search"
             type="text"
