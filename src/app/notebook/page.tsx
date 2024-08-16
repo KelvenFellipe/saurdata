@@ -3,10 +3,10 @@ import NotebookComponent from "./notebook";
 
 function Notebook(){
 
-  return(
-    <div className="bg-zinc-300 h-screen">
-      <Notch/>
-      <NotebookComponent/>
+  return (
+    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
+      <Notch />
+      <NotebookComponent />
     </div>
   )
 }

@@ -3,11 +3,10 @@ import { Notch } from "../../components/Notch";
 import SearchBox from "./searchBox";
 
 function Search() {
-  return(
-    <div className="bg-zinc-300 h-screen">
-      <Notch/>
-      <SearchBox/>
-          
+  return (
+    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
+      <Notch />
+      <SearchBox />
     </div>
   )
 }

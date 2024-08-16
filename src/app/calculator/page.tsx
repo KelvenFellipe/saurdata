@@ -5,12 +5,10 @@ import CalculatorComponent from "./calculator"
 
 function Calculator(){
   return (
-    <div className="bg-zinc-300 h-screen">
-      <Notch/>
+    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
+      <Notch />
       <CalculatorComponent />
     </div>
-
-    
   )
 }
 export default Calculator

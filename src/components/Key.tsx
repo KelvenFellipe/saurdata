@@ -6,16 +6,12 @@ interface KeyProps {
 }
 
 export const Key: FC<KeyProps> = ({keyName, click}) => {
-  return(
-    <div onClick={click} className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md hover:opacity-70 hover:shadow-md hover:duration-500 duration-500 m-1">
-      <div>{keyName}</div>
-    </div>
-  )
-}
-
-export const DoubleKey: FC<KeyProps> = ({keyName}) => {
-  return(
-    <div className="text-3xl bg-white text-zinc-900 h-[104px] w-12 flex items-center justify-center rounded-lg hover:opacity-90 m-1">
+  return (
+    <div
+      onClick={click}
+      className="text-xl bg-white text-zinc-900 h-12 w-20 flex items-center justify-center rounded-md
+      hover:opacity-70 hover:shadow-md hover:duration-500 duration-500 m-1 dark:bg-black dark:text-zinc-200 dark:hover:opacity-40"
+    >
       <div>{keyName}</div>
     </div>
   )

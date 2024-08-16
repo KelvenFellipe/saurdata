@@ -8,15 +8,14 @@ import SearchBox from "./search/searchBox"
 function Main() {
 
   return (
-    <div className="h-screen bg-zinc-300">
+    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
       <Notch />
       <div className="grid grid-cols-3">
-      <CalculatorComponent/>
-      <NotebookComponent/>
+        <CalculatorComponent />
+        <NotebookComponent />
         <div className="col-span-3 m-20">
-          <SearchBox/>
+          <SearchBox />
         </div>
-
       </div>
     </div>
   )
