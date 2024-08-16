@@ -1,6 +1,6 @@
 "use client"
 
-import { Delete, Divide, Equal, History, Minus, Plus, X } from "lucide-react";
+import { Delete, Divide, Equal, History, Minus, Plus, Radical, X } from "lucide-react"
 
 import { useEffect, useState } from "react"
 import { Key } from "../../components/Key"
@@ -32,11 +32,11 @@ function CalculatorComponent() {
     }
   }
 
-  function numberPress(value: number) {
-    if (result == "0" && value == 0) {
+  function numberPress(value: string) {
+    if (result == "0" && value == "0") {
       setResult("0")
     } else if (result === "0") {
-      setResult(value.toString())
+      setResult(value)
     } else {
       setResult(result + value)
     }
@@ -114,9 +114,9 @@ function CalculatorComponent() {
   return (
     <div className="flex justify-center">
       <div className="h-fit w-fit bg-zinc-100 rounded-xl shadow-md hover:shadow-2xl hover:duration-500 duration-500 dark:bg-zinc-900 ">
-        <div className="h-[96px] w-max] p-1 text-right text-3xl text-zinc-900 select-none dark:text-zinc-200">
-          <div className="flex justify-between ">
-            <History className="text-left" />
+        <div className="h-[76px] text-right  text-zinc-900 select-none dark:text-zinc-200 p-2">
+          <div className="flex justify-between">
+            <History className="text-left text-xl" />
             <div className="flex">
               <p>{value1}</p>
               <p>{operator}</p>
@@ -124,34 +124,34 @@ function CalculatorComponent() {
               <p>{equalsign}</p>
             </div>
           </div>
-          <p className="text-5xl">{result}</p>
+          <p className="text-4xl text-wrap">{result}</p>
         </div>
 
-        <div className="grid grid-cols-4 h-fit w-fit p-2 select-none">
-          <Key keyName={["%"]} />
-          <Key keyName={[<Plus />]} />
-          <Key keyName={["CE"]} click={clearResult} />
-          <Key keyName={[<Delete />]} click={clearLast} />
-          <Key keyName={[<Plus />]} />
-          <Key keyName={[<Plus />]} />
-          <Key keyName={[<Plus />]} />
-          <Key keyName={[<Divide />]} click={division} />
-          <Key keyName={[7]} click={() => numberPress(7)} />
-          <Key keyName={[8]} click={() => numberPress(8)} />
-          <Key keyName={[9]} click={() => numberPress(9)} />
-          <Key keyName={[<X />]} click={multiplication} />
-          <Key keyName={[4]} click={() => numberPress(4)} />
-          <Key keyName={[5]} click={() => numberPress(5)} />
-          <Key keyName={[6]} click={() => numberPress(6)} />
-          <Key keyName={[<Minus />]} click={subtraction} />
-          <Key keyName={[1]} click={() => numberPress(1)} />
-          <Key keyName={[2]} click={() => numberPress(2)} />
-          <Key keyName={[3]} click={() => numberPress(3)} />
-          <Key keyName={[<Plus />]} click={addition} />
-          <Key keyName={[<Plus />]} />
-          <Key keyName={[0]} click={() => numberPress(0)} />
-          <Key keyName={["."]} />
-          <Key keyName={[<Equal />]} click={equal} />
+        <div className="grid grid-cols-4 h-fit w-fit p-1 select-none">
+          <Key KeyName={"%"} />
+          <Key KeyName={"CE"} />
+          <Key KeyName={"C"} click={clearResult} />
+          <Key KeyName={Delete} click={clearLast} />
+          <Key KeyName={"x³"} />
+          <Key KeyName={"x²"} />
+          <Key KeyName={Radical} />
+          <Key KeyName={Divide} click={division} />
+          <Key KeyName={"7"} click={() => numberPress("7")} />
+          <Key KeyName={"8"} click={() => numberPress("8")} />
+          <Key KeyName={"9"} click={() => numberPress("9")} />
+          <Key KeyName={X} click={multiplication} />
+          <Key KeyName={"4"} click={() => numberPress("4")} />
+          <Key KeyName={"5"} click={() => numberPress("5")} />
+          <Key KeyName={"6"} click={() => numberPress("6")} />
+          <Key KeyName={Minus} click={subtraction} />
+          <Key KeyName={"1"} click={() => numberPress("1")} />
+          <Key KeyName={"2"} click={() => numberPress("2")} />
+          <Key KeyName={"3"} click={() => numberPress("3")} />
+          <Key KeyName={Plus} click={addition} />
+          <Key KeyName={"+/-"} />
+          <Key KeyName={"0"} click={() => numberPress("0")} />
+          <Key KeyName={"."} click={() => numberPress(".")} />
+          <Key KeyName={Equal} click={equal} />
         </div>
       </div>
     </div>

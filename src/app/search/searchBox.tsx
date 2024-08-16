@@ -6,7 +6,7 @@ function SearchBox(){
     <div className="flex justify-center m-auto">
       <div className="bg-zinc-100 rounded-xl justify-center flex shadow-md hover:shadow-2xl hover:duration-500 duration-500 dark:bg-zinc-900">
         <div
-          className="h-14 w-[800px] bg-white p-4 rounded-xl flex items-center justify-center shadow-shape gap-3 m-5 
+          className="h-12 w-[500px] bg-white p-4 rounded-xl flex items-center justify-center shadow-shape gap-3 m-2 
         hover:shadow-md hover:duration-500 duration-500 dark:bg-black"
         >
           <input
