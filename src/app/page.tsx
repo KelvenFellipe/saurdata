@@ -1,6 +1,6 @@
 "use client"
 
-import { Notch } from "../components/Notch"
+import { Notch } from "./_components/Notch"
 import CalculatorComponent from "./calculator/calculator"
 import NotebookComponent from "./notebook/notebook"
 import SearchBox from "./search/searchBox"

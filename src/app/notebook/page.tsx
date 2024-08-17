@@ -1,8 +1,7 @@
-import { Notch } from "@/components/Notch";
-import NotebookComponent from "./notebook";
+import { Notch } from "@/app/_components/Notch"
+import NotebookComponent from "./notebook"
 
-function Notebook(){
-
+function Notebook() {
   return (
     <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
       <Notch />

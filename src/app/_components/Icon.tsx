@@ -1,17 +1,11 @@
-import { Calculator, LucideIcon, Notebook, Search } from "lucide-react"
+import { LucideIcon } from "lucide-react"
 import Link from "next/link"
 import { FC } from "react"
 
-interface IconProps {
+export interface IconProps {
   IconTag: LucideIcon
   link: string
 }
-
-export const notchData: IconProps[] = [
-  { IconTag: Calculator, link: "/calculator" },
-  { IconTag: Notebook, link: "/notebook" },
-  { IconTag: Search, link: "/search" },
-]
 
 const Icon: FC<IconProps> = ({ IconTag, link }) => {
   return (

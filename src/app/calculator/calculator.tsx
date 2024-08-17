@@ -3,7 +3,7 @@
 import { Delete, Divide, Equal, History, Minus, Plus, Radical, X } from "lucide-react"
 
 import { useEffect, useState } from "react"
-import { Key } from "../../components/Key"
+import { Key } from "../_components/Key"
 
 function CalculatorComponent() {
   const [result, setResult] = useState("")

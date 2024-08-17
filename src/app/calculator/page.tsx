@@ -1,6 +1,6 @@
 "use client"
 
-import { Notch } from "@/components/Notch"
+import { Notch } from "@/app/_components/Notch"
 import CalculatorComponent from "./calculator"
 
 function Calculator(){
