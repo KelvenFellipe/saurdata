@@ -113,8 +113,8 @@ function CalculatorComponent() {
 
   return (
     <div className="flex justify-center">
-      <div className="h-fit w-fit bg-zinc-100 rounded-xl shadow-md hover:shadow-2xl hover:duration-500 duration-500 dark:bg-zinc-900 ">
-        <div className="h-[76px] text-right  text-zinc-900 select-none dark:text-zinc-200 p-2">
+      <div className="h-fit w-fit bg-zinc-100 rounded-xl shadow-md hover:shadow-2xl hover:duration-300 duration-300 dark:bg-zinc-900 ">
+        <div className="h-[76px] text-right text-zinc-400 select-none p-2">
           <div className="flex justify-between">
             <History className="text-left text-xl" />
             <div className="flex">

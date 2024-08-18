@@ -16,16 +16,13 @@ export function Notch() {
 
   return (
     <div className="flex justify-center p-4 text-3xl  ">
-      <div
-        className="rounded-xl grid grid-cols-4 gap-3 p-3 bg-white size-xl text-zinc-400 shadow-md hover:shadow-xl hover:duration-500 duration-500
-      dark:bg-black "
-      >
+      <div className="rounded-xl grid grid-cols-4 gap-3 p-3 bg-white size-xl text-zinc-400 shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-black">
         {notchData.map(item => (
           <Icon IconTag={item.IconTag} link={item.link} key={item.link} />
         ))}
         <Lights
           onClick={toggleTheme}
-          className="transition ease-in-out delay-150 hover:scale-150 duration-300 hover:text-zinc-900 dark:hover:text-zinc-100"
+          className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white"
         />
       </div>
     </div>

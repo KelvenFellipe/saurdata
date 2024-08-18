@@ -1,5 +1,6 @@
 import { LucideIcon } from "lucide-react"
 import { FC } from "react"
+import { Sentence } from "./Key"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./Select"
 
 export interface componentProps {
@@ -19,7 +20,7 @@ const SelectComponent: FC<componentProps> = ({ PlaceHolder, data, changevalue })
       <SelectContent>
         {data?.map((item, index) => (
           <SelectItem value={item.value} key={index}>
-            {typeof item.Icon === "string" ? <div>{item.Icon}</div> : <item.Icon />}
+            <Sentence KeyName={item.Icon} />
           </SelectItem>
         ))}
       </SelectContent>

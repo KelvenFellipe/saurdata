@@ -10,7 +10,7 @@ export interface IconProps {
 const Icon: FC<IconProps> = ({ IconTag, link }) => {
   return (
     <Link href={link}>
-      <IconTag className="transition ease-in-out delay-150 hover:scale-150 duration-300 hover:text-zinc-900 dark:hover:text-zinc-100" />
+      <IconTag className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white" />
     </Link>
   )
 }

@@ -1,7 +1,7 @@
 "use client"
 
 import SelectComponent from "@/app/_components/SelectComponent"
-import { Bold, Italic, Type } from "lucide-react"
+import { Bold, Italic } from "lucide-react"
 import { useState } from "react"
 import { fontSelect } from "../_data/fontSelectData"
 import { textAlign } from "../_data/textAlignData"
@@ -20,31 +20,27 @@ function NotebookComponent() {
 
   return (
     <div className="flex justify-center m-auto">
-      <div className="h-[384px] w-[336px] rounded-xl shadow-md hover:shadow-2xl hover:duration-500 duration-500  ">
-        <div
-          className="bg-white w-[336] h-10 m-auto items-center flex justify-between px-14 text-zinc-400 space-x-2 text-3xl rounded-t-xl dark:bg-black
-           hover:duration-500 duration-500"
-        >
-          <div className="transition ease-in-out delay-150 duration-300 hover:text-zinc-900 dark:hover:text-zinc-100 text-lg text-center w-10">
+      <div className="h-[384px] w-[336px] rounded-xl shadow-md hover:shadow-2xl hover:300 duration-300  ">
+        <div className="w-[336] h-10 px-4 bg-white flex justify-between dark:bg-black text-zinc-400 rounded-t-xl duration-300 hover:duration-300">
+          <div className="transition ease-in-out delay-150 duration-300 hover:text-black dark:hover:text-white text-xl text-center">
             <SelectComponent PlaceHolder={"font"} data={fontSelect} changevalue={selectFont} />
           </div>
-
-          <Type />
-          <Italic />
-          <Bold />
-
-          <div className="transition ease-in-out delay-150 duration-300 hover:text-zinc-900 dark:hover:text-zinc-100">
-            <SelectComponent
-              PlaceHolder={textAlign[3].Icon}
-              data={textAlign}
-              changevalue={selectType}
-            />
+          <div className="flex space-x-2 items-center text-xl">
+            <Italic />
+            <Bold />
+            <div className="transition ease-in-out delay-150 duration-300 hover:text-black dark:hover:text-white">
+              <SelectComponent
+                PlaceHolder={textAlign[3].Icon}
+                data={textAlign}
+                changevalue={selectType}
+              />
+            </div>
           </div>
         </div>
         <textarea
           placeholder="type something"
-          className={`text-xl ${font} ${textType} text-zinc-700 bg-zinc-100 w-[336px] h-[344px] resize-none focus:outline-0 rounded-b-xl p-3 dark:bg-zinc-900 dark:text-zinc-100
-            hover:duration-500 duration-500 `}
+          className={`text-xl ${font} ${textType} text-zinc-800 bg-zinc-100 w-[336px] h-[344px] resize-none focus:outline-0 rounded-b-xl p-3 dark:bg-zinc-900 dark:text-zinc-200
+            hover:duration-300 duration-300`}
         ></textarea>
       </div>
     </div>
