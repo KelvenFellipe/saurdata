@@ -1,12 +1,9 @@
-"use client"
-
 import { Notch } from "./_components/Notch"
 import CalculatorComponent from "./calculator/calculator"
 import NotebookComponent from "./notebook/notebook"
 import SearchBox from "./search/searchBox"
 
 function Main() {
-
   return (
     <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
       <Notch />

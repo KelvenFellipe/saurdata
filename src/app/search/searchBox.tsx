@@ -1,7 +1,7 @@
+import "dotenv/config"
 import { SearchIcon } from "lucide-react"
 
-function SearchBox(){
-
+function SearchBox() {
   return (
     <div className="flex justify-center m-auto">
       <div className="bg-zinc-100 rounded-xl justify-center flex shadow-md hover:shadow-2xl hover:duration-300 duration-300 dark:bg-zinc-900">
