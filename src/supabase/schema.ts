@@ -19,3 +19,4 @@ export const UserTable = pgTable("users", {
     emailIndex: uniqueIndex("emailIndex").on(table.email)
   }
 })
+
