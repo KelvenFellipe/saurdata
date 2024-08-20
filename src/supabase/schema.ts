@@ -5,8 +5,7 @@ export const UserRole = pgEnum("userRole", ["ADMIN", "BASIC"])
 
 export const DinosauriaTable = pgTable("dinosauria", {
   id: uuid("id").primaryKey().defaultRandom(),
-  genus: varchar("genus").notNull(),
-  species: varchar("species").notNull(),
+  genus: varchar("genus/species").notNull(),
 });
 
 export const UserTable = pgTable("users", {

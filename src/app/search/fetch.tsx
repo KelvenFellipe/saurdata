@@ -8,11 +8,15 @@ const tableName = "dinosauria"
 
 // Fetch data from the table
 export async function fetchData(search: string) {
-  const { data, error } = await supabase.from(tableName).select("genus , id")
+  const { data, error } = await supabase
+    .from(tableName)
+    .select()
+    .ilike("genus/species", `%${search}%`)
   if (error) {
     console.error("Error fetching data:", error)
     return
   }
+  if (data.length === 0) return {}
 
   console.log("Fetched data:", data)
   return data
