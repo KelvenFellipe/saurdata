@@ -3,7 +3,7 @@
 import { notchData } from "@/app/_data/notchData"
 import { Lightbulb, LightbulbOff } from "lucide-react"
 import { useState } from "react"
-import Icon from "./Icon"
+import { Icon } from "./Icon"
 
 export function Notch() {
   const [Lights, setLights] = useState<any>(Lightbulb)

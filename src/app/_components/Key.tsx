@@ -1,12 +1,11 @@
 import { LucideIcon } from "lucide-react"
-import { FC } from "react"
 
 interface KeyProps {
   KeyName: LucideIcon | string
   click?: any
 }
 
-export const Key: FC<KeyProps> = ({ KeyName, click }) => {
+export function Key({ KeyName, click }: KeyProps) {
   return (
     <div
       onClick={click}
@@ -22,7 +21,7 @@ export const Key: FC<KeyProps> = ({ KeyName, click }) => {
   )
 }
 
-export const Sentence: FC<KeyProps> = ({ KeyName }) => {
+export function Sentence({ KeyName }: KeyProps) {
   return (
     <div className="text-zinc-400 h-fit w-fit flex items-center justify-center rounded-md hover:duration-300 duration-300 m-[1px] transition ease-in-out delay-150 hover:text-black dark:hover:text-white">
       {typeof KeyName === "string" ? (

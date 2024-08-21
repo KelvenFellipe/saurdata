@@ -27,14 +27,15 @@ export function SearchResult() {
     visible = "hidden"
   }
   return (
-    <div className=" bg-zinc-100 w-fit rounded-xl justify-center flex-col shadow-md hover:shadow-2xl duration-300 dark:bg-zinc-900 p-[1px] mx-auto">
+    <div className=" bg-zinc-100 w-fit  rounded-xl justify-center flex-col shadow-md hover:shadow-2xl duration-300 dark:bg-zinc-900 p-[1px]">
       <SearchBox search={search} setSearch={setSearch} />
 
       <div
-        className={`bg-zinc-200 dark:bg-zinc-800 p-2 m-2 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 duration-300 items-center ${visible} transition ease-in-out hover:shadow-md hover:duration-300`}
+        className={`bg-zinc-200 dark:bg-zinc-800 p-2 m-2 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 duration-300
+           items-center ${visible} transition ease-in-out hover:shadow-md hover:duration-300 overflow-auto max-h-[310px]`}
       >
         {search !== "" && responseData.length === 0 ? (
-          <div> no results</div>
+          <div className="pl-2"> no results</div>
         ) : (
           responseData.map(item => <SearchResponse key={item.id} response={item.genus} />)
         )}

@@ -1,12 +1,10 @@
 "use client"
 
-import { Notch } from "@/app/_components/Notch"
 import CalculatorComponent from "./calculator"
 
 function Calculator(){
   return (
-    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
-      <Notch />
+    <div className="h-max justify-center grid">
       <CalculatorComponent />
     </div>
   )

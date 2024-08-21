@@ -1,11 +1,9 @@
 "use client"
-import { Notch } from "../_components/Notch"
 import { SearchResult } from "./searchResult"
 
 function Search() {
   return (
-    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
-      <Notch />
+    <div className="h-max grid justify-center">
       <SearchResult />
     </div>
   )

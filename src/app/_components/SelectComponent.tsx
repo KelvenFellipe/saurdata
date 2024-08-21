@@ -1,5 +1,4 @@
 import { LucideIcon } from "lucide-react"
-import { FC } from "react"
 import { Sentence } from "./Key"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./Select"
 
@@ -9,7 +8,7 @@ export interface componentProps {
   changevalue: (value: string) => void
 }
 
-const SelectComponent: FC<componentProps> = ({ PlaceHolder, data, changevalue }) => {
+export function SelectComponent({ PlaceHolder, data, changevalue }: componentProps) {
   return (
     <Select onValueChange={changevalue}>
       <SelectTrigger>
@@ -27,4 +26,3 @@ const SelectComponent: FC<componentProps> = ({ PlaceHolder, data, changevalue })
     </Select>
   )
 }
-export default SelectComponent

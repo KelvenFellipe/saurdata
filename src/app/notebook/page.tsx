@@ -1,13 +1,10 @@
-import { Notch } from "@/app/_components/Notch"
 import NotebookComponent from "./notebook"
 
 function Notebook() {
   return (
-    <div className="h-screen bg-zinc-200 dark:bg-zinc-800">
-      <Notch />
+    <div className="h-max justify-center grid">
       <NotebookComponent />
     </div>
   )
 }
-
 export default Notebook
