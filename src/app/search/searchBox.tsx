@@ -9,7 +9,7 @@ interface SearchProps {
 export function SearchBox({ search, setSearch }: SearchProps) {
   return (
     <div
-      className="h-12 w-[400px] bg-white p-4 rounded-xl flex items-center justify-center shadow-shape gap-3 m-2 
+      className="h-12 w-full bg-white p-4 rounded-xl flex items-center justify-center shadow-shape gap-3 
         hover:shadow-md hover:duration-300 duration-300 dark:bg-black"
     >
       <input

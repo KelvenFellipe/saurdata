@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "postgresql",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1724265655395,
+      "tag": "0000_bent_sway",
+      "breakpoints": true
+    }
+  ]
 }
