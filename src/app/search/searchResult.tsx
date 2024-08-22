@@ -28,7 +28,7 @@ export function SearchResult() {
     visible = "hidden"
   }
   return (
-    <div className=" bg-zinc-100 max-w-[600px] rounded-xl justify-center flex flex-col shadow-md hover:shadow-2xl duration-300 dark:bg-zinc-900 p-2">
+    <div className=" bg-zinc-100 max-w-[700px] rounded-xl justify-center flex flex-col shadow-md hover:shadow-2xl duration-300 dark:bg-zinc-900 p-2">
       <SearchBox search={search} setSearch={setSearch} />
 
       <div
