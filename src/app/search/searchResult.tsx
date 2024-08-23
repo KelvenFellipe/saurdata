@@ -7,6 +7,7 @@ import { SearchResponse } from "./searchResponse"
 interface dataTypes {
   id: Key
   genus: string
+  item: dataTypes
 }
 
 export function SearchResult() {
@@ -19,7 +20,6 @@ export function SearchResult() {
     async function fetched() {
       const data = await fetchData(search)
       if (data) setResponseData(Object.values(data))
-      //console.log(responseData)
     }
     fetched()
   }, [search])
@@ -38,10 +38,9 @@ export function SearchResult() {
         {search !== "" && responseData.length === 0 ? (
           <div className="pl-2"> no results</div>
         ) : (
-          responseData.map(item => (
-            <SearchResponse key={item.id} response={item.genus} data={item} />
-          ))
+          responseData.map(item => <SearchResponse key={item.id} data={item} />)
         )}
+        {}
       </div>
     </div>
   )
