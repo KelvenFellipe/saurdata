@@ -1,6 +1,7 @@
 import { X } from "lucide-react"
+import Link from "next/link"
 
-export interface dinoType {
+export interface saurType {
   type: string
   family: string
   genus: string
@@ -10,20 +11,26 @@ export interface dinoType {
   id: string
 }
 
-export function DinoCard(data: dinoType) {
+export function SaurCard(props: saurType) {
+  console.log(props)
   return (
-    <div className="flex relative bg-black max-w-[600px] rounded-xl m-auto text-zinc-400 p-4 text-lg">
-      <X className="absolute right-1 top-1 size-7" />
+    <div
+      key={props.id}
+      className="flex relative bg-black max-w-[600px] rounded-xl m-auto text-zinc-400 p-4 text-lg"
+    >
+      <Link href={"/search"}>
+        <X className="absolute right-1 top-1 size-7" />
+      </Link>
       <img
-        src={data.img}
-        alt={data.genus}
+        src={props.img}
+        alt={props.genus}
         className="rounded-3xl object-cover h-[180px] w-[180px]"
       />
       <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[372px] items-center ml-4 ">
-        <p className="col-span-2 text-2xl ">{data.genus}</p>
-        <p className="col-span-2">{data.family}</p>
-        <p className="col-span-2 flex">Species: {data.species.join(", ")}</p>
-        <p className="col-span-2">Temporal range: {data.temporal} </p>
+        <p className="col-span-2 text-2xl ">{props.genus}</p>
+        <p className="col-span-2">{props.family}</p>
+        <p className="col-span-2 flex">Species: {props.species.join(", ")}</p>
+        <p className="col-span-2">Temporal range: {props.temporal} </p>
       </div>
       <p className="mt-3 hidden">
         industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,when

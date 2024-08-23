@@ -1,20 +1,20 @@
 "use client"
 import { useEffect, useState } from "react"
-import { dinoType } from "../test/dinoCard"
+import { saurType } from "../animal/saurCard"
 import { fetchData } from "./fetch"
 import SearchBox from "./searchBox"
 import { SearchResponse } from "./searchResponse"
 
 export function SearchResult() {
   const [search, setSearch] = useState("")
-  const [responseData, setResponseData] = useState<Array<dinoType>>([])
+  const [responseData, setResponseData] = useState<Array<saurType>>([])
 
   let visible: string = ""
 
   useEffect(() => {
     async function fetched() {
       const data = await fetchData(search)
-      if (data) setResponseData(Object.values(data))
+      if (data) setResponseData(data)
     }
     fetched()
   }, [search])

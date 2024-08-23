@@ -3,15 +3,13 @@ import { supabase } from "@/supabase/config"
 const tableName = "dinosauria"
 
 export async function fetchData(search: string) {
-  const { data, error } = await supabase
-    .from(tableName)
-    .select()
-    .ilike("genus/species", `%${search}%`)
+  const { data, error } = await supabase.from(tableName).select().ilike("genus", `%${search}%`)
+
   if (error) {
     console.error("Error fetching data:", error)
     return
   }
-  if (data.length === 0) return {}
+  if (data.length === 0) return 
 
   console.log("Fetched data:", data)
   return data
