@@ -1,17 +1,16 @@
 import { X } from "lucide-react"
 
 export interface dinoType {
-  data: {
-    type: string
-    family: string
-    genus: string
-    species: string[]
-    img: string
-    temporal: string
-  }
+  type: string
+  family: string
+  genus: string
+  species: string[]
+  img: string
+  temporal: string
+  id: string
 }
 
-export function DinoCard({ data }: dinoType) {
+export function DinoCard(data: dinoType) {
   return (
     <div className="flex relative bg-black max-w-[600px] rounded-xl m-auto text-zinc-400 p-4 text-lg">
       <X className="absolute right-1 top-1 size-7" />

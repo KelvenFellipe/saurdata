@@ -1,25 +1,28 @@
 import { Search } from "lucide-react"
-import { useState } from "react"
-import { DinoCard, dinoType } from "../test/dinoCard"
+import Link from "next/link"
+import { dinoType } from "../test/dinoCard"
+import { returnData } from "../test/returnData"
 
-export const SearchResponse = ({ data }: dinoType) => {
-  const [show, setShow] = useState(false)
+interface test {
+  data: dinoType
+}
 
-  function toggleCard() {
-    setShow(() => !show)
-  }
+export const SearchResponse = ({ data }: test) => {
+  const props = data
+  console.log(data)
 
   return (
     <div>
       <div className="flex items-center space-x-1 hover:text-black dark:hover:text-white duration-300 hover:suration-300 ">
-        {show == false && (
-          <div onClick={toggleCard} className="flex transition ease-in-out">
-            <Search className="size-6 m-1" />
-            <div>{data.genus}</div>
-          </div>
-        )}
+        <Link
+          href={"/test"}
+          onClick={() => returnData(data.genus)}
+          className="flex transition ease-in-out"
+        >
+          <Search className="size-6 m-1" />
+          <div>{data.genus}</div>
+        </Link>
       </div>
-      <DinoCard data={data} />
     </div>
   )
 }

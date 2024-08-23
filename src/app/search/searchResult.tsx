@@ -1,18 +1,13 @@
 "use client"
-import { Key, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
+import { dinoType } from "../test/dinoCard"
 import { fetchData } from "./fetch"
 import SearchBox from "./searchBox"
 import { SearchResponse } from "./searchResponse"
 
-interface dataTypes {
-  id: Key
-  genus: string
-  item: dataTypes
-}
-
 export function SearchResult() {
   const [search, setSearch] = useState("")
-  const [responseData, setResponseData] = useState<Array<dataTypes>>([])
+  const [responseData, setResponseData] = useState<Array<dinoType>>([])
 
   let visible: string = ""
 
@@ -38,9 +33,8 @@ export function SearchResult() {
         {search !== "" && responseData.length === 0 ? (
           <div className="pl-2"> no results</div>
         ) : (
-          responseData.map(item => <SearchResponse key={item.id} data={item} />)
+          responseData.map(item => <SearchResponse data={item} />)
         )}
-        {}
       </div>
     </div>
   )
