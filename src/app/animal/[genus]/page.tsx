@@ -1,6 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
-import { fetchData } from "../../search/fetch"
+import { fetchSaur } from "../../search/fetch"
 import { SaurCard, saurType } from "../saurCard"
 
 export default function page({ params }: { params: { genus: string } }) {
@@ -10,14 +10,14 @@ export default function page({ params }: { params: { genus: string } }) {
   useEffect(() => {
     async function fetched() {
       if (search) {
-        const data = (await fetchData(search)) as saurType[]
-        if (data) setResult(data[data.length - 1])
+        const data = (await fetchSaur(search)) as saurType[]
+        if (data) setResult(data[0])
       }
     }
 
     fetched()
-    console.log("Carregado", result)
   }, [search])
+
   if (result !== null && result !== undefined) {
     return <SaurCard {...result} />
   }
