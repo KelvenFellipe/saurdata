@@ -1,28 +1,32 @@
-import { supabase } from "@/supabase/config"
-
-const tableName = "dinosauria"
+"use server"
+import { db } from "@/supabase"
+import { sauria } from "@/supabase/schema"
+import { ilike, like } from "drizzle-orm"
 
 export async function fetchData(search: string) {
-  const { data, error } = await supabase.from(tableName).select().ilike("genus", `%${search}%`)
-  if (error) {
-    console.error("Error fetching data:", error)
-    return
-  }
+  const data = await db
+    .select()
+    .from(sauria)
+    .where(ilike(sauria.genus, `%${search}%`))
+
   if (data.length === 0) return
 
-  console.log("Fetched data:", data)
+  log(data)
   return data
 }
 
-export async function fetchSaur(search: string) {
-  const { data, error } = await supabase.from(tableName).select().textSearch("genus", `%${search}%`)
-  if (error) {
-    console.error("Error fetching data:", error)
-    return
-  }
+export async function fetchSaur(search: any) {
+  const data = await db
+    .select()
+    .from(sauria)
+    .where(like(sauria.genus, `%${search}%`))
+
   if (data.length === 0) return
 
-  console.log("Fetched data:", data)
+  log(data)
   return data
 }
 
+function log(data: any) {
+  console.log("Fetched data:", data)
+}

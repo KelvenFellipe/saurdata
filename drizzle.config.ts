@@ -1,6 +1,6 @@
 import { defineConfig } from 'drizzle-kit';
 
-if (process.env.NEXT_PUBLIC_SUPABASE_URL == null)
+if (process.env.SUPABASE_URL == null)
   throw new Error("DATABASE_URL is required")
 
 export default defineConfig({
@@ -8,7 +8,7 @@ export default defineConfig({
   out: './src/supabase/migrations',
   dialect: 'postgresql',
   dbCredentials: {
-    url: process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    url: process.env.SUPABASE_URL as string
   },
 }) ;
 
