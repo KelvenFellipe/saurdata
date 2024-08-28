@@ -9,7 +9,7 @@ export interface IconProps {
 export function Icon({ IconTag, link }: IconProps) {
   return (
     <Link href={link}>
-      <IconTag className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white" />
+      <IconTag className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white size-8" />
     </Link>
   )
 }
