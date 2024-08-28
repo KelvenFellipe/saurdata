@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { fetchSaur } from "../../search/fetch"
 import { SaurCard, saurType } from "../saurCard"
 
-export default function page({ params }: { params: { genus: string } }) {
+export default function Page({ params }: { params: { genus: string } }) {
   const search = params.genus
   const [result, setResult] = useState<saurType | null>(null)
 
@@ -21,7 +21,6 @@ export default function page({ params }: { params: { genus: string } }) {
   if (result !== null && result !== undefined) {
     return <SaurCard {...result} />
   }
-
   return (
     <div className="flex justify-center">
       <div>loading</div>

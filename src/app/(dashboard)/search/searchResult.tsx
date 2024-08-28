@@ -10,11 +10,12 @@ export function SearchResult() {
   const [responseData, setResponseData] = useState<Array<saurType>>([])
 
   let visible: string = ""
-
   useEffect(() => {
     async function fetched() {
       const data = await fetchData(search)
-      if (data) setResponseData(data)
+      if (data) {
+        setResponseData(data)
+      }
     }
     fetched()
   }, [search])
@@ -33,7 +34,7 @@ export function SearchResult() {
         {search !== "" && responseData.length === 0 ? (
           <div className="pl-2"> no results</div>
         ) : (
-          responseData.map(item => <SearchResponse data={item} />)
+          responseData.map(item => <SearchResponse data={item} key={item.id} />)
         )}
       </div>
     </div>

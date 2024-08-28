@@ -1,10 +1,10 @@
 "use client"
 
-import { SelectComponent } from "@/app/_components/SelectComponent"
+import { SelectComponent } from "@/app/components/SelectComponent"
+import { fontSelect } from "@/app/data/fontSelectData"
+import { textAlign } from "@/app/data/textAlignData"
 import { Bold, Italic } from "lucide-react"
 import { useState } from "react"
-import { fontSelect } from "../_data/fontSelectData"
-import { textAlign } from "../_data/textAlignData"
 
 function NotebookComponent() {
   const [textType, setTextType] = useState("")

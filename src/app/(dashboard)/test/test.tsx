@@ -1,10 +1,9 @@
 "use client"
-
-import { notchData } from "@/app/_data/notchData"
+import { Icon } from "@/app/components/Icon"
+import { notchData } from "@/app/data/notchData"
 import { CircleUserRound, Lightbulb, LightbulbOff } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { Icon } from "../_components/Icon"
 
 export function NotchTest() {
   const [Lights, setLights] = useState<any>(Lightbulb)

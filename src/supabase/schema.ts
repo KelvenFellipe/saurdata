@@ -1,21 +1,24 @@
-import { pgEnum, pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { pgTable, pgEnum, uuid, text } from "drizzle-orm/pg-core"
+  import { sql } from "drizzle-orm"
 
-export const userEnum = pgEnum("user",["ADMIN","DEFAULT"] )
+export const type = pgEnum("type", ['Dinosaur', 'Pterosaur'])
+export const user = pgEnum("user", ['ADMIN', 'DEFAULT'])
+
 
 export const sauria = pgTable("sauria", {
-  id: uuid("id").primaryKey().defaultRandom().notNull(),
-  genus: text("genus").notNull(),
-  family: text("family").notNull(),
-  species: text("species").array().notNull(),
-  temporal: text("temporal").notNull(),
-  img: text("img").notNull(),
-  type: text("type").notNull(),
-  description: text("description").notNull().default("img")
-})
+	id: uuid("id").defaultRandom().primaryKey().notNull(),
+	genus: text("genus").notNull(),
+	family: text("family").notNull(),
+	species: text("species").array().notNull(),
+	temporal: text("temporal").notNull(),
+	img: text("img").notNull(),
+	type: type("type").notNull(),
+	description: text("description").default('img').notNull(),
+});
 
-export const userTable = pgTable("users", {
-  id: uuid("id").primaryKey().defaultRandom().notNull(),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  role: userEnum("user").notNull()
-})
+export const users = pgTable("users", {
+	id: uuid("id").defaultRandom().primaryKey().notNull(),
+	name: text("name").notNull(),
+	email: text("email").notNull(),
+	user: user("user").notNull(),
+});

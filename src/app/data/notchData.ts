@@ -1,4 +1,4 @@
-import { IconProps } from "@/app/_components/Icon";
+import { IconProps } from "@/app/components/Icon";
 import { Calculator, Notebook, Search } from "lucide-react";
 
 export const notchData: IconProps[] = [
