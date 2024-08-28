@@ -1,4 +1,6 @@
-import { pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { pgEnum, pgTable, text, uuid } from "drizzle-orm/pg-core";
+
+export const userEnum = pgEnum("user",["ADMIN","DEFAULT"] )
 
 export const sauria = pgTable("sauria", {
   id: uuid("id").primaryKey().defaultRandom().notNull(),
@@ -9,4 +11,11 @@ export const sauria = pgTable("sauria", {
   img: text("img").notNull(),
   type: text("type").notNull(),
   description: text("description").notNull().default("img")
+})
+
+export const userTable = pgTable("users", {
+  id: uuid("id").primaryKey().defaultRandom().notNull(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  role: userEnum("user").notNull()
 })
