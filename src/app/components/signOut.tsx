@@ -1,6 +1,5 @@
 import { LogOut } from "lucide-react"
 import { User } from "next-auth"
-import Link from "next/link"
 import { signOut } from "../../../auth"
 
 export function SignOut(props: User | null) {
@@ -14,14 +13,12 @@ export function SignOut(props: User | null) {
       <form
         action={async () => {
           "use server"
-          await signOut()
+          await signOut({ redirectTo: "/" })
         }}
       >
-        <Link href={"/"}>
-          <button type="submit">
-            <LogOut className="size-5" type="submit" />
-          </button>
-        </Link>
+        <button type="submit" className="flex">
+          <LogOut className="size-5" type="submit" />
+        </button>
       </form>
     </div>
   )
