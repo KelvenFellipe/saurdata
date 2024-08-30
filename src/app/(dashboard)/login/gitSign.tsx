@@ -1,7 +1,7 @@
 import { Github } from "lucide-react"
 import { signIn } from "../../../../auth"
 
-export function GitHubSign() {
+export function GitSign() {
   return (
     <form
       action={async () => {

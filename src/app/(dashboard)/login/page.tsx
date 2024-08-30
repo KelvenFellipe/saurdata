@@ -1,16 +1,11 @@
-import type { Metadata } from "next"
-import { GitHubSign } from "./signinButton"
+import { GitSign } from "./gitSign"
+import { Session } from "./session"
 
-export const metadata: Metadata = {
-  title: "login | saurdata",
-}
-
-function Login() {
+function Page() {
   return (
-    <div className="grid bg-black p-20 w-fit rounded-xl justify-center items-center m-auto">
-      <GitHubSign />
-    </div>
+    <Session>
+      <GitSign />
+    </Session>
   )
 }
-
-export default Login
+export default Page
