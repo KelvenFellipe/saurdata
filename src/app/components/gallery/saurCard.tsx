@@ -23,7 +23,7 @@ export function SaurCard(props: saurType) {
           <img
             src={props.img}
             alt={props.genus}
-            className="rounded-3xl object-fit h-[180px] w-[180px] hover:scale-105 transition ease-in-out duration-300"
+            className="rounded-3xl object-fill h-[180px] w-[180px] hover:scale-105 transition ease-in-out duration-300"
           />
         </Link>
         <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[392px] items-center ml-4 ">
@@ -37,5 +37,20 @@ export function SaurCard(props: saurType) {
         <p className="mt-3 flex justify-stretch h-max ">Description: {props.description}</p>
       )}
     </div>
+  )
+}
+
+export function MiniSaurCard(props: saurType) {
+  return (
+    <Link href={`/gallery/${props.genus}`}>
+      <div className="flex flex-col text-center justify-center bg-black p-2 rounded-xl min-w-fit min-h-fit m-1">
+        <img
+          src={props.img}
+          alt={props.genus}
+          className="w-[160px] h-[160px] rounded-xl object-cover"
+        />
+        <p className="pt-1">{props.genus}</p>
+      </div>
+    </Link>
   )
 }

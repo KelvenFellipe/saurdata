@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
 import { Notch } from "../components/Notch"
-import Comp from "../components/test"
+import Comp from "../components/login/test"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })

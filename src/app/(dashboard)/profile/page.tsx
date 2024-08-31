@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation"
 import { auth } from "../../../../auth"
-import UserAvatar from "../login/userAvatar"
+import UserAvatar from "../../components/login/userAvatar"
 
 async function profile() {
   const session = await auth()

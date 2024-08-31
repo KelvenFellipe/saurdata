@@ -1,4 +1,4 @@
-import { auth } from "../../../auth"
+import { auth } from "../../../../auth"
 import { Sign } from "./sign"
 import { SignIn } from "./signIn"
 import { SignOut } from "./signOut"

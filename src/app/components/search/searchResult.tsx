@@ -1,7 +1,8 @@
 "use client"
 import { useEffect, useState } from "react"
-import { saurType } from "../animal/saurCard"
-import { fetchData } from "./fetch"
+import { saurType } from "../../components/gallery/saurCard"
+
+import { fetchData } from "@/app/(dashboard)/search/fetch"
 import SearchBox from "./searchBox"
 import { SearchResponse } from "./searchResponse"
 
@@ -40,4 +41,3 @@ export function SearchResult() {
     </div>
   )
 }
-

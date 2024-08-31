@@ -1,5 +1,5 @@
+import { SearchResult } from "@/app/components/search/searchResult"
 import type { Metadata } from "next"
-import { SearchResult } from "./searchResult"
 
 export const metadata: Metadata = {
   title: "search | saurdata",

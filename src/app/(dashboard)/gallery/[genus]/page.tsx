@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
+import { SaurCard, saurType } from "../../../components/gallery/saurCard"
 import { fetchSaur } from "../../search/fetch"
-import { SaurCard, saurType } from "../saurCard"
 
 export default function Page({ params }: { params: { genus: string } }) {
   const search = params.genus
