@@ -1,6 +1,6 @@
+import { SearchResult } from "../components/search/searchResult"
 import CalculatorComponent from "./calculator/calculator"
 import NotebookComponent from "./notebook/notebook"
-import { SearchResult } from "./search/searchResult"
 
 function Main() {
   return (

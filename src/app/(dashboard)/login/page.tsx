@@ -1,4 +1,4 @@
-import { GitSign } from "./gitSign"
+import { GitSign } from "@/app/components/login/gitSign"
 import { Session } from "./session"
 
 function Page() {
