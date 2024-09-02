@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import { NotchTest } from "./test/test"
+import { NavNar } from "./test/navBar"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={cn(inter.className, "bg-zinc-200 dark:bg-zinc-900")}>
         <SessionProvider>
-          <NotchTest />
+          <NavNar />
           <div>{children}</div>
         </SessionProvider>
       </body>

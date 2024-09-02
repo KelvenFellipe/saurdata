@@ -35,7 +35,7 @@ export function SearchResult() {
         {search !== "" && responseData.length === 0 ? (
           <div className="pl-2"> no results</div>
         ) : (
-          responseData.map(item => <SearchResponse data={item} key={item.id} />)
+          responseData.map(item => <SearchResponse data={item} key={item.id} click={console.log} />)
         )}
       </div>
     </div>

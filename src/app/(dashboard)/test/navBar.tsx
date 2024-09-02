@@ -1,11 +1,16 @@
 "use client"
-import { Logo } from "@/app/components/Logo"
-import { Bell, CircleX, Lightbulb, LightbulbOff, Menu, Search, User } from "lucide-react"
+import { Logo2 } from "@/app/components/Logo"
+import { Bell, Lightbulb, LightbulbOff, Menu, User } from "lucide-react"
 import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { MenuBar } from "./Menu"
+import { SearchNavbar } from "./searchNavbar"
 
-export function NotchTest() {
+export function NavNar() {
+  const router = useRouter()
   const [Lights, setLights] = useState<any>(Lightbulb)
+  const [menu, setMenu] = useState(false)
   const { data: session } = useSession()
   console.log(session)
 
@@ -17,34 +22,28 @@ export function NotchTest() {
 
   return (
     <div
-      className="grid grid-cols-3 gap-3 p-2 px-4 bg-white size-xl text-zinc-400 justify-center text-center
-      shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-black  text-xl w-[100%] h-fit mb-2 border-b border-zinc-600"
+      className="grid grid-cols-3 gap-3 px-4 bg-white size-xl text-zinc-400 justify-center text-center
+      shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-black text-xl w-[100%] h-fit border-b border-zinc-600"
     >
-      <div className="flex items-center space-x-4">
-        <Menu />
-        <div className="flex items-center text-white">
-          <Logo />
-          <p>saurdata</p>
-        </div>
+      <div className="flex items-center space-x-4 p-2">
+        <Menu onClick={() => setMenu(!menu)} />
+        <button className="flex items-center text-3xl text-white" onClick={() => router.push("/")}>
+          <Logo2 />
+          saurdata
+        </button>
       </div>
-      <div className="bg-zinc-800 flex rounded-xl w-full items-center">
-        <Search className="size-5 w-10 pl-2" />
-        <input
-          type="text"
-          className="bg-zinc-800 text-xl focus:outline-none p-1 w-full"
-          placeholder="search"
-        />
-        <CircleX className="size-5 w-10 pr-2" />
-      </div>
+
+      <SearchNavbar />
+
       <div className="flex space-x-4 items-center">
         <Bell className="size-5 ml-auto " />
         {session?.user?.image ? (
           <img src={session.user.image} className="h-9 w-9 rounded-full" />
         ) : (
-          <User />
+          <User className="h-9 w-9 rounded-full bg-zinc-800" />
         )}
       </div>
-
+      {menu === true && <MenuBar />}
       {/* {notchData.map(item => (
           <Icon IconTag={item.IconTag} link={item.link} key={item.link} />
         ))}
