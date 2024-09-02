@@ -1,10 +1,4 @@
-import { NotchTest } from "./test"
-
 function test() {
-  return (
-    <div>
-      <NotchTest />
-    </div>
-  )
+  return <div></div>
 }
 export default test
