@@ -38,7 +38,7 @@ export function SearchNavbar() {
 
       {search !== "" && (
         <div
-          className={`absolute bg-zinc-200 dark:bg-zinc-800 p-2 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 duration-300
+          className={`absolute px-2 bg-zinc-200 dark:bg-zinc-800  rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 duration-300
            items-center transition ease-in-out hover:shadow-md hover:duration-300 overflow-auto max-h-[310px]  w-full top-[40px]`}
         >
           {search !== "" && responseData.length === 0 ? (

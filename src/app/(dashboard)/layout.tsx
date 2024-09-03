@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={cn(inter.className, "bg-zinc-200 dark:bg-zinc-900")}>
+      <body className={cn(inter.className, "bg-zinc-200 dark:bg-[#111316]")}>
         <SessionProvider>
           <NavNar />
           <div>{children}</div>

@@ -15,7 +15,7 @@ export function SaurMap() {
     fetched()
   }, [])
   return (
-    <div className="grid grid-cols-8 w-fit p-2">
+    <div className="grid grid-cols-8 w-fit p-2 z-[0]">
       {responseData.map(item => (
         <MiniSaurCard {...item} />
       ))}
