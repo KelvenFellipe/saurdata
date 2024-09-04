@@ -22,7 +22,7 @@ export function NavNar() {
 
   return (
     <div
-      className="grid grid-cols-3 gap-3 px-4 bg-white size-xl text-zinc-400 justify-center text-center relative 
+      className="grid grid-cols-3 gap-3 px-4 bg-white size-xl text-zinc-400 justify-center text-center 
       shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-fit border-b border-zinc-600"
     >
       <div className="flex items-center space-x-4 ">

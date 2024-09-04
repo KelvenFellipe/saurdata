@@ -12,19 +12,16 @@ export function MenuBar() {
     doc.toggle("dark")
   }
   return (
-    <div className="h-screen absolute flex">
-      <div className="w-[200px] border-r border-zinc-600 bg-[#111316]  left-0">
-        {notchData.map(item => (
-          <div>
-            <IconName IconTag={item.IconTag} link={item.link} key={item.link} name={item.name} />
-          </div>
-        ))}
-        <Lights
-          onClick={toggleTheme}
-          className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white size-8"
-        />
-      </div>
-      <div className="bg-black/25 w-screen"></div>
+    <div className="w-[200px] border-r border-zinc-600 bg-[#111316] top-[53px] left-0 h-[940px] absolute ">
+      {notchData.map(item => (
+        <div>
+          <IconName IconTag={item.IconTag} link={item.link} key={item.link} name={item.name} />
+        </div>
+      ))}
+      <Lights
+        onClick={toggleTheme}
+        className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white size-8"
+      />
     </div>
   )
 }
