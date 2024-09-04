@@ -1,27 +1,28 @@
 "use client"
-import { IconName } from "@/app/components/Icon"
-import { notchData } from "@/app/data/notchData"
-import { Lightbulb, LightbulbOff } from "lucide-react"
-import { useState } from "react"
+import { Bone, Home } from "lucide-react"
+import Link from "next/link"
 
-export function MenuBar() {
-  const [Lights, setLights] = useState<any>(Lightbulb)
-  const toggleTheme = () => {
-    let doc = document.documentElement.classList
-    doc.value === "dark" ? setLights(LightbulbOff) : setLights(Lightbulb)
-    doc.toggle("dark")
-  }
+interface props{
+  click?: any
+}
+
+export function MenuBar({click}: props) {
+
   return (
-    <div className="w-[200px] border-r border-zinc-600 bg-[#111316] top-[53px] left-0 h-[940px] absolute ">
-      {notchData.map(item => (
-        <div>
-          <IconName IconTag={item.IconTag} link={item.link} key={item.link} name={item.name} />
-        </div>
-      ))}
-      <Lights
-        onClick={toggleTheme}
-        className="transition ease-in-out hover:scale-125 duration-300 hover:text-black dark:hover:text-white size-8"
-      />
+    <div className="top-[53px] h-[920px] w-full left-0 absolute flex"  >
+      <div className=" bg-zinc-950  w-[250px] h-  text-white text-base rounded-xl py-2" >
+        <Link href={"/"} className="flex px-4 py-3 items-center space-x-2 hover:bg-white/10">
+          <Home/>
+          <p>Home</p>
+        </Link>
+        <Link href={"/gallery"} className="flex px-4 py-3 items-center space-x-2 p-2 hover:bg-white/10">
+          <Bone/>
+          <p>Gallery</p>
+        </Link>
+      </div>
+      <div className="w-full  bg-black/40 " onClick={click()}/>
     </div>
+
   )
 }
+//<IconName IconTag={item.IconTag} link={item.link} key={item.link} name={item.name} />

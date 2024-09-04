@@ -22,7 +22,7 @@ export function Notch() {
         duration-300 dark:bg-black justify-center text-3xl max-w-[250px] m-auto my-2`}
     >
       {notchData.map(item => (
-        <Icon IconTag={item.IconTag} link={item.link} key={item.link} />
+        <Icon IconTag={item.IconTag} link={item.link} key={item.link} name={""} />
       ))}
       <Lights
         onClick={toggleTheme}

@@ -11,14 +11,3 @@ export function SignIn() {
     </Link>
   )
 }
-//  <form
-//         action={async () => {
-//           "use server"
-//           await signIn("github")
-//         }}
-//       >
-//         <button type="submit" className="flex">
-//           <LogIn className="size-5 m-auto" />
-//         </button>
-//       </form>
-//       <User className="size-8" />

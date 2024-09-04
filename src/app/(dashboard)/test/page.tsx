@@ -1,12 +1,12 @@
 import { MenuBar } from "./Menu"
 import { InNavBar } from "./signNavbar"
 
-function test() {
+function Page() {
   return (
-    <div className="flex">
-      <MenuBar />
+    <div>
+      <MenuBar click={console.log} />
       <InNavBar />
     </div>
   )
 }
-export default test
+export default Page
