@@ -7,8 +7,13 @@ import { fetchData } from "../search/fetch"
 
 export function SearchNavbar() {
   const [search, setSearch] = useState("")
+  const [placeholder, setPlaceholder] = useState("search")
   const [responseData, setResponseData] = useState<Array<saurType>>([])
 
+  function reset(item: string) {
+    setPlaceholder(() => item)
+    setSearch(() => "")
+  }
   useEffect(() => {
     async function fetched() {
       const data = await fetchData(search)
@@ -26,8 +31,8 @@ export function SearchNavbar() {
         onChange={e => setSearch(e.target.value)}
         value={search}
         type="text"
-        className={`block w-full bg-zinc-800 text-xl text-white p-1 ps-10 focus:outline-none hover:bg-white/20 rounded-xl`}
-        placeholder="search"
+        className={`block w-full bg-zinc-800 text-xl text-white p-1 ps-10 hover:bg-white/20 rounded-xl`}
+        placeholder={placeholder}
         maxLength={30}
       />
 
@@ -42,13 +47,13 @@ export function SearchNavbar() {
       {search !== "" && (
         <div
           className={`absolute px-2 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 
-           items-center hover:shadow-md  overflow-auto max-h-[310px] w-full top-[38px]`}
+           items-center hover:shadow-md  overflow-auto max-h-[310px] w-full top-[38px] z-[1]`}
         >
           {search !== "" && responseData.length === 0 ? (
             <div className="pl-2"> no results</div>
           ) : (
             responseData.map(item => (
-              <SearchResponse data={item} key={item.id} click={console.log} />
+              <SearchResponse data={item} key={item.id} click={() => reset(item.genus)} />
             ))
           )}
         </div>

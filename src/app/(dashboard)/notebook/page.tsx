@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 function Notebook() {
   return (
-    <div className="h-max justify-center grid">
+    <div className="h-max justify-center grid z-[-1]">
       <NotebookComponent />
     </div>
   )

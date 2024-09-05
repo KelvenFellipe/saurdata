@@ -14,8 +14,8 @@ export interface saurType {
 
 export function SaurCard(props: saurType) {
   return (
-    <div className="flex flex-col dark:bg-black bg-white max-w-[620px] rounded-xl m-auto text-zinc-400 p-4 text-lg relative z-[-1]">
-      <Link href={"/search"}>
+    <div className="flex flex-col dark:bg-black bg-white max-w-[620px] rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
+      <Link href={"/gallery"}>
         <X className="absolute right-1 top-1 size-7" />
       </Link>
       <div key={props.id} className="flex">

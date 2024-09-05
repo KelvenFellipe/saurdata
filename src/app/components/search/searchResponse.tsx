@@ -4,7 +4,7 @@ import { saurType } from "../../components/gallery/saurCard"
 
 interface test {
   data: saurType
-  click: Function
+  click: any
 }
 
 export const SearchResponse = ({ data, click }: test) => {
@@ -13,7 +13,7 @@ export const SearchResponse = ({ data, click }: test) => {
       <div className="flex p-1 items-center text-xl text-zinc-400 space-x-2 hover:text-black dark:hover:text-white">
         <Link
           href={`/gallery/${data.genus}`}
-          onClick={click()}
+          onClick={click}
           className="flex transition ease-in-out items-center"
         >
           <div className="flex space-x-2 items-center">

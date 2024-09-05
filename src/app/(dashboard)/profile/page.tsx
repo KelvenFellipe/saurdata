@@ -4,7 +4,7 @@ import UserAvatar from "../../components/login/userAvatar"
 
 async function profile() {
   const session = await auth()
-  if (session?.user === undefined) return redirect("/login")
+  if (session?.user === undefined) return redirect("/")
   return <UserAvatar {...session?.user} />
 }
 export default profile
