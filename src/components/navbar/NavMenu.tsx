@@ -3,11 +3,11 @@ import { Bone, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-interface props {
+export interface clickProps {
   click?: any
 }
 
-export function NavMenu({ click }: props) {
+export function NavMenu({ click }: clickProps) {
   const path = usePathname()
 
   return (
