@@ -1,4 +1,3 @@
-
 export interface textProps {
   Icon: string
   value: string
