@@ -11,7 +11,7 @@ export function NavMenu({ click }: props) {
   const path = usePathname()
 
   return (
-    <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex">
+    <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none">
       <div className=" bg-[#111316] w-fit text-base pt-[2px] space-y-1">
         <div className="m-2">
           <Link

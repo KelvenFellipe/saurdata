@@ -20,7 +20,7 @@ export function NavSigned({ user, click }: props) {
   }
 
   return (
-    <div className="fixed w-full h-full z-[10]">
+    <div className="fixed w-full h-full z-[10] select-none">
       <div className="w-fit h-fit bg-zinc-800 fixed text-sm text-white top-[53px] right-4 rounded-xl z-[20]">
         {user.image && (
           <div className="grid grid-cols-1 my-2 ">
@@ -29,9 +29,9 @@ export function NavSigned({ user, click }: props) {
               className="flex px-4 py-3 items-center space-x-2 hover:bg-white/5"
             >
               <img src={user.image} className="h-12 w-12 rounded-full" />
-              <div>
+              <div className="grid  grid-rows-2 text-justify items-center">
                 <p>{user.name}</p>
-                <p className="text-xs text-zinc-500">View Profile</p>
+                <p className="text-xs text-zinc-400 ">View Profile</p>
               </div>
             </Link>
 
