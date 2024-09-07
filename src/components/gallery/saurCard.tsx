@@ -42,7 +42,7 @@ export function SaurCard(props: saurType) {
 
 export function MiniSaurCard(props: saurType) {
   return (
-    <Link href={`/gallery/${props.genus}`}>
+    <Link href={`/gallery/${props.genus}`} key={props.id}>
       <div className="flex flex-col text-center justify-center bg-black p-2 rounded-xl min-w-fit min-h-fit m-1">
         <img
           src={props.img}

@@ -41,8 +41,12 @@ export function Profile({ email }: ProfileProps) {
         <Bell className="size-5 " />
         <div className="absolute w-fit h-fit -top-2 -right-2">
           {data?.notifications !== undefined && data.notifications !== null ? (
-            <p className={`w-8 h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full`}>
-              {data.notifications.length}
+            <p
+              className={`${
+                data.notifications.length <= 9 ? "w-8" : "w-10"
+              } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full`}
+            >
+              {data.notifications.length <= 9 ? data.notifications.length : "9+"}
             </p>
           ) : (
             ""
