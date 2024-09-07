@@ -1,12 +1,12 @@
 "use client"
 import { Circle, LogOut, Moon } from "lucide-react"
-import { User } from "next-auth"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { useState } from "react"
+import { profileType } from "./Profile"
 
 interface props {
-  user: User
+  user: profileType
   click: any
 }
 

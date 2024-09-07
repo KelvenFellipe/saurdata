@@ -1,23 +1,20 @@
 "use client"
 import { Logo4 } from "@/components/global/Logo"
-import { Bell, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { LoginButton } from "./LoginButton"
 import { NavMenu } from "./NavMenu"
-import { NavNotification } from "./NavNotification"
 import { NavNotSigned } from "./NavNotSigned"
 import { NavSearch } from "./NavSearch"
-import { NavSigned } from "./NavSigned"
+import { Profile } from "./Profile"
 
 export function NavBar() {
   const router = useRouter()
   const [menu, setMenu] = useState(false)
-  const [notification, setNotification] = useState(false)
-  const [signed, setSigned] = useState(false)
   const [notSigned, setNotSigned] = useState(false)
-  const { data: session } = useSession()
+  const { data: session, status } = useSession()
   console.log(session)
 
   return (
@@ -39,38 +36,14 @@ export function NavBar() {
 
       <NavSearch />
 
-      {session?.user?.image ? (
-        <div className="flex space-x-4 items-center p-1 ml-auto">
-          <button
-            className="p-2 hover:bg-white/20 rounded-full relative"
-            onClick={() => setNotification(() => !notification)}
-          >
-            <Bell className="size-5 " />
-            <div className="absolute w-fit h-fit -top-2 -right-2">
-              <p className="w-8 h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full">
-                1
-              </p>
-            </div>
-          </button>
-          <button
-            onClick={() => setSigned(() => !signed)}
-            className="p-1 hover:bg-white/20 rounded-full"
-          >
-            <img src={session.user.image} className="h-8 w-8 rounded-full " />
-          </button>
-        </div>
+      {status === "authenticated" && session.user !== undefined ? (
+        <Profile email={session.user.email} />
       ) : (
         <LoginButton click={() => setNotSigned(() => !notSigned)} />
       )}
 
       {menu === true && <NavMenu click={() => setMenu(() => false)} />}
-      {signed === true && session?.user && (
-        <NavSigned click={() => setSigned(() => false)} user={session.user} />
-      )}
       {notSigned === true && <NavNotSigned click={() => setNotSigned(() => false)} />}
-      {notification === true && (
-        <NavNotification click={() => setNotification(() => !notification)} />
-      )}
     </div>
   )
 }
