@@ -2,6 +2,7 @@
 import { Bone, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { MenuSection } from "./MenuSection"
 
 export interface clickProps {
   click?: any
@@ -12,8 +13,8 @@ export function NavMenu({ click }: clickProps) {
 
   return (
     <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none">
-      <div className=" bg-[#111316] w-fit text-base pt-[2px] space-y-1">
-        <div className="m-2">
+      <div className=" bg-[#111316] w-fit text-base pt-[2px] space-y-1 divide-y divide-solid p-3">
+        <div className="my-3">
           <Link
             href={"/"}
             className={`${
@@ -33,6 +34,8 @@ export function NavMenu({ click }: clickProps) {
             <p>Gallery</p>
           </Link>
         </div>
+        <MenuSection name="Family" />
+        <div></div>
       </div>
       <div className="w-full bg-black/40 " onClick={click} />
     </div>

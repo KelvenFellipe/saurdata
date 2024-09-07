@@ -7,7 +7,7 @@ interface props {
 export function NavNotification({ user, click }: props) {
   return (
     <div className="fixed w-full h-full z-[10] select-none">
-      <div className="h-fit bg-zinc-800 fixed text-sm text-white top-[53px] right-[72px] rounded-xl z-[20] overflow-auto w-[150px] max-h-[200px] justify-end">
+      <div className="h-fit bg-zinc-800 fixed text-sm text-white top-[53px] right-[72px] rounded-xl z-[20] overflow-auto w-[150px] max-h-[200px]">
         {user.notifications !== null ? (
           user.notifications.map(item => (
             <div
