@@ -1,4 +1,5 @@
 "use client"
+import { family } from "@/supabase/schema"
 import { Bone, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -16,9 +17,9 @@ export function NavMenu({ click }: clickProps) {
     <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none ">
       <div
         className=" bg-[#111316] w-[300px] text-base text-white pt-[2px] space-y-1 divide-y divide-solid p-3
-      scrollbar-thin overflow-scroll  "
+      scrollbar-thin overflow-scroll"
       >
-        <div className="my-3">
+        <div className="my-2">
           <Link
             href={"/"}
             className={`${
@@ -39,14 +40,11 @@ export function NavMenu({ click }: clickProps) {
           </Link>
         </div>
         <MenuSection
-          name="family"
-          stuff={
-            <div>
-              <MenuSection name="ceratopsidae" stuff={<FetchFamily family={"ceratopsidae"} />} />
-              <MenuSection name="azhdarchidae" stuff={<FetchFamily family={"azhdarchidae"} />} />
-            </div>
-          }
-        ></MenuSection>
+          name={"families"}
+          stuff={family.enumValues.map(item => (
+            <MenuSection key={item.length} name={item} stuff={<FetchFamily family={item} />} />
+          ))}
+        />
 
         <div></div>
       </div>
