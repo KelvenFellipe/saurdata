@@ -32,7 +32,7 @@ export function FetchFamily({ family }: fetch) {
           .map(item => (
             <Link
               href={`/gallery/${item.genus}`}
-              className="text-left px-2 py-1 ml-4"
+              className="text-left text-zinc-200 px-2 py-1 ml-4"
               key={item.genus}
             >
               {item.genus}

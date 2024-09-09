@@ -12,7 +12,7 @@ export function MenuSection({ name, stuff }: MenuSection) {
   return (
     <div className="  ">
       <button
-        className="flex  items-center space-x-4 p-2 hover:bg-white/5 w-full rounded-xl px-4 py-2 my-3 relative"
+        className="flex text-lg items-center space-x-4 p-2 hover:bg-white/5 w-full rounded-xl px-4 py-2 my-3 relative"
         onClick={() => setOpen(() => !open)}
       >
         <p className="pl-2">{name}</p>
@@ -20,7 +20,7 @@ export function MenuSection({ name, stuff }: MenuSection) {
           className={`absolute right-2 duration-200 ${open === false ? "" : "rotate-180"}`}
         />
       </button>
-      {open === true && <div>{stuff}</div>}
+      {open === true && <div className="px-2">{stuff}</div>}
     </div>
   )
 }

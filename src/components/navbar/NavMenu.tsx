@@ -14,7 +14,10 @@ export function NavMenu({ click }: clickProps) {
 
   return (
     <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none ">
-      <div className=" bg-[#111316] w-[300px] text-base pt-[2px] space-y-1 divide-y divide-solid p-3 scrollbar-thin overflow-y-scroll">
+      <div
+        className=" bg-[#111316] w-[300px] text-base text-white pt-[2px] space-y-1 divide-y divide-solid p-3
+      scrollbar-thin overflow-scroll  "
+      >
         <div className="my-3">
           <Link
             href={"/"}
@@ -35,7 +38,15 @@ export function NavMenu({ click }: clickProps) {
             <p>Gallery</p>
           </Link>
         </div>
-        <MenuSection name="Family" stuff={<FetchFamily family={"ceratopsidae"} />} />
+        <MenuSection
+          name="family"
+          stuff={
+            <div>
+              <MenuSection name="ceratopsidae" stuff={<FetchFamily family={"ceratopsidae"} />} />
+              <MenuSection name="azhdarchidae" stuff={<FetchFamily family={"azhdarchidae"} />} />
+            </div>
+          }
+        ></MenuSection>
 
         <div></div>
       </div>
