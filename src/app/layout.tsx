@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark scrollbar scrollbar-thumb-[#111316] scrollbar-track-zinc-800">
       <body className={cn(inter.className, "bg-zinc-200 dark:bg-[#111316]")}>
         <SessionProvider>
           <NavBar />

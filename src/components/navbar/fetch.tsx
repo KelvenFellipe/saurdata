@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useEffect, useState } from "react"
 
 interface fetch {
@@ -24,8 +25,19 @@ export function FetchFamily({ family }: fetch) {
   }, [])
   console.log(data)
   return (
-    <div>
-      {data !== undefined && Object.values(data).map(item => <p key={item.genus}>{item.genus}</p>)}
+    <div className="flex flex-col">
+      {data !== undefined &&
+        Object.values(data)
+          .sort()
+          .map(item => (
+            <Link
+              href={`/gallery/${item.genus}`}
+              className="text-left px-2 py-1 ml-4"
+              key={item.genus}
+            >
+              {item.genus}
+            </Link>
+          ))}
     </div>
   )
 }
