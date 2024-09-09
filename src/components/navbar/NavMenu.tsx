@@ -3,6 +3,7 @@ import { Bone, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { MenuSection } from "./MenuSection"
+import { FetchFamily } from "./fetch"
 
 export interface clickProps {
   click?: any
@@ -35,6 +36,8 @@ export function NavMenu({ click }: clickProps) {
           </Link>
         </div>
         <MenuSection name="Family" />
+        <FetchFamily family={"ceratopsidae"} />
+
         <div></div>
       </div>
       <div className="w-full bg-black/40 " onClick={click} />

@@ -37,16 +37,16 @@ export function NavSigned({ user, click }: props) {
 
             <div
               onClick={toggleTheme}
-              className="flex  items-center space-x-[20px] py-3 px-[28px] hover:bg-white/5"
+              className="flex relative items-center space-x-[20px] py-3 px-[28px] hover:bg-white/5"
             >
               <Moon className="size-6" />
               <p>Dark Mode</p>
               <div
-                className={` relative h-6 w-9 rounded-2xl duration-300 ${
+                className={`  h-6 w-9 rounded-2xl duration-300 right-0 ${
                   Lights === "right-0" ? "bg-teal-500" : "bg-zinc-400 "
                 } `}
               >
-                <Circle className={`size-6 fill-current absolute ${Lights}`} />
+                <Circle className={`size-6 fill-current ml-auto ${Lights}`} />
               </div>
             </div>
 

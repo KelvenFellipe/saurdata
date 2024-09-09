@@ -26,6 +26,7 @@ export function Profile({ email }: ProfileProps) {
       await fetch(`http://localhost:3000/api/user/${email}`)
         .then(res => res.json())
         .then(data => {
+          console.log(data)
           setData(() => data.email[0])
         })
     }

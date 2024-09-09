@@ -19,7 +19,7 @@ export function NavBar() {
 
   return (
     <div
-      className="grid grid-cols-3 gap-3 px-4 bg-white size-xl text-zinc-300 justify-center text-center items-center
+      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-white size-xl text-zinc-300 justify-center text-center items-center
       shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-fit 0 border-b border-zinc-500"
     >
       <div className="flex items-center space-x-4 ">

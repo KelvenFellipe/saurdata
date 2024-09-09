@@ -1,7 +1,7 @@
 import { db } from "@/supabase"
-import { users } from "@/supabase/schema"
+import { user } from "@/supabase/schema"
 
  export async function GET() {
-  const user = await db.select().from(users)
-  return Response.json({user})
+  const users = await db.select().from(user)
+  return Response.json({users})
 }

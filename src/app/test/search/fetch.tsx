@@ -11,7 +11,7 @@ export async function fetchData(search: string) {
 
   if (data.length === 0) return
 
-  log(data)
+  // log(data)
   return data
 }
 
@@ -23,10 +23,10 @@ export async function fetchSaur(search: any) {
 
   if (data.length === 0) return
 
-  log(data)
+  // log(data)
   return data
 }
 
-function log(data: any) {
-  console.log("Fetched data:", data)
-}
+// function log(data: any) {
+//   console.log("Fetched data:", data)
+// }
