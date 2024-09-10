@@ -1,5 +1,6 @@
 "use client"
 import { Bell, Fingerprint } from "lucide-react"
+import Link from "next/link"
 import { useEffect, useState } from "react"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
@@ -35,9 +36,9 @@ export function Profile({ email }: ProfileProps) {
 
   return (
     <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
-      <button className="p-2 hover:bg-white/20 rounded-full">
+      <Link href={"/admin"} className="p-2 hover:bg-white/20 rounded-full">
         <Fingerprint className="" />
-      </button>
+      </Link>
       <button
         className="p-[10px] hover:bg-white/20 rounded-full relative"
         onClick={() => setNotification(() => !notification)}

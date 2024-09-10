@@ -1,3 +1,4 @@
+import { relations } from "drizzle-orm";
 import { integer, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 export const family = pgEnum("family", ["ceratopsidae", "azhdarchidae", "hadrosauridae", "tyrannosauridae"])
@@ -53,3 +54,22 @@ export const account = pgTable("account", {
 		accountProviderProviderAccountIdPk: primaryKey({ columns: [table.provider, table.providerAccountId], name: "account_provider_providerAccountId_pk"}),
 	}
 });
+
+export const sessionRelations = relations(session, ({one}) => ({
+	user: one(user, {
+		fields: [session.userId],
+		references: [user.id]
+	}),
+}));
+
+export const userRelations = relations(user, ({many}) => ({
+	sessions: many(session),
+	accounts: many(account),
+}));
+
+export const accountRelations = relations(account, ({one}) => ({
+	user: one(user, {
+		fields: [account.userId],
+		references: [user.id]
+	}),
+}));
