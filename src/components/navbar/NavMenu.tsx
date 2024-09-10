@@ -45,8 +45,7 @@ export function NavMenu({ click }: clickProps) {
             <MenuSection key={item.length} name={item} stuff={<FetchFamily family={item} />} />
           ))}
         />
-
-        <div></div>
+        <div />
       </div>
       <div className="w-full bg-black/40 " onClick={click} />
     </div>

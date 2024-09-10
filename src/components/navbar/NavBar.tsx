@@ -15,7 +15,6 @@ export function NavBar() {
   const [menu, setMenu] = useState(false)
   const [notSigned, setNotSigned] = useState(false)
   const { data: session, status } = useSession()
-  console.log(session)
 
   return (
     <div

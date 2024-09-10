@@ -26,6 +26,14 @@ export async function fetchSaur(search: any) {
   // log(data)
   return data
 }
+export async function fetcha() {
+  const data = await db.select().from(sauria)
+
+  if (data.length === 0) return
+
+  // log(data)
+  return data
+}
 
 // function log(data: any) {
 //   console.log("Fetched data:", data)

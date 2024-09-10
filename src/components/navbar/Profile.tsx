@@ -1,5 +1,5 @@
 "use client"
-import { Bell } from "lucide-react"
+import { Bell, Fingerprint } from "lucide-react"
 import { useEffect, useState } from "react"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
@@ -34,13 +34,16 @@ export function Profile({ email }: ProfileProps) {
   }, [])
 
   return (
-    <div className="flex space-x-4 items-center p-1 ml-auto">
+    <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
+      <button className="p-2 hover:bg-white/20 rounded-full">
+        <Fingerprint className="" />
+      </button>
       <button
-        className="p-2 hover:bg-white/20 rounded-full relative"
+        className="p-[10px] hover:bg-white/20 rounded-full relative"
         onClick={() => setNotification(() => !notification)}
       >
-        <Bell className="size-5 " />
-        <div className="absolute w-fit h-fit -top-2 -right-2">
+        <Bell className="size-5" />
+        <div className="absolute w-fit h-fit -top-1 -right-1">
           {data?.notifications !== undefined && data.notifications !== null ? (
             <p
               className={`${

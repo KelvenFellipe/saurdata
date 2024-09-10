@@ -1,5 +1,4 @@
 "use client"
-
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
@@ -18,7 +17,7 @@ export function FetchFamily({ family }: fetch) {
       await fetch(`http://localhost:3000/api/${family}/`)
         .then(res => res.json())
         .then(data => {
-          console.log(data.family), setData(() => data.family)
+          setData(() => data.family)
         })
     }
     call()
