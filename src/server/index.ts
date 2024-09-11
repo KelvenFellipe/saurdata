@@ -15,7 +15,6 @@ export const appRouter = router({
       species: z.string().array(),
       img: z.string(),
       temporal: z.string(),
-      id: z.string(),
       description: z.string(),
     })).mutation(async (opts) => {
       const { input } = opts
