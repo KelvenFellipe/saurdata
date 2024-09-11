@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
+import Provider from "./_trpc/Provider"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -21,8 +22,10 @@ export default function RootLayout({
     <html lang="en" className="dark scrollbar scrollbar-thumb-zinc-800 scrollbar-track-[#111316]">
       <body className={cn(inter.className, "bg-zinc-200 dark:bg-[#111316]")}>
         <SessionProvider>
-          <NavBar />
-          <div>{children}</div>
+          <Provider>
+            <NavBar />
+            <div>{children}</div>
+          </Provider>
         </SessionProvider>
       </body>
     </html>
