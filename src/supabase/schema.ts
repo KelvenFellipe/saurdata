@@ -1,7 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
-export const family = pgEnum("family", ["ceratopsidae", "azhdarchidae", "hadrosauridae", "tyrannosauridae"])
+export const family = pgEnum("family", ["ceratopsidae", "azhdarchidae", "hadrosauridae", "tyrannosauridae", "dilophosauridae", "compsognathidae"])
 export const type = pgEnum("type", ["dinosaur", "pterosaur"])
 
 
