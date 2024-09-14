@@ -36,6 +36,7 @@ import {
 import { useState } from "react"
 import { trpc } from "../_trpc/client"
 import { SauriaForm, SauriaSchema } from "./SauriaForm"
+import { SauriaUpdate } from "./SauriaUpdate"
 
 export const columns: ColumnDef<SauriaSchema>[] = [
   {
@@ -160,7 +161,15 @@ export const columns: ColumnDef<SauriaSchema>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const saur = row.original
-      const deleteSauria = trpc.deleteSauria.useMutation()
+      const utils = trpc.useContext()
+
+      const deleteSauria = trpc.deleteSauria.useMutation({
+        onSettled: () => {
+          utils.getSauria.invalidate()
+        },
+      })
+
+      const [editData, setEditData] = useState<SauriaSchema>()
 
       return (
         <DropdownMenu>
@@ -174,7 +183,11 @@ export const columns: ColumnDef<SauriaSchema>[] = [
             <DropdownMenuItem onClick={() => deleteSauria.mutate({ ...saur })}>
               Delete
             </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setEditData(() => saur)}>Edit</DropdownMenuItem>
           </DropdownMenuContent>
+          {editData !== undefined && (
+            <SauriaUpdate data={editData} click={() => setEditData(() => undefined)} />
+          )}
         </DropdownMenu>
       )
     },
