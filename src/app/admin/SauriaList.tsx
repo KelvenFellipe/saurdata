@@ -22,8 +22,6 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -36,19 +34,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { trpc } from "../_trpc/client"
+import { SauriaSchema } from "./SauriaForm"
 
-export type sauriaType = {
-  type: "dinosaur" | "pterosaur"
-  family: "ceratopsidae" | "azhdarchidae" | "hadrosauridae" | "tyrannosauridae"
-  genus: string
-  species: string[]
-  img: string
-  temporal: string
-  description: string
-  id: string
-}
-
-export const columns: ColumnDef<sauriaType, any>[] = [
+export const columns: ColumnDef<SauriaSchema>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -135,7 +123,7 @@ export const columns: ColumnDef<sauriaType, any>[] = [
         </Button>
       )
     },
-    cell: ({ row }) => <div className="">{Array(row.getValue("species")).join(" ")}</div>,
+    cell: ({ row }) => <div className="">{row.getValue("species")}</div>,
   },
   {
     accessorKey: "img",
@@ -170,7 +158,8 @@ export const columns: ColumnDef<sauriaType, any>[] = [
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
-      const payment = row.original
+      const saur = row.original
+      const deleteSauria = trpc.deleteSauria.useMutation()
 
       return (
         <DropdownMenu>
@@ -181,12 +170,9 @@ export const columns: ColumnDef<sauriaType, any>[] = [
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(payment.id)}>
-              Copy ID
+            <DropdownMenuItem onClick={() => deleteSauria.mutate({ ...saur })}>
+              Delete
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem></DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

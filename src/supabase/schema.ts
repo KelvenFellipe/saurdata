@@ -8,7 +8,7 @@ export const type = pgEnum("type", ["dinosaur", "pterosaur"])
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
 	genus: text("genus").notNull(),
-	species: text("species").array().notNull(),
+	species: text("species").notNull(),
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
 	family: family("family").notNull(),

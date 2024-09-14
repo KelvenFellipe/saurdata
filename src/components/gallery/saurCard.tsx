@@ -5,7 +5,7 @@ export interface saurType {
   type: string
   family: string
   genus: string
-  species: string[]
+  species: string
   img: string
   temporal: string
   id: string
@@ -29,7 +29,7 @@ export function SaurCard(props: saurType) {
         <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[392px] items-center ml-4 ">
           <p className="col-span-2 text-2xl ">{props.genus}</p>
           <p className="col-span-2">{props.family}</p>
-          <p className="col-span-2 flex">Species: {props.species.join(", ")}</p>
+          <p className="col-span-2 flex">Species: {props.species}</p>
           <p className="col-span-2">Temporal range: {props.temporal}</p>
         </div>
       </div>
