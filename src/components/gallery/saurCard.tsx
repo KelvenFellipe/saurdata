@@ -14,7 +14,7 @@ export interface saurType {
 
 export function SaurCard(props: saurType) {
   return (
-    <div className="flex flex-col dark:bg-black bg-white max-w-[800px] rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
+    <div className="flex flex-col dark:bg-black bg-white max-w-[1000px] rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
       <Link href={"/gallery"}>
         <X className="absolute right-1 top-1 size-7" />
       </Link>
@@ -30,12 +30,10 @@ export function SaurCard(props: saurType) {
           <p className="col-span-2 text-2xl ">{props.genus}</p>
           <p className="col-span-2">{props.family}</p>
           <p className="col-span-2 flex">Species: {props.species}</p>
-          <p className="col-span-2">Temporal range: {props.temporal}</p>
+          <p className="col-span-2">Temporal range: {props.temporal} million years</p>
         </div>
       </div>
-      {/* {props.description.length <= 10 && (
-        <p className="mt-3 flex justify-stretch h-max ">Description: {props.description}</p>
-      )} */}
+      <p className="mt-3 flex justify-stretch h-max ">{props.description}</p>
     </div>
   )
 }

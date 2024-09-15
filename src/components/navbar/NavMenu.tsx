@@ -1,10 +1,7 @@
 "use client"
-import { family } from "@/supabase/schema"
 import { Bone, Home } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { MenuSection } from "./MenuSection"
-import { FetchFamily } from "./fetch"
 
 export interface clickProps {
   click?: any
@@ -39,12 +36,7 @@ export function NavMenu({ click }: clickProps) {
             <p>Gallery</p>
           </Link>
         </div>
-        <MenuSection
-          name={"families"}
-          stuff={family.enumValues.map(item => (
-            <MenuSection key={item.length} name={item} stuff={<FetchFamily family={item} />} />
-          ))}
-        />
+
         <div />
       </div>
       <div className="w-full bg-black/40 " onClick={click} />

@@ -1,9 +1,7 @@
 import { relations } from "drizzle-orm";
 import { integer, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
-export const family = pgEnum("family", ["ceratopsidae", "azhdarchidae", "hadrosauridae", "tyrannosauridae", "spinosauridae", "dilophosauridae", "compsognathidae", "abelisauridae", "archaeopterygidae"])
 export const type = pgEnum("type", ["dinosaur", "pterosaur"])
-
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -11,7 +9,7 @@ export const sauria = pgTable("sauria", {
 	species: text("species").notNull(),
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
-	family: family("family").notNull(),
+	family: text("family").notNull(),
 	type: type("type").notNull(),
 	description: text("description").default('').notNull(),
 });

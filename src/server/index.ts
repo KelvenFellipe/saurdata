@@ -1,5 +1,5 @@
 import { db } from "@/supabase"
-import { family, sauria, type } from "@/supabase/schema"
+import { sauria, type } from "@/supabase/schema"
 import { eq } from "drizzle-orm"
 import z from "zod"
 import { publicProcedure, router } from "./trpc"
@@ -12,7 +12,7 @@ export const appRouter = router({
   addSauria: publicProcedure.input(
     z.object({
       type: z.enum(type.enumValues),
-      family: z.enum(family.enumValues),
+      family: z.string(),
       genus: z.string(),
       species: z.string(),
       img: z.string(),
@@ -26,13 +26,6 @@ export const appRouter = router({
   deleteSauria: publicProcedure.input(
     z.object({
       id: z.string(),
-      type: z.enum(type.enumValues),
-      family: z.enum(family.enumValues),
-      genus: z.string(),
-      species: z.string(),
-      img: z.string(),
-      temporal: z.string(),
-      description: z.string(),
   })).mutation(async (opts) => {
     const { input } = opts
     return await db.delete(sauria).where(eq(sauria.id, `${input.id}`)).returning()
@@ -42,7 +35,7 @@ export const appRouter = router({
     z.object({
       id: z.string(),
       type: z.enum(type.enumValues),
-      family: z.enum(family.enumValues),
+      family: z.string(),
       genus: z.string(),
       species: z.string(),
       img: z.string(),
@@ -50,8 +43,7 @@ export const appRouter = router({
       description: z.string(),
     })).mutation(async (opts) => {
       const { input } = opts
-      return await db.update(sauria).set({type: input.type, family: input.family, description: input.description,
-         genus: input.genus, img: input.img, species: input.species, temporal: input.temporal}).where(eq(sauria.id, `${input.id}`))
+      return await db.update(sauria).set(input).where(eq(sauria.id, `${input.id}`))
     }),
 })
 
