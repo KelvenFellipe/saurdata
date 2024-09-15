@@ -26,7 +26,7 @@ export function NavSigned({ user, click }: props) {
           <div className="grid grid-cols-1 my-2 ">
             <Link
               href={"/profile"}
-              className="flex px-4 py-3 items-center space-x-2 hover:bg-white/5"
+              className="flex px-4 py-3 items-center space-x-2 hover:bg-zinc-700/50"
             >
               <img src={user.image} className="h-12 w-12 rounded-full" />
               <div className="grid  grid-rows-2 text-justify items-center">
@@ -37,13 +37,13 @@ export function NavSigned({ user, click }: props) {
 
             <div
               onClick={toggleTheme}
-              className="flex relative items-center space-x-[20px] py-3 px-[28px] hover:bg-white/5"
+              className="flex relative items-center space-x-[20px] py-3 px-[28px] hover:bg-zinc-700/50"
             >
               <Moon className="size-6" />
               <p>Dark Mode</p>
               <div
                 className={`  h-6 w-9 rounded-2xl duration-300 right-0 ${
-                  Lights === "right-0" ? "bg-teal-500" : "bg-zinc-400 "
+                  Lights === "right-0" ? "bg-teal-500" : "bg-zinc-400"
                 } `}
               >
                 <Circle className={`size-6 fill-current ml-auto ${Lights}`} />
@@ -53,7 +53,7 @@ export function NavSigned({ user, click }: props) {
             <button
               onClick={() => signOut()}
               type="submit"
-              className="flex w-full items-center space-x-[20px] py-3 px-[28px] hover:bg-white/5"
+              className="flex w-full items-center space-x-[20px] py-3 px-[28px] hover:bg-zinc-700/50"
             >
               <LogOut />
               <p>Log Out</p>

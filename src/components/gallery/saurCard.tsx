@@ -1,5 +1,6 @@
-import { X } from "lucide-react"
+import { ExternalLink, X } from "lucide-react"
 import Link from "next/link"
+import ButtonComponent from "../global/ButtonComponent"
 
 export interface saurType {
   type: string
@@ -40,15 +41,14 @@ export function SaurCard(props: saurType) {
 
 export function MiniSaurCard(props: saurType) {
   return (
-    <Link href={`/gallery/${props.genus}`} key={props.id}>
-      <div className="flex flex-col text-xl hover:bg-white/5 duration-300 hover:duration-300 p-4 py-2 rounded-xl w-fit h-fit m-2 space-y-2">
-        <p className="">{props.genus}</p>
-        <img
-          src={props.img}
-          alt={props.genus}
-          className="w-[400px] h-[300px] rounded-xl object-cover"
-        />
-      </div>
-    </Link>
+    <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-2 rounded-xl w-fit h-fit m-2 space-y-2 ">
+      <p className="">{props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}</p>
+      <img
+        src={props.img}
+        alt={props.genus}
+        className="w-[400px] h-[300px] rounded-xl object-cover"
+      />
+      <ButtonComponent Icon1={ExternalLink} text={"About"} redirect={props.genus} />
+    </div>
   )
 }
