@@ -10,13 +10,15 @@ export function SaurMap() {
       const data = await fetchData("")
       if (data) {
         setResponseData(data)
+        console.log(data)
       }
     }
     fetched()
   }, [])
+
   return (
     <div className="grid grid-cols-3 w-fit p-2 z-[0] ">
-      {responseData.map(item => (
+      {responseData.sort((a, b) => a.temporal.localeCompare(b.temporal)).map(item => (
         <div className="divide-y divide-solid">
           <MiniSaurCard {...item} />
           <div></div>
@@ -25,3 +27,7 @@ export function SaurMap() {
     </div>
   )
 }
+//(a, b) => a.genus.localeCompare(b.genus)
+//(a, b) => b.genus.localeCompare(a.genus)
+//(a, b) => a.temporal.localeCompare(b.temporal)
+//(a, b) => b.temporal.localeCompare(a.temporal)

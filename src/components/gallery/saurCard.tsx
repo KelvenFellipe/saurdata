@@ -30,7 +30,14 @@ export function SaurCard(props: saurType) {
         <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[392px] items-center ml-4 ">
           <p className="col-span-2 text-2xl ">{props.genus}</p>
           <p className="col-span-2">{props.family}</p>
-          <p className="col-span-2 flex">Species: {props.species}</p>
+          <p className="col-span-2 flex">
+            Species:
+            <div>
+              {props.species.split(", ").map(item => (
+                <p>{item}</p>
+              ))}
+            </div>
+          </p>
           <p className="col-span-2">Temporal range: {props.temporal} million years</p>
         </div>
       </div>
@@ -42,7 +49,12 @@ export function SaurCard(props: saurType) {
 export function MiniSaurCard(props: saurType) {
   return (
     <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 ">
-      <p className="">{props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}</p>
+      <div className="flex items-center">
+        <p className="text-lg font-bold flex-1">
+          {props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}
+        </p>
+        <p className="text-xs text-zinc-300 ">{props.type + "/" + props.family}</p>
+      </div>
       <img
         src={props.img}
         alt={props.genus}
