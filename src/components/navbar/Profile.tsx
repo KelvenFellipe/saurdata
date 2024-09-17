@@ -1,5 +1,5 @@
 "use client"
-import { ProfileType } from "@/types/profileType"
+import { NotificationType, ProfileType } from "@/types/profileType"
 import { Bell, Fingerprint } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -8,6 +8,7 @@ import { NavSigned } from "./NavSigned"
 
 export function Profile({ email }: any) {
   const [data, setData] = useState<ProfileType>()
+  const [notificationData, setNotificationData] = useState<NotificationType[]>()
   const [notification, setNotification] = useState(false)
   const [signed, setSigned] = useState(false)
 
@@ -18,6 +19,7 @@ export function Profile({ email }: any) {
         .then(data => {
           console.log(data)
           setData(() => data.email[0])
+          setNotificationData(() => data.email[0].notifications)
         })
     }
     call()
@@ -34,13 +36,13 @@ export function Profile({ email }: any) {
       >
         <Bell className="size-5" />
         <div className="absolute w-fit h-fit -top-1 -right-1">
-          {data?.notifications !== undefined && data.notifications !== null ? (
+          {notificationData !== undefined ? (
             <p
               className={`${
-                data.notifications.length <= 9 ? "w-8" : "w-10"
+                notificationData.length <= 9 ? "w-8" : "w-10"
               } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full`}
             >
-              {data.notifications.length <= 9 ? data.notifications.length : "9+"}
+              {notificationData.length <= 9 ? notificationData.length : "9+"}
             </p>
           ) : (
             ""
@@ -54,8 +56,8 @@ export function Profile({ email }: any) {
         {data?.email !== undefined && <img src={data.image} className="h-8 w-8 rounded-full " />}
       </button>
       {signed === true && data && <NavSigned click={() => setSigned(() => false)} user={data} />}
-      {notification === true && data && (
-        <NavNotification click={() => setNotification(() => !notification)} user={data} />
+      {notification === true && data !== undefined && (
+        <NavNotification click={() => setNotification(() => !notification)} data={data} />
       )}
     </div>
   )

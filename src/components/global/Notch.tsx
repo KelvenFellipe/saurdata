@@ -1,7 +1,8 @@
 "use client"
-import { notchData } from "@/components/data/notchData"
+
 import { Lightbulb, LightbulbOff } from "lucide-react"
 import { useState } from "react"
+import { notchData } from "../data/notchData"
 import { Icon } from "./Icon"
 
 export function Notch() {
