@@ -1,5 +1,4 @@
 "use client"
-
 import { CaretSortIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import {
   ColumnDef,
@@ -34,10 +33,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { trpc } from "@/connection/client/client"
+import { SauriaSchema } from "@/types/sauriaSchemas"
 import { Pencil } from "lucide-react"
 import { useState } from "react"
-import { trpc } from "../_trpc/client"
-import { SauriaForm, SauriaSchema } from "./SauriaForm"
+import { SauriaForm } from "./SauriaForm"
 import { SauriaUpdate } from "./SauriaUpdate"
 
 export const columns: ColumnDef<SauriaSchema>[] = [

@@ -1,15 +1,7 @@
-import { LucideIcon } from "lucide-react"
+import { ButtonType } from "@/types/buttonType"
 import Link from "next/link"
 
-interface buttonProps {
-  Icon1?: LucideIcon
-  Icon2?: LucideIcon
-  text?: string
-  redirect?: string
-  className?: string
-  Click?: any
-}
-export function ButtonComponent({ text, Icon1, Icon2, redirect }: buttonProps) {
+export function ButtonComponent({ text, Icon1, Icon2, redirect }: ButtonType) {
   return (
     <Link
       href={`/gallery/${redirect !== undefined ? redirect : ""}`}
@@ -23,7 +15,7 @@ export function ButtonComponent({ text, Icon1, Icon2, redirect }: buttonProps) {
     </Link>
   )
 }
-export function ButtonComponent2({ text, Icon1, Icon2, className, Click }: buttonProps) {
+export function ButtonComponent2({ text, Icon1, Icon2, className, Click }: ButtonType) {
   return (
     <button
       className={`flex space-x-2 w-fit px-3 py-1.5 rounded-2xl text-sm items-center justify-center hover:bg-zinc-700/50 ${className}`}

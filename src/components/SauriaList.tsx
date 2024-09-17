@@ -1,5 +1,5 @@
 "use client"
-import { trpc } from "@/app/_trpc/client"
+import { trpc } from "@/connection/client/client"
 
 export default function TodoList() {
   const getSauria = trpc.getSauria.useQuery()

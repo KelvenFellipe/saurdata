@@ -1,19 +1,9 @@
+import { SaurType } from "@/types/saurType"
 import { BookOpenText, ExternalLink, X } from "lucide-react"
 import Link from "next/link"
 import { ButtonComponent } from "../global/ButtonComponent"
 
-export interface saurType {
-  type: string
-  family: string
-  genus: string
-  species: string
-  img: string
-  temporal: string
-  id: string
-  description: string
-}
-
-export function SaurCard(props: saurType) {
+export function SaurCard(props: SaurType) {
   return (
     <div className="flex flex-col dark:bg-black bg-white max-w-[1000px] rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
       <Link href={"/gallery"}>
@@ -46,7 +36,7 @@ export function SaurCard(props: saurType) {
   )
 }
 
-export function MiniSaurCard(props: saurType) {
+export function MiniSaurCard(props: SaurType) {
   return (
     <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 ">
       <div className="flex items-center">

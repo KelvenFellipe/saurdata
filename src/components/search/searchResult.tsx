@@ -1,13 +1,13 @@
 "use client"
 import { fetchData } from "@/app/test/search/fetch"
+import { SaurType } from "@/types/saurType"
 import { useEffect, useState } from "react"
-import { saurType } from "../gallery/saurCard"
 import SearchBox from "./searchBox"
 import { SearchResponse } from "./searchResponse"
 
 export function SearchResult() {
   const [search, setSearch] = useState("")
-  const [responseData, setResponseData] = useState<Array<saurType>>([])
+  const [responseData, setResponseData] = useState<Array<SaurType>>([])
 
   let visible: string = ""
   useEffect(() => {

@@ -1,16 +1,15 @@
-import { integer, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
+import { integer, jsonb, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
-export const family = pgEnum("family", ['ceratopsidae', 'azhdarchidae'])
-export const type = pgEnum("type", ['dinosaur', 'pterosaur'])
-
+export const type = pgEnum("type", ["dinosaur", "pterosaur"])
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
 	genus: text("genus").notNull(),
-	species: text("species").array().notNull(),
+	species: text("species").notNull(),
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
-	family: family("family").notNull(),
+	family: text("family").notNull(),
 	type: type("type").notNull(),
 	description: text("description").default('').notNull(),
 });
@@ -27,7 +26,7 @@ export const user = pgTable("user", {
 	email: text("email"),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image"),
-	notifications: text("notifications").array(),
+	notifications: jsonb("notifications").array(),
 },
 (table) => {
 	return {
@@ -53,3 +52,22 @@ export const account = pgTable("account", {
 		accountProviderProviderAccountIdPk: primaryKey({ columns: [table.provider, table.providerAccountId], name: "account_provider_providerAccountId_pk"}),
 	}
 });
+
+export const sessionRelations = relations(session, ({one}) => ({
+	user: one(user, {
+		fields: [session.userId],
+		references: [user.id]
+	}),
+}));
+
+export const userRelations = relations(user, ({many}) => ({
+	sessions: many(session),
+	accounts: many(account),
+}));
+
+export const accountRelations = relations(account, ({one}) => ({
+	user: one(user, {
+		fields: [account.userId],
+		references: [user.id]
+	}),
+}));

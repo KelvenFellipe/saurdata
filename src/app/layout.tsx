@@ -1,9 +1,9 @@
 import { NavBar } from "@/components/navbar/NavBar"
+import Provider from "@/connection/client/Provider"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
-import Provider from "./_trpc/Provider"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })

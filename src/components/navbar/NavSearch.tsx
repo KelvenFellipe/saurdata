@@ -1,14 +1,14 @@
 "use client"
 import { fetchData } from "@/app/test/search/fetch"
-import { saurType } from "@/components/gallery/saurCard"
 import { SearchResponse } from "@/components/search/searchResponse"
+import { SaurType } from "@/types/saurType"
 import { CircleX, Search } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export function NavSearch() {
   const [search, setSearch] = useState("")
   const [placeholder, setPlaceholder] = useState("search")
-  const [responseData, setResponseData] = useState<Array<saurType>>([])
+  const [responseData, setResponseData] = useState<Array<SaurType>>([])
 
   function reset(item: string) {
     setPlaceholder(() => item)

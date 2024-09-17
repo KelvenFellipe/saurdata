@@ -1,16 +1,17 @@
 "use client"
-import { SaurCard, saurType } from "@/components/gallery/saurCard"
+import { SaurCard } from "@/components/gallery/saurCard"
+import { SaurType } from "@/types/saurType"
 import { useEffect, useState } from "react"
 import { fetchSaur } from "../../test/search/fetch"
 
 export default function Page({ params }: { params: { genus: string } }) {
   const search = params.genus
-  const [result, setResult] = useState<saurType | null>(null)
+  const [result, setResult] = useState<SaurType | null>(null)
 
   useEffect(() => {
     async function fetched() {
       if (search) {
-        const data = (await fetchSaur(search)) as saurType[]
+        const data = (await fetchSaur(search)) as SaurType[]
         if (data) setResult(data[0])
       }
     }

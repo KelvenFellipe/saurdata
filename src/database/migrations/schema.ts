@@ -1,7 +1,7 @@
-import { relations } from "drizzle-orm";
-import { integer, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
+import { integer, jsonb, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
-export const type = pgEnum("type", ["dinosaur", "pterosaur"])
+export const type = pgEnum("type", ['dinosaur', 'pterosaur'])
+
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -14,24 +14,24 @@ export const sauria = pgTable("sauria", {
 	description: text("description").default('').notNull(),
 });
 
-export const session = pgTable("session", {
-	sessionToken: text("sessionToken").primaryKey().notNull(),
-	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
-	expires: timestamp("expires", { mode: 'string' }).notNull(),
-});
-
 export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
 	name: text("name"),
 	email: text("email"),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image"),
-	notifications: text("notifications").array(),
+	notifications: jsonb("notifications").array(),
 },
 (table) => {
 	return {
 		userEmailUnique: unique("user_email_unique").on(table.email),
 	}
+});
+
+export const session = pgTable("session", {
+	sessionToken: text("sessionToken").primaryKey().notNull(),
+	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
+	expires: timestamp("expires", { mode: 'string' }).notNull(),
 });
 
 export const account = pgTable("account", {
@@ -52,22 +52,3 @@ export const account = pgTable("account", {
 		accountProviderProviderAccountIdPk: primaryKey({ columns: [table.provider, table.providerAccountId], name: "account_provider_providerAccountId_pk"}),
 	}
 });
-
-export const sessionRelations = relations(session, ({one}) => ({
-	user: one(user, {
-		fields: [session.userId],
-		references: [user.id]
-	}),
-}));
-
-export const userRelations = relations(user, ({many}) => ({
-	sessions: many(session),
-	accounts: many(account),
-}));
-
-export const accountRelations = relations(account, ({one}) => ({
-	user: one(user, {
-		fields: [account.userId],
-		references: [user.id]
-	}),
-}));

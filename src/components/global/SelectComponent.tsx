@@ -1,14 +1,8 @@
-import { LucideIcon } from "lucide-react"
+import { SelectType } from "@/types/selectType"
 import { Sentence } from "./Key"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./Select"
 
-export interface componentProps {
-  PlaceHolder: LucideIcon | string
-  data: any[]
-  changevalue: (value: string) => void
-}
-
-export function SelectComponent({ PlaceHolder, data, changevalue }: componentProps) {
+export function SelectComponent({ PlaceHolder, data, changevalue }: SelectType) {
   return (
     <Select onValueChange={changevalue}>
       <SelectTrigger>

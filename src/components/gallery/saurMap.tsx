@@ -1,10 +1,11 @@
 "use client"
 import { fetchData } from "@/app/test/search/fetch"
+import { SaurType } from "@/types/saurType"
 import { useEffect, useState } from "react"
-import { MiniSaurCard, saurType } from "./saurCard"
+import { MiniSaurCard } from "./saurCard"
 
 export function SaurMap() {
-  const [responseData, setResponseData] = useState<Array<saurType>>([])
+  const [responseData, setResponseData] = useState<Array<SaurType>>([])
   useEffect(() => {
     async function fetched() {
       const data = await fetchData("")
@@ -18,12 +19,14 @@ export function SaurMap() {
 
   return (
     <div className="grid grid-cols-3 w-fit p-2 z-[0] ">
-      {responseData.sort((a, b) => a.temporal.localeCompare(b.temporal)).map(item => (
-        <div className="divide-y divide-solid">
-          <MiniSaurCard {...item} />
-          <div></div>
-        </div>
-      ))}
+      {responseData
+        .sort((a, b) => a.temporal.localeCompare(b.temporal))
+        .map(item => (
+          <div className="divide-y divide-solid">
+            <MiniSaurCard {...item} />
+            <div></div>
+          </div>
+        ))}
     </div>
   )
 }

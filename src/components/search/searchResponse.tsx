@@ -1,13 +1,8 @@
+import { SaurType } from "@/types/saurType"
 import { Search } from "lucide-react"
 import Link from "next/link"
-import { saurType } from "../gallery/saurCard"
 
-interface test {
-  data: saurType
-  click: any
-}
-
-export const SearchResponse = ({ data, click }: test) => {
+export const SearchResponse = ({ data, click }: { data: SaurType; click: any }) => {
   return (
     <div>
       <div className="flex p-1 px-3 items-center text-sm text-zinc-200 space-x-2 hover:bg-zinc-700/50 dark:hover:text-white">

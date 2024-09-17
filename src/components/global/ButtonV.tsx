@@ -3,10 +3,7 @@ import { Trash2 } from "lucide-react"
 import { useState } from "react"
 import { ButtonComponent2 } from "./ButtonComponent"
 
-interface props {
-  task: any
-}
-export function ButtonV({ task }: props) {
+export function ButtonV({ task }: any) {
   const [open, setOpen] = useState(false)
   function handle() {
     {

@@ -1,30 +1,13 @@
 "use client"
-import { type } from "@/supabase/schema"
+import { trpc } from "@/connection/client/client"
+import { type } from "@/database/schema"
+import { sauriaSchemaNoID, SauriaSchemaNoID } from "@/types/sauriaSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { string, z } from "zod"
-import { trpc } from "../_trpc/client"
 
-export const sauriaSchema = z.object({
-  id: string(),
-  type: z.enum(type.enumValues),
-  family: z.string(),
-  genus: z.string(),
-  species: z.string(),
-  img: z.string(),
-  temporal: z.string(),
-  description: z.string(),
-})
-const sauriaSchemaN = sauriaSchema.omit({ id: true })
-export type SauriaSchema = z.infer<typeof sauriaSchema>
-export type SauriaSchemaN = z.infer<typeof sauriaSchemaN>
-
-interface props {
-  click?: any
-}
-export function SauriaForm({ click }: props) {
-  const { register, handleSubmit } = useForm<SauriaSchemaN>({
-    resolver: zodResolver(sauriaSchemaN),
+export function SauriaForm({ click }: any) {
+  const { register, handleSubmit } = useForm<SauriaSchemaNoID>({
+    resolver: zodResolver(sauriaSchemaNoID),
   })
 
   const utils = trpc.useContext()
@@ -40,7 +23,7 @@ export function SauriaForm({ click }: props) {
       <div className="p-4 space-y-5 bg-[#111316] text-white text-sm w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <form
           className="flex flex-col text-white space-y-4 max-w-fit "
-          onSubmit={handleSubmit((values: SauriaSchemaN) => addsauria.mutate(values))}
+          onSubmit={handleSubmit((values: SauriaSchemaNoID) => addsauria.mutate(values))}
         >
           <div className="space-x-4 justify-between flex">
             <select

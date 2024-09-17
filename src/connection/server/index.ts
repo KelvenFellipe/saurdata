@@ -1,5 +1,5 @@
-import { db } from "@/supabase"
-import { sauria, type } from "@/supabase/schema"
+import { db } from "@/database"
+import { sauria, type } from "@/database/schema"
 import { eq } from "drizzle-orm"
 import z from "zod"
 import { publicProcedure, router } from "./trpc"

@@ -1,16 +1,10 @@
 "use client"
+import { SaurType } from "@/types/saurType"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-interface fetch {
-  family: string
-}
-interface fetchf {
-  genus: string
-}
-
-export function FetchFamily({ family }: fetch) {
-  const [data, setData] = useState<fetchf>()
+export function FetchFamily(family: string) {
+  const [data, setData] = useState<SaurType>()
 
   useEffect(() => {
     async function call() {

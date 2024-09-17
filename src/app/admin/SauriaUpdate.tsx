@@ -1,15 +1,11 @@
 "use client"
-import { type } from "@/supabase/schema"
+import { trpc } from "@/connection/client/client"
+import { type } from "@/database/schema"
+import { sauriaSchema, SauriaSchema } from "@/types/sauriaSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { trpc } from "../_trpc/client"
-import { SauriaSchema, sauriaSchema } from "./SauriaForm"
 
-interface props {
-  click?: any
-  data: SauriaSchema
-}
-export function SauriaUpdate({ click, data }: props) {
+export function SauriaUpdate({ click, data }: { data: SauriaSchema; click: any }) {
   const { register, handleSubmit } = useForm<SauriaSchema>({
     resolver: zodResolver(sauriaSchema),
     defaultValues: data,

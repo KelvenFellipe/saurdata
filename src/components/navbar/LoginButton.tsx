@@ -1,6 +1,4 @@
-import { clickProps } from "./NavMenu"
-
-export function LoginButton({ click }: clickProps) {
+export function LoginButton({ click }: any) {
   return (
     <button
       onClick={click}

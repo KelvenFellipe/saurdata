@@ -1,10 +1,6 @@
-import { profileType } from "./Profile"
+import { ProfileType } from "@/types/profileType"
 
-interface props {
-  user: profileType
-  click?: any
-}
-export function NavNotification({ user, click }: props) {
+export function NavNotification({ user, click }: { user: ProfileType; click: any }) {
   return (
     <div className="fixed w-full h-full z-[10] select-none">
       <div className="h-fit bg-zinc-800 fixed text-sm text-white top-[53px] right-[72px] rounded-xl z-[20] overflow-auto w-[150px] max-h-[200px]">

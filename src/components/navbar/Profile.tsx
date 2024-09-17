@@ -1,24 +1,13 @@
 "use client"
+import { ProfileType } from "@/types/profileType"
 import { Bell, Fingerprint } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
 
-interface ProfileProps {
-  email: any
-}
-export interface profileType {
-  id: string
-  name: string
-  email: string
-  emailVerified?: string
-  image: string
-  notifications: string[]
-}
-
-export function Profile({ email }: ProfileProps) {
-  const [data, setData] = useState<profileType>()
+export function Profile({ email }: any) {
+  const [data, setData] = useState<ProfileType>()
   const [notification, setNotification] = useState(false)
   const [signed, setSigned] = useState(false)
 

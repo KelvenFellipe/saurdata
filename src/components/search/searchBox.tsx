@@ -1,12 +1,13 @@
 "use client"
 import { SearchIcon } from "lucide-react"
 
-interface SearchProps {
+export function SearchBox({
+  search,
+  setSearch,
+}: {
   setSearch: React.Dispatch<React.SetStateAction<string>>
   search: any
-}
-
-export function SearchBox({ search, setSearch }: SearchProps) {
+}) {
   return (
     <div
       className="h-12 w-full bg-white p-4 rounded-xl flex items-center justify-center shadow-shape gap-3 

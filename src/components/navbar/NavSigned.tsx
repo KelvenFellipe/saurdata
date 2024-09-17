@@ -1,16 +1,11 @@
 "use client"
+import { ProfileType } from "@/types/profileType"
 import { Circle, LogOut, Moon } from "lucide-react"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { useState } from "react"
-import { profileType } from "./Profile"
 
-interface props {
-  user: profileType
-  click: any
-}
-
-export function NavSigned({ user, click }: props) {
+export function NavSigned({ user, click }: { user: ProfileType; click: any }) {
   const [Lights, setLights] = useState("right-0")
 
   const toggleTheme = () => {

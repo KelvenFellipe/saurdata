@@ -1,6 +1,6 @@
 "use server"
-import { db } from "@/supabase"
-import { sauria } from "@/supabase/schema"
+import { db } from "@/database"
+import { sauria } from "@/database/schema"
 import { eq, ilike } from "drizzle-orm"
 
 export async function fetchData(search: string) {

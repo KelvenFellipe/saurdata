@@ -1,5 +1,5 @@
-import { db } from "@/supabase"
-import { user } from "@/supabase/schema"
+import { db } from "@/database"
+import { user } from "@/database/schema"
 import { eq } from "drizzle-orm"
 
  export async function GET(request: Request, {params}: {params: {email: string}}) {
