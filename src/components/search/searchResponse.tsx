@@ -10,7 +10,7 @@ interface test {
 export const SearchResponse = ({ data, click }: test) => {
   return (
     <div>
-      <div className="flex p-1 items-center text-xl text-zinc-400 space-x-2 hover:text-black dark:hover:text-white">
+      <div className="flex p-1 px-3 items-center text-sm text-zinc-200 space-x-2 hover:bg-zinc-700/50 dark:hover:text-white">
         <Link
           href={`/gallery/${data.genus}`}
           onClick={click}

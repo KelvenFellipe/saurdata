@@ -59,37 +59,43 @@ export function SauriaForm({ click }: props) {
             <input
               className="bg-zinc-800 w-[150px] p-2 pl-2 hover:bg-white/10 rounded-xl"
               placeholder="Million years"
-              {...register("temporal", { required: true })}
+              required
+              {...register("temporal")}
             />
           </div>
           <div className="space-x-4 flex ">
             <input
               className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-white/10 rounded-xl"
               placeholder="Genus"
-              {...register("genus", { required: true })}
+              required
+              {...register("genus")}
             />
             <input
               className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-white/10 rounded-xl"
               placeholder="Family"
-              {...register("family", { required: true })}
+              required
+              {...register("family")}
             />
           </div>
           <input
             className="bg-zinc-800 w-full p-2 pl-2 hover:bg-white/10 rounded-xl"
             placeholder="Species"
-            {...register("species", { required: true })}
+            required
+            {...register("species")}
           />
 
           <textarea
             className="bg-zinc-800 p-2 pl-2 h-20 resize-none hover:bg-white/10 rounded-xl scrollbar-none"
             placeholder="Image"
-            {...register("img", { required: true })}
+            required
+            {...register("img")}
           />
 
           <textarea
             className="bg-zinc-800 p-2 pl-2 h-32 resize-none hover:bg-white/10 rounded-xl scrollbar-none"
             placeholder="Description"
-            {...register("description", { required: true })}
+            required
+            {...register("description")}
           />
           <div className="flex justify-between">
             <button

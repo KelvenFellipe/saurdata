@@ -1,6 +1,6 @@
 "use client"
 
-import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from "@radix-ui/react-icons"
+import { CaretSortIcon, ChevronDownIcon } from "@radix-ui/react-icons"
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -15,13 +15,14 @@ import {
 } from "@tanstack/react-table"
 import * as React from "react"
 
+import { ButtonComponent2 } from "@/components/global/ButtonComponent"
+import { ButtonV } from "@/components/global/ButtonV"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -33,6 +34,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { Pencil } from "lucide-react"
 import { useState } from "react"
 import { trpc } from "../_trpc/client"
 import { SauriaForm, SauriaSchema } from "./SauriaForm"
@@ -172,23 +174,13 @@ export const columns: ColumnDef<SauriaSchema>[] = [
       const [editData, setEditData] = useState<SauriaSchema>()
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <DotsHorizontalIcon className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem onClick={() => deleteSauria.mutate({ ...saur })}>
-              Delete
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => setEditData(() => saur)}>Edit</DropdownMenuItem>
-          </DropdownMenuContent>
+        <div className="flex">
+          <ButtonV task={() => deleteSauria.mutate({ ...saur })} />
+          <ButtonComponent2 Icon1={Pencil} Click={() => setEditData(() => saur)} />
           {editData !== undefined && (
             <SauriaUpdate data={editData} click={() => setEditData(() => undefined)} />
           )}
-        </DropdownMenu>
+        </div>
       )
     },
   },

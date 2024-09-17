@@ -31,7 +31,7 @@ export function NavSearch() {
         onChange={e => setSearch(e.target.value)}
         value={search}
         type="text"
-        className={` w-full bg-zinc-800 text-xl p-1 ps-10 hover:bg-white/10 rounded-xl`}
+        className={` w-full bg-zinc-800 text-sm p-2 ps-10 hover:bg-white/10 rounded-xl`}
         placeholder={placeholder}
         maxLength={30}
       />
@@ -46,7 +46,7 @@ export function NavSearch() {
 
       {search !== "" && (
         <div
-          className={`absolute px-2 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 
+          className={`absolute py-2 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 
            items-center hover:shadow-md  overflow-auto max-h-[310px] w-full top-[38px] z-[1]`}
         >
           {search !== "" && responseData.length === 0 ? (
