@@ -24,7 +24,7 @@ export function NavSearch() {
     fetched()
   }, [search])
   return (
-    <div className={`relative flex w-full items-center m-2`}>
+    <div className={`relative flex w-full items-center`}>
       <Search className="block size-5 w-10 pl-1 absolute" />
 
       <input

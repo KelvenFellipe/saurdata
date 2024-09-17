@@ -176,7 +176,11 @@ export const columns: ColumnDef<SauriaSchema>[] = [
       return (
         <div className="flex">
           <ButtonV task={() => deleteSauria.mutate({ ...saur })} />
-          <ButtonComponent2 Icon1={Pencil} Click={() => setEditData(() => saur)} />
+          <ButtonComponent2
+            Icon1={Pencil}
+            Click={() => setEditData(() => saur)}
+            className="hover:text-[#ffAA00]"
+          />
           {editData !== undefined && (
             <SauriaUpdate data={editData} click={() => setEditData(() => undefined)} />
           )}
