@@ -7,4 +7,5 @@ export interface SaurType {
   temporal: string
   id: string
   description: string
+  added: string
 }

@@ -14,6 +14,7 @@ import {
 } from "@tanstack/react-table"
 import * as React from "react"
 
+import { getTime } from "@/components/gallery/saurCard"
 import { ButtonComponent2 } from "@/components/global/ButtonComponent"
 import { ButtonV } from "@/components/global/ButtonV"
 import { Button } from "@/components/ui/button"
@@ -65,9 +66,7 @@ export const columns: ColumnDef<SauriaSchema>[] = [
   {
     accessorKey: "id",
     header: "Id",
-    cell: ({ row }) => (
-      <div className="capitalize truncate max-w-[200px]">{row.getValue("id")}</div>
-    ),
+    cell: ({ row }) => <div className="capitalize truncate max-w-[50px]">{row.getValue("id")}</div>,
   },
   {
     accessorKey: "type",
@@ -157,6 +156,21 @@ export const columns: ColumnDef<SauriaSchema>[] = [
     cell: ({ row }) => (
       <div className="lowercase truncate max-w-[200px]">{row.getValue("description")}</div>
     ),
+  },
+  {
+    accessorKey: "added",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Added
+          <CaretSortIcon className="ml-2 h-4 w-4" />
+        </Button>
+      )
+    },
+    cell: ({ row }) => <div className="lowercase">{getTime(row.getValue("added"))}</div>,
   },
   {
     id: "actions",
@@ -324,3 +338,5 @@ export function DataTableDemo() {
     </div>
   )
 }
+
+

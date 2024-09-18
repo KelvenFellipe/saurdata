@@ -20,7 +20,7 @@ export function SaurMap() {
   return (
     <div className="grid grid-cols-3 w-fit p-2 z-[0] ">
       {responseData
-        .sort((a, b) => a.temporal.localeCompare(b.temporal))
+        .sort((a, b) => b.added.localeCompare(a.added))
         .map(item => (
           <div className="divide-y divide-solid">
             <MiniSaurCard {...item} />

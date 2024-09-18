@@ -36,16 +36,16 @@ export function Profile({ email }: any) {
       >
         <Bell className="size-5" />
         <div className="absolute w-fit h-fit -top-1 -right-1">
-          {notificationData !== undefined ? (
+          {notificationData !== undefined && (
             <p
               className={`${
                 notificationData.length <= 9 ? "w-8" : "w-10"
-              } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full`}
+              } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full ${
+                notificationData.length === 0 && "hidden"
+              }`}
             >
               {notificationData.length <= 9 ? notificationData.length : "9+"}
             </p>
-          ) : (
-            ""
           )}
         </div>
       </button>

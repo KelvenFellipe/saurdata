@@ -12,6 +12,7 @@ export const sauria = pgTable("sauria", {
 	family: text("family").notNull(),
 	type: type("type").notNull(),
 	description: text("description").default('').notNull(),
+  added: timestamp('added',{ withTimezone: true, mode: 'string' }).notNull().defaultNow()
 });
 
 export const session = pgTable("session", {
