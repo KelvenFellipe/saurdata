@@ -48,7 +48,7 @@ export function MiniSaurCard(props: SaurType) {
     setIndexCount(() => ImgArray.length - 1)
   }
   return (
-    <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 ">
+    <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 select-none">
       <div className="flex items-center">
         <p className="text-lg font-bold flex-1">
           {props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}
@@ -60,29 +60,28 @@ export function MiniSaurCard(props: SaurType) {
           <p className="text-xs ">{}</p>
         </div>
       </div>
-      <div className="flex overflow-hidden transition duration-300 ease-in-out delay-300 relative">
+      <div className="overflow-hidden relative rounded-xl">
         <ChevronLeftIcon
           onClick={() => setIndexCount(indexCount - 1)}
-          className={`absolute size-8 top-1/2 left-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 ${
-            indexCount === 0 && "hidden"
+          className={`absolute size-8 top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 ${
+            indexCount === 0 && "-translate-x-10"
           }`}
         />
         <ChevronRightIcon
           onClick={() => setIndexCount(indexCount + 1)}
-          className={`absolute size-8 top-1/2 -right-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 ${
-            indexCount === ImgArray.length - 1 && "hidden"
+          className={`absolute size-8 top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 ${
+            indexCount === ImgArray.length - 1 && "translate-x-10"
           }`}
         />
-        {ImgArray.map((item: string, index: number) => (
-          <img
-            src={item}
-            className={`w-[600px] h-[400px] object-cover rounded-xl shrink-0 ransition duration-300 ease-in-out delay-300 ${
-              index === indexCount ? "" : "hidden"
-            }`}
-          />
-        ))}
+        <div
+          className="w-[550px] h-[400px] flex transition-transform ease-out duration-500"
+          style={{ transform: `translateX(-${indexCount * 100}%)` }}
+        >
+          {ImgArray.map(item => (
+            <img src={item} className={`w-[600px] h-[400px] object-cover shrink-0 `} />
+          ))}
+        </div>
       </div>
-
       <div className="flex space-x-2">
         <ButtonComponent Icon1={ExternalLink} text={"About"} redirect={props.genus} />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
