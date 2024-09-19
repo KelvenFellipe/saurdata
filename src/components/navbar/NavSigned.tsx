@@ -16,7 +16,7 @@ export function NavSigned({ user, click }: { user: ProfileType; click: any }) {
 
   return (
     <div className="fixed w-full h-full z-[10] select-none">
-      <div className="w-fit h-fit bg-zinc-800 fixed text-sm text-white top-[53px] right-4 rounded-xl z-[20]">
+      <div className="w-fit h-fit bg-zinc-800 fixed text-sm text-white top-[52px] right-4 rounded-xl z-[20]">
         {user.image && (
           <div className="grid grid-cols-1 my-2 ">
             <Link

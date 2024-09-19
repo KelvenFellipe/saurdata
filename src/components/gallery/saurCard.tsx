@@ -40,7 +40,7 @@ export function SaurCard(props: SaurType) {
 export function MiniSaurCard(props: SaurType) {
   const [indexCount, setIndexCount] = useState(0)
   const ImgArray = props.img.split(", ")
-  console.log(ImgArray)
+  //  console.log(ImgArray)
   if (indexCount < 0) {
     setIndexCount(() => 0)
   }

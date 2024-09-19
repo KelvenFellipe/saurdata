@@ -11,7 +11,7 @@ export function SaurMap() {
       const data = await fetchData("")
       if (data) {
         setResponseData(data)
-        console.log(data)
+        //        console.log(data)
       }
     }
     fetched()

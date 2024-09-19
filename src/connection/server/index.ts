@@ -46,9 +46,24 @@ export const appRouter = router({
       return await db.update(sauria).set(input).where(eq(sauria.id, `${input.id}`))
     }),
 
-    getUsers: publicProcedure.input(z.string()).query(async (opts) => {
+    getUsers: publicProcedure.input(z.string())
+   .query(async (opts) => {
       const { input } = opts
-      return await db.select().from(user).where(eq(user.email, input)) })
+      return await db.select().from(user).where(eq(user.name, input))
+    })
+      
 })
 
 export type AppRouter = typeof appRouter
+
+// .output(z.object({
+//   id: z.string(),
+//   name: z.string(),
+//   email: z.string(),
+//   emailVerified: z.string().nullable(),
+//   image: z.string(),
+//   notifications: z.array(z.object({
+//     notification: z.string(),
+//     read: z.boolean()
+//   }))
+// }))

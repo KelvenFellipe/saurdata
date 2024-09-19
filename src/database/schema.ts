@@ -1,5 +1,6 @@
+import { NotificationType } from "@/types/profileType";
 import { relations } from "drizzle-orm";
-import { integer, jsonb, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
+import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 export const type = pgEnum("type", ["dinosaur", "pterosaur"])
 
@@ -23,11 +24,11 @@ export const session = pgTable("session", {
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
-	name: text("name"),
-	email: text("email"),
+	name: text("name").notNull(),
+	email: text("email").notNull(),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
-	image: text("image"),
-	notifications: jsonb("notifications").array(),
+	image: text("image").notNull(),
+	notifications: json("notifications").notNull().$type<NotificationType[]>().default([]),
 },
 (table) => {
 	return {
