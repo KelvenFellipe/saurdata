@@ -7,7 +7,7 @@ export function NavMenu({ click }: any) {
   const path = usePathname()
 
   return (
-    <div className="top-[53px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none ">
+    <div className="top-[52px] h-[calc(100%-53px)] w-full left-0 fixed flex select-none ">
       <div
         className=" bg-[#111316] w-[300px] text-base text-white pt-[2px] space-y-1 divide-y divide-solid p-3
       scrollbar-thin overflow-scroll"

@@ -1,6 +1,7 @@
 import { SaurType } from "@/types/saurType"
-import { BookOpenText, ExternalLink, X } from "lucide-react"
+import { BookOpenText, ChevronLeftIcon, ChevronRightIcon, ExternalLink, X } from "lucide-react"
 import Link from "next/link"
+import { useState } from "react"
 import { ButtonComponent } from "../global/ButtonComponent"
 
 export function SaurCard(props: SaurType) {
@@ -37,6 +38,15 @@ export function SaurCard(props: SaurType) {
 }
 
 export function MiniSaurCard(props: SaurType) {
+  const [indexCount, setIndexCount] = useState(0)
+  const ImgArray = props.img.split(", ")
+  console.log(ImgArray)
+  if (indexCount < 0) {
+    setIndexCount(() => 0)
+  }
+  if (indexCount > ImgArray.length - 1) {
+    setIndexCount(() => ImgArray.length - 1)
+  }
   return (
     <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 ">
       <div className="flex items-center">
@@ -50,11 +60,29 @@ export function MiniSaurCard(props: SaurType) {
           <p className="text-xs ">{}</p>
         </div>
       </div>
-      <img
-        src={props.img}
-        alt={props.genus}
-        className="w-[600px] h-[400px] rounded-xl object-cover "
-      />
+      <div className="flex overflow-hidden transition duration-300 ease-in-out delay-300 relative">
+        <ChevronLeftIcon
+          onClick={() => setIndexCount(indexCount - 1)}
+          className={`absolute size-8 top-1/2 left-6 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 ${
+            indexCount === 0 && "hidden"
+          }`}
+        />
+        <ChevronRightIcon
+          onClick={() => setIndexCount(indexCount + 1)}
+          className={`absolute size-8 top-1/2 -right-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 ${
+            indexCount === ImgArray.length - 1 && "hidden"
+          }`}
+        />
+        {ImgArray.map((item: string, index: number) => (
+          <img
+            src={item}
+            className={`w-[600px] h-[400px] object-cover rounded-xl shrink-0 ransition duration-300 ease-in-out delay-300 ${
+              index === indexCount ? "" : "hidden"
+            }`}
+          />
+        ))}
+      </div>
+
       <div className="flex space-x-2">
         <ButtonComponent Icon1={ExternalLink} text={"About"} redirect={props.genus} />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
