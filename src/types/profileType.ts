@@ -5,9 +5,11 @@ export interface ProfileType {
   emailVerified: string | null
   image: string
   notifications: NotificationType[]
+  role: "ADMIN" | "USER"
 }
 
 export interface NotificationType{
   notification: string
   read: boolean
+
 }

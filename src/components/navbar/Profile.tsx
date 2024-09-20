@@ -1,57 +1,59 @@
 "use client"
-import { trpc } from "@/connection/client/client"
 import { Bell, Fingerprint } from "lucide-react"
+import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { useState } from "react"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
 
-export function Profile({ email }: any) {
+export function Profile() {
   const [notification, setNotification] = useState(false)
   const [signed, setSigned] = useState(false)
-  const { data: userData = [] } = trpc.getUsers.useQuery(email)
+  const { data, status } = useSession()
+  if (data) {
+    const userData = data?.user
 
-  if (userData)
     return (
       <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
-        <Link href={"/admin"} className="p-2 hover:bg-white/20 rounded-full">
-          <Fingerprint className="" />
-        </Link>
-        {userData.map(user => (
-          <>
-            <button
-              className="p-[10px] hover:bg-white/20 rounded-full relative"
-              onClick={() => setNotification(() => !notification)}
-            >
-              <Bell className="size-5" />
-              <div className="absolute w-fit h-fit -top-1 -right-1">
-                {user.notifications !== null && (
-                  <p
-                    className={`${
-                      user.notifications.length <= 9 ? "w-8" : "w-10"
-                    } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full ${
-                      user.notifications.length === 0 && "hidden"
-                    }`}
-                  >
-                    {user.notifications.length <= 9 ? user.notifications.length : "9+"}
-                  </p>
-                )}
-              </div>
-            </button>
-            <button
-              onClick={() => setSigned(() => !signed)}
-              className="p-1 hover:bg-white/20 rounded-full"
-            >
-              {user.image !== null && <img src={user.image} className="h-8 w-8 rounded-full " />}
-            </button>
-            {signed === true && user && (
-              <NavSigned click={() => setSigned(() => false)} user={user} />
+        {userData.role === "ADMIN" && (
+          <Link href={"/admin"} className="p-2 hover:bg-white/20 rounded-full">
+            <Fingerprint className="" />
+          </Link>
+        )}
+        <button
+          className="p-[10px] hover:bg-white/20 rounded-full relative"
+          onClick={() => setNotification(() => !notification)}
+        >
+          <Bell className="size-5" />
+          <div className="absolute w-fit h-fit -top-1 -right-1">
+            {userData.notifications !== null && (
+              <p
+                className={`${
+                  userData.notifications.length <= 9 ? "w-8" : "w-10"
+                } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full ${
+                  userData.notifications.length === 0 && "hidden"
+                }`}
+              >
+                {userData.notifications.length <= 9 ? userData.notifications.length : "9+"}
+              </p>
             )}
-            {notification === true && user !== null && (
-              <NavNotification click={() => setNotification(() => !notification)} data={user} />
-            )}
-          </>
-        ))}
+          </div>
+        </button>
+        <button
+          onClick={() => setSigned(() => !signed)}
+          className="p-1 hover:bg-white/20 rounded-full"
+        >
+          {userData.image !== null && (
+            <img src={userData.image} className="h-8 w-8 rounded-full " />
+          )}
+        </button>
+        {signed === true && userData && (
+          <NavSigned click={() => setSigned(() => false)} user={userData} />
+        )}
+        {notification === true && userData !== null && (
+          <NavNotification click={() => setNotification(() => !notification)} data={userData} />
+        )}
       </div>
     )
+  }
 }

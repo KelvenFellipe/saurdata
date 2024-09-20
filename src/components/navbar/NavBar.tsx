@@ -16,6 +16,7 @@ export function NavBar() {
   const [notSigned, setNotSigned] = useState(false)
   const { data: session, status } = useSession()
 
+  console.log(session)
   return (
     <div
       className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-white size-xl text-white justify-center text-center items-center
@@ -36,7 +37,7 @@ export function NavBar() {
       <NavSearch />
 
       {status === "authenticated" && session.user !== undefined ? (
-        <Profile email={session.user.name} />
+        <Profile id={session.user.id} />
       ) : (
         <LoginButton click={() => setNotSigned(() => !notSigned)} />
       )}

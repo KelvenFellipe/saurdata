@@ -1,9 +1,12 @@
-import { NavMenu } from "@/components/navbar/NavMenu"
+"use client"
+import { useSession } from "next-auth/react"
 
 function Page() {
+  const session = useSession()
+
   return (
     <div>
-      <NavMenu click={console.log} />
+      <p>{JSON.stringify(session)}</p>
     </div>
   )
 }

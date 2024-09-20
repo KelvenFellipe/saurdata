@@ -179,9 +179,9 @@ export const columns: ColumnDef<SauriaSchema>[] = [
       const saur = row.original
       const utils = trpc.useContext()
 
-      const deleteSauria = trpc.deleteSauria.useMutation({
+      const deleteSauria = trpc.sauria.deleteSauria.useMutation({
         onSettled: () => {
-          utils.getSauria.invalidate()
+          utils.sauria.getSauria.invalidate()
         },
       })
 
@@ -205,7 +205,7 @@ export const columns: ColumnDef<SauriaSchema>[] = [
 ]
 
 export function DataTableDemo() {
-  const { data: data = [] } = trpc.getSauria.useQuery()
+  const { data: data = [] } = trpc.sauria.getSauria.useQuery()
   const [add, setAdd] = useState(false)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])

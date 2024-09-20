@@ -3,6 +3,7 @@ import { relations } from "drizzle-orm";
 import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 export const type = pgEnum("type", ["dinosaur", "pterosaur"])
+export const userRole = pgEnum("role", ["ADMIN", "USER"])
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -26,6 +27,7 @@ export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
 	name: text("name").notNull(),
 	email: text("email").notNull(),
+  role: userRole("role").default("USER").notNull(),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image").notNull(),
 	notifications: json("notifications").notNull().$type<NotificationType[]>().default([]),

@@ -2,6 +2,7 @@
 import { db } from "@/database"
 import { sauria } from "@/database/schema"
 import { eq, ilike } from "drizzle-orm"
+import { auth } from "../../../../auth"
 
 export async function fetchData(search: string) {
   const data = await db
@@ -32,6 +33,11 @@ export async function fetcha() {
   return data
 }
 
+export async function aut() {
+  const data = await auth()
+  console.log(data)
+  return data?.user
+}
 // function log(data: any) {
 //   console.log("Fetched data:", data)
 // }
