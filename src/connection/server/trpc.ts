@@ -1,16 +1,16 @@
 import { initTRPC, TRPCError } from "@trpc/server"
-import transformer from 'trpc-transformer'
+import SuperJSON from "superjson"
 import { createContext } from "./context"
 
 const t = initTRPC.context<typeof createContext>().create({
-  transformer,
+  transformer: SuperJSON
 })
 
 export const router = t.router
 export const publicProcedure = t.procedure
 export const authenticatedProcedure = t.procedure.use((opts) => {
   const { ctx } = opts
-
+  console.log(ctx)
   if (ctx.session == null )
     throw new TRPCError({ code: "UNAUTHORIZED" })
 
@@ -18,7 +18,7 @@ export const authenticatedProcedure = t.procedure.use((opts) => {
 })
 export const adminProcedure = authenticatedProcedure.use((opts)=> {
   const {ctx} = opts
-
+  
   if (ctx.session == null || ctx.session.user.role !== "ADMIN")
     throw new TRPCError({ code: "UNAUTHORIZED" })
 

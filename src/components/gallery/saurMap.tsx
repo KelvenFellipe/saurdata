@@ -16,7 +16,7 @@ export function SaurMap() {
       {dataSauria
         .sort((a, b) => b.added.localeCompare(a.added))
         .map(item => (
-          <div className="divide-y divide-solid">
+          <div key={item.id} className="divide-y divide-solid">
             <MiniSaurCard {...item} />
             <div></div>
           </div>

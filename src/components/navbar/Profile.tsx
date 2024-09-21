@@ -16,12 +16,15 @@ export function Profile() {
     return (
       <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
         {userData.role === "ADMIN" && (
-          <Link href={"/admin"} className="p-2 hover:bg-white/20 rounded-full">
+          <Link
+            href={"/admin"}
+            className="p-2 hover:bg-zinc-700/50 rounded-full ease-in-out duration-300"
+          >
             <Fingerprint className="" />
           </Link>
         )}
         <button
-          className="p-[10px] hover:bg-white/20 rounded-full relative"
+          className="p-[10px] hover:bg-zinc-700/50 rounded-full relative ease-in-out duration-300"
           onClick={() => setNotification(() => !notification)}
         >
           <Bell className="size-5" />
@@ -41,7 +44,7 @@ export function Profile() {
         </button>
         <button
           onClick={() => setSigned(() => !signed)}
-          className="p-1 hover:bg-white/20 rounded-full"
+          className="p-1 hover:bg-zinc-700/50 rounded-full ease-in-out duration-300"
         >
           {userData.image !== null && (
             <img src={userData.image} className="h-8 w-8 rounded-full " />

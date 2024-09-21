@@ -12,7 +12,7 @@ export function MenuSection({ name, stuff }: MenuSection) {
   return (
     <div className={``}>
       <button
-        className={`flex text-lg items-center space-x-4 p-2 hover:bg-white/5 w-full rounded-xl px-4 py-2 my-2 relative`}
+        className={`flex text-lg items-center space-x-4 p-2 hover:bg-white/5 w-full rounded-xl px-4 py-2 my-2 relative ease-in-out duration-300`}
         onClick={() => setOpen(() => !open)}
       >
         <p className="">{name}</p>

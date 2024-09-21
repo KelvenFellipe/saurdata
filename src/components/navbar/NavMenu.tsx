@@ -17,7 +17,7 @@ export function NavMenu({ click }: any) {
             href={"/"}
             className={`${
               path === "/" ? "text-white bg-zinc-800 " : ""
-            } flex px-4 py-3 items-center space-x-4 p-2 hover:bg-white/5 rounded-xl`}
+            } flex px-4 py-3 items-center space-x-4 p-2 hover:bg-zinc-700/50 rounded-xl ease-in-out duration-500`}
           >
             <Home />
             <p>Home</p>
@@ -26,7 +26,7 @@ export function NavMenu({ click }: any) {
             href={"/gallery"}
             className={`${
               path === "/gallery" ? "text-white bg-zinc-800" : ""
-            } flex px-4 py-3 items-center space-x-4 p-2 hover:bg-white/5 rounded-xl`}
+            } flex px-4 py-3 items-center space-x-4 p-2 hover:bg-zinc-700/50 rounded-xl ease-in-out duration-500`}
           >
             <Bone />
             <p>Gallery</p>

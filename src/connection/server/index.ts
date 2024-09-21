@@ -23,7 +23,7 @@ export const appRouter = router({
       return await db.insert(sauria).values(input)
     }),
 
-  deleteSauria: publicProcedure.input(
+  deleteSauria: adminProcedure.input(
     z.object({
       id: z.string(),
   })).mutation(async (opts) => {
@@ -31,7 +31,7 @@ export const appRouter = router({
     return await db.delete(sauria).where(eq(sauria.id, `${input.id}`)).returning()
   }),
 
-  editSauria: publicProcedure.input(
+  editSauria: adminProcedure.input(
     z.object({
       id: z.string(),
       type: z.enum(type.enumValues),
@@ -45,7 +45,8 @@ export const appRouter = router({
       const { input } = opts
       return await db.update(sauria).set(input).where(eq(sauria.id, `${input.id}`))
     }),
-  getUsers: publicProcedure.input(z.string())
+    
+  getUsers: adminProcedure.input(z.string())
   .query(async (opts) => {
     const { input } = opts
     return await db.select().from(user).where(eq(user.id, input))

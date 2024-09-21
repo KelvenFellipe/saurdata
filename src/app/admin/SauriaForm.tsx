@@ -18,29 +18,40 @@ export function SauriaForm({ click }: any) {
     },
   })
 
+  function handle(values: any) {
+    // try {
+    addsauria.mutate(values)
+    // } catch {
+    //   console.error(Error)
+    // }
+  }
+
   return (
     <div className="fixed max-w-full max-h-full flex select-none z-40">
       <div className="p-4 space-y-5 bg-[#111316] text-white text-sm w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <form
           className="flex flex-col text-white space-y-4 max-w-fit "
-          onSubmit={handleSubmit((values: SauriaSchemaNoID) => addsauria.mutate(values))}
+          onSubmit={handleSubmit((values: SauriaSchemaNoID) => handle(values))}
         >
           <div className="space-x-4 justify-between flex">
             <select
               {...register("type")}
-              className="bg-zinc-800 pl-2 w-[250px] border-r-8 border-transparent rounded-xl hover:bg-white/10 "
+              className="bg-zinc-800 pl-2 w-[250px] border-r-8 border-transparent rounded-xl hover:bg-zinc-700/50 "
             >
-              <option selected disabled className="bg-zinc-800 hover:bg-white/10">
+              <option selected disabled className="bg-zinc-800 hover:bg-zinc-700/50">
                 Type
               </option>
               {type.enumValues.map(item => (
-                <option className="bg-zinc-800 pl-2 p-2 hover:bg-white/10 rounded-xl" value={item}>
+                <option
+                  className="bg-zinc-800 pl-2 p-2 hover:bg-zinc-700/50 rounded-xl"
+                  value={item}
+                >
                   {item}
                 </option>
               ))}
             </select>
             <input
-              className="bg-zinc-800 w-[150px] p-2 pl-2 hover:bg-white/10 rounded-xl"
+              className="bg-zinc-800 w-[150px] p-2 pl-2 hover:bg-zinc-700/50 rounded-xl"
               placeholder="Million years"
               required
               {...register("temporal")}
@@ -48,34 +59,34 @@ export function SauriaForm({ click }: any) {
           </div>
           <div className="space-x-4 flex ">
             <input
-              className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-white/10 rounded-xl"
+              className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-zinc-700/50 rounded-xl"
               placeholder="Genus"
               required
               {...register("genus")}
             />
             <input
-              className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-white/10 rounded-xl"
+              className="bg-zinc-800 w-[200px] p-2 pl-2 hover:bg-zinc-700/50 rounded-xl"
               placeholder="Family"
               required
               {...register("family")}
             />
           </div>
           <input
-            className="bg-zinc-800 w-full p-2 pl-2 hover:bg-white/10 rounded-xl"
+            className="bg-zinc-800 w-full p-2 pl-2 hover:bg-zinc-700/50 rounded-xl"
             placeholder="Species"
             required
             {...register("species")}
           />
 
           <textarea
-            className="bg-zinc-800 p-2 pl-2 h-20 resize-none hover:bg-white/10 rounded-xl scrollbar-none"
+            className="bg-zinc-800 p-2 pl-2 h-20 resize-none hover:bg-zinc-700/50 rounded-xl scrollbar-none"
             placeholder="Image"
             required
             {...register("img")}
           />
 
           <textarea
-            className="bg-zinc-800 p-2 pl-2 h-32 resize-none hover:bg-white/10 rounded-xl scrollbar-none"
+            className="bg-zinc-800 p-2 pl-2 h-32 resize-none hover:bg-zinc-700/50 rounded-xl scrollbar-none"
             placeholder="Description"
             required
             {...register("description")}

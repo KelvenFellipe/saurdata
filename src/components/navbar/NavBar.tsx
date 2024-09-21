@@ -16,15 +16,14 @@ export function NavBar() {
   const [notSigned, setNotSigned] = useState(false)
   const { data: session, status } = useSession()
 
-  console.log(session)
   return (
     <div
       className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-white size-xl text-white justify-center text-center items-center
       shadow-md hover:shadow-xl hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-[52px] 0 border-b border-zinc-500"
     >
       <div className="flex items-center space-x-4 ">
-        <button className="p-2 hover:bg-white/20 rounded-full">
-          <Menu onClick={() => setMenu(() => !menu)} />
+        <button className="p-2 hover:bg-zinc-700/50 rounded-full ease-in-out duration-300">
+          <Menu onClick={() => setMenu(!menu)} />
         </button>
         <button className="flex items-center text-4xl text-white" onClick={() => router.push("/")}>
           <div className="space-x-2 flex items-center">

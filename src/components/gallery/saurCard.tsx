@@ -48,7 +48,10 @@ export function MiniSaurCard(props: SaurType) {
     setIndexCount(() => ImgArray.length - 1)
   }
   return (
-    <div className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 select-none">
+    <div
+      key={props.id}
+      className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 select-none"
+    >
       <div className="flex items-center">
         <p className="text-lg font-bold flex-1">
           {props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}
@@ -78,7 +81,11 @@ export function MiniSaurCard(props: SaurType) {
           style={{ transform: `translateX(-${indexCount * 100}%)` }}
         >
           {ImgArray.map(item => (
-            <img src={item} className={`w-[600px] h-[400px] object-cover shrink-0 `} />
+            <img
+              key={item.length}
+              src={item}
+              className={`w-[600px] h-[400px] object-cover shrink-0 `}
+            />
           ))}
         </div>
       </div>
