@@ -11,9 +11,9 @@ export function SauriaForm({ click }: any) {
   })
 
   const utils = trpc.useContext()
-  const addsauria = trpc.sauria.addSauria.useMutation({
+  const addsauria = trpc.addSauria.useMutation({
     onSettled: () => {
-      utils.sauria.getSauria.invalidate()
+      utils.getSauria.invalidate()
       click()
     },
   })

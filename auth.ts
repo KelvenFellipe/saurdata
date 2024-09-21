@@ -41,7 +41,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!token.sub) return token
       
       const existingUser = await db.select().from(user).where(eq(user.id, token.sub))
-      console.log(existingUser)
       if (!existingUser) return token
 
       token.role = existingUser[0].role

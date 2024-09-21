@@ -37,7 +37,7 @@ export function NavBar() {
       <NavSearch />
 
       {status === "authenticated" && session.user !== undefined ? (
-        <Profile id={session.user.id} />
+        <Profile />
       ) : (
         <LoginButton click={() => setNotSigned(() => !notSigned)} />
       )}

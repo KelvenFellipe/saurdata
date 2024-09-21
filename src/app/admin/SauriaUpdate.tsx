@@ -11,9 +11,9 @@ export function SauriaUpdate({ click, data }: { data: SauriaSchema; click: any }
     defaultValues: data,
   })
   const utils = trpc.useContext()
-  const editSauria = trpc.sauria.editSauria.useMutation({
+  const editSauria = trpc.editSauria.useMutation({
     onSettled: () => {
-      utils.sauria.getSauria.invalidate()
+      utils.getSauria.invalidate()
       click()
     },
   })
