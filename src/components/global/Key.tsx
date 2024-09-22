@@ -23,9 +23,9 @@ export function Key({ KeyName, click }: KeyProps) {
 
 export function Sentence({ KeyName }: KeyProps) {
   return (
-    <div className="text-zinc-400 h-fit w-fit flex items-center justify-center rounded-md hover:duration-300 duration-300 m-[1px] transition ease-in-out delay-150 hover:text-black dark:hover:text-white">
+    <div className=" flex items-center justify-center rounded-md hover:duration-300 duration-300 m-[1px] transition ease-in-out delay-150 hover:text-black dark:hover:text-white">
       {typeof KeyName === "string" ? (
-        <div className="text-xl">{KeyName}</div>
+        <div className="text-lg">{KeyName}</div>
       ) : (
         <KeyName className="size-6" />
       )}

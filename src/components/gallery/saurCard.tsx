@@ -62,7 +62,7 @@ export function MiniSaurCard(props: SaurType) {
     >
       <div className="flex flex-col md:flex-row md:items-center">
         <p className="text-lg font-bold flex-1">
-          {props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}
+          {props.genus.charAt(0).toUpperCase() + props.genus.slice(1) + ", " + props.temporal}
         </p>
         <div className=" flex">
           <p className="text-xs text-zinc-300 ">
@@ -102,7 +102,7 @@ export function MiniSaurCard(props: SaurType) {
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
       </div>
       {open && (
-        <div className="fixed z-[50]">
+        <div className="fixed z-[50] no-doc-scroll">
           <img
             src={ImgArray[indexCount]}
             className="fixed z-40 max-h-screen max-w-screen-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

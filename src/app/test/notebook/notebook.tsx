@@ -1,8 +1,9 @@
 "use client"
 
+import { fontSelect } from "@/components/data/fontSelectData"
+import { textAlign } from "@/components/data/textAlignData"
 import { SelectComponent } from "@/components/global/SelectComponent"
-import { fontSelect } from "@/data/fontSelectData"
-import { textAlign } from "@/data/textAlignData"
+
 import { Bold, Italic } from "lucide-react"
 import { useState } from "react"
 
