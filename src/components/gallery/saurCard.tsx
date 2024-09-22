@@ -15,7 +15,7 @@ export function SaurCard(props: SaurType) {
           <img
             src={props.img}
             alt={props.genus}
-            className="rounded-3xl object-center max-h-[500px] max-w-[500px] hover:scale-105 transition ease-in-out duration-300"
+            className="rounded-3xl object-center h-fit w-fit hover:scale-105 transition ease-in-out duration-300"
           />
         </Link>
         <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[392px] items-center ml-4 ">
@@ -50,9 +50,9 @@ export function MiniSaurCard(props: SaurType) {
   return (
     <div
       key={props.id}
-      className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl w-fit h-fit m-1 space-y-2 select-none"
+      className="flex flex-col text-base hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl  m-1 space-y-2 select-none"
     >
-      <div className="flex items-center">
+      <div className="flex flex-col md:flex-row md:items-center">
         <p className="text-lg font-bold flex-1">
           {props.genus.charAt(0).toUpperCase() + props.genus.slice(1)}
         </p>
@@ -60,7 +60,6 @@ export function MiniSaurCard(props: SaurType) {
           <p className="text-xs text-zinc-300 ">
             {props.type + "/" + props.family + " • " + getTime(props.added)}
           </p>
-          <p className="text-xs ">{}</p>
         </div>
       </div>
       <div className="overflow-hidden relative rounded-xl">
@@ -77,15 +76,11 @@ export function MiniSaurCard(props: SaurType) {
           }`}
         />
         <div
-          className="w-[550px] h-[400px] flex transition-transform ease-out duration-500"
+          className="sm:w-screen-sm md:w-screen-md lg:w-screen-lg h-[calc(100vh/2.3)] flex transition-transform ease-out duration-500"
           style={{ transform: `translateX(-${indexCount * 100}%)` }}
         >
           {ImgArray.map(item => (
-            <img
-              key={item.length}
-              src={item}
-              className={`w-[600px] h-[400px] object-cover shrink-0 `}
-            />
+            <img key={item.length} src={item} className={`aspect-video object-cover`} />
           ))}
         </div>
       </div>

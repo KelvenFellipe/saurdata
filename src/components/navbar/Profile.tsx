@@ -51,10 +51,14 @@ export function Profile() {
           )}
         </button>
         {signed === true && userData && (
-          <NavSigned click={() => setSigned(() => false)} user={userData} />
+          <NavSigned click={() => setSigned(() => false)} user={userData} opened={true} />
         )}
         {notification === true && userData !== null && (
-          <NavNotification click={() => setNotification(() => !notification)} data={userData} />
+          <NavNotification
+            click={() => setNotification(() => false)}
+            data={userData}
+            opened={true}
+          />
         )}
       </div>
     )

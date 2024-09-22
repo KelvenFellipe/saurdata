@@ -47,10 +47,10 @@ export function NavSearch() {
       {search !== "" && (
         <div
           className={`absolute py-2 bg-zinc-200 dark:bg-zinc-800 rounded-xl flex-col text-xl text-zinc-600 dark:text-zinc-300 
-           items-center hover:shadow-md  overflow-auto max-h-[310px] w-full top-[38px] z-[1]`}
+           items-center max-h-[310px] w-full top-[38px] z-[1] scrollbar-none overflow-y-scroll shadow-md shadow-black`}
         >
           {search !== "" && responseData.length === 0 ? (
-            <div className="pl-2"> no results</div>
+            <div className="pl-2 "> no results</div>
           ) : (
             responseData.map(item => (
               <SearchResponse data={item} key={item.id} click={() => reset(item.genus)} />

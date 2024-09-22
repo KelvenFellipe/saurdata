@@ -5,7 +5,14 @@ import { signOut } from "next-auth/react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-export function NavSigned({ user, click }: { user: ProfileType; click: any }) {
+interface props {
+  click: any
+  user: ProfileType
+  opened: boolean
+}
+
+export function NavSigned({ user, click, opened }: props) {
+  const [open, setOpen] = useState(false)
   const [Lights, setLights] = useState("")
   const doc = document.documentElement.classList
   const toggleTheme = () => {
@@ -14,13 +21,19 @@ export function NavSigned({ user, click }: { user: ProfileType; click: any }) {
   }
   useEffect(() => {
     doc.value.includes("dark") ? setLights("translate-x-3") : setLights("translate-x-0")
+    setOpen(() => opened)
   }, [])
 
   return (
-    <div className="fixed w-full h-full z-[10] select-none ">
-      <div className="w-fit h-fit bg-zinc-800 fixed text-sm text-white top-[52px] right-4 rounded-xl z-[20]">
+    <div className="fixed z-[10] select-none ">
+      <div
+        className={`fixed z-[20] w-fit top-[56px] right-4 bg-zinc-800 text-white text-sm rounded-xl py-2 transition-[max-height]
+           duration-500 overflow-hidden shadow-md shadow-black ${
+             open ? "max-h-full " : "max-h-0 opacity-0"
+           }`}
+      >
         {user.image && (
-          <div className="grid grid-cols-1 my-2 ">
+          <div className="grid grid-cols-1 ">
             <Link
               href={"/profile"}
               className="flex px-4 py-3 items-center space-x-2 hover:bg-zinc-700/50 ease-in-out duration-500"
@@ -29,7 +42,9 @@ export function NavSigned({ user, click }: { user: ProfileType; click: any }) {
               <div className="grid  grid-rows-2 text-justify items-center">
                 <div className="flex space-x-1 items-center">
                   <p>{user.name}</p>
-                  <StarIcon className="text-[#ffb514] size-4 fill-current animate-spin" />
+                  {user.role === "ADMIN" && (
+                    <StarIcon className="text-[#ffb514] size-4 fill-current animate-pulse" />
+                  )}
                 </div>
                 <p className="text-xs text-zinc-400 ">View Profile</p>
               </div>
