@@ -1,5 +1,12 @@
 import { SaurType } from "@/types/saurType"
-import { BookOpenText, ChevronLeftIcon, ChevronRightIcon, ExternalLink, X } from "lucide-react"
+import {
+  BookOpenText,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExternalLink,
+  X,
+  XIcon,
+} from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
 import { ButtonComponent } from "../global/ButtonComponent"
@@ -39,6 +46,7 @@ export function SaurCard(props: SaurType) {
 
 export function MiniSaurCard(props: SaurType) {
   const [indexCount, setIndexCount] = useState(0)
+  const [open, setOpen] = useState(false)
   const ImgArray = props.img.split(", ")
   //  console.log(ImgArray)
   if (indexCount < 0) {
@@ -80,7 +88,12 @@ export function MiniSaurCard(props: SaurType) {
           style={{ transform: `translateX(-${indexCount * 100}%)` }}
         >
           {ImgArray.map(item => (
-            <img key={item.length} src={item} className={`aspect-video object-cover`} />
+            <img
+              key={item.length}
+              src={item}
+              className={`aspect-video object-cover cursor-pointer`}
+              onClick={() => setOpen(() => true)}
+            />
           ))}
         </div>
       </div>
@@ -88,6 +101,21 @@ export function MiniSaurCard(props: SaurType) {
         <ButtonComponent Icon1={ExternalLink} text={"About"} redirect={props.genus} />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
       </div>
+      {open && (
+        <div className="fixed z-[50]">
+          <img
+            src={ImgArray[indexCount]}
+            className="fixed z-40 max-h-screen max-w-screen-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          />
+          <button
+            className=" fixed z-[200] right-6 top-6 bg-black/20 hover:bg-black/70 ease-in-out duration-300 rounded-full h-10 w-10 items-center justify-center flex"
+            onClick={() => setOpen(() => false)}
+          >
+            <XIcon className="size-8" />
+          </button>
+          <div className="fixed w-full h-full top-0 left-0 backdrop-blur-lg bg-black/80"></div>
+        </div>
+      )}
     </div>
   )
 }

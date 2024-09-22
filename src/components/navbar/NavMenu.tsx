@@ -14,8 +14,10 @@ export function NavMenu({ click, opened }: { click: any; opened: boolean }) {
   return (
     <div className="fixed z-[10] select-none">
       <div
-        className={`h-fit z-[20] top-[56px] text-base text-white pt-[2px] fixed py-2 rounded-r-xl overflow-hidden
-        shadow-md bg-zinc-800 shadow-black transition-[max-width] duration-1000 ${open? "max-w-full " : "max-w-0 opacity-0" }`}
+        className={`h-fit z-[20] top-[56px] text-base text-white fixed rounded-r-xl overflow-hidden
+        shadow-md bg-zinc-800 shadow-black transition-[max-width] duration-1000 ${
+          open ? "max-w-full" : "max-w-0"
+        }`}
       >
         <div className="my-2 w-[200px]">
           <Link
@@ -37,7 +39,6 @@ export function NavMenu({ click, opened }: { click: any; opened: boolean }) {
             <p>Gallery</p>
           </Link>
         </div>
-
         <div />
       </div>
       <div className="fixed w-full h-full top-0 left-0 " onClick={click} />

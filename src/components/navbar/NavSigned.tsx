@@ -27,13 +27,11 @@ export function NavSigned({ user, click, opened }: props) {
   return (
     <div className="fixed z-[10] select-none ">
       <div
-        className={`fixed z-[20] w-fit top-[56px] right-4 bg-zinc-800 text-white text-sm rounded-xl py-2 transition-[max-height]
-           duration-500 overflow-hidden shadow-md shadow-black ${
-             open ? "max-h-full " : "max-h-0 opacity-0"
-           }`}
+        className={`fixed z-[20] w-fit top-[56px] right-4 bg-zinc-800 text-white text-sm rounded-xl transition-[max-height]
+           duration-1000 overflow-hidden shadow-md shadow-black ${open ? "max-h-full" : "max-h-0"}`}
       >
         {user.image && (
-          <div className="grid grid-cols-1 ">
+          <div className="grid grid-cols-1 my-2">
             <Link
               href={"/profile"}
               className="flex px-4 py-3 items-center space-x-2 hover:bg-zinc-700/50 ease-in-out duration-500"
@@ -52,7 +50,7 @@ export function NavSigned({ user, click, opened }: props) {
 
             <div
               onClick={toggleTheme}
-              className="flex relative items-center space-x-[20px] py-3 px-[28px] hover:bg-zinc-700/50 ease-in-out duration-500"
+              className="flex relative items-center space-x-[20px] py-3 px-[28px] hover:bg-zinc-700/50 ease-in-out duration-500 cursor-pointer"
             >
               <Moon className="size-6" />
               <p>Dark Mode</p>
