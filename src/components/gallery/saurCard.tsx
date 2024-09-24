@@ -48,7 +48,7 @@ export function MiniSaurCard(props: SaurType) {
   const [indexCount, setIndexCount] = useState(0)
   const [open, setOpen] = useState(false)
   const ImgArray = props.img.split(", ")
-  //  console.log(ImgArray)
+
   if (indexCount < 0) {
     setIndexCount(() => 0)
   }

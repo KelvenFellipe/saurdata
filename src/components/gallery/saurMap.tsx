@@ -16,8 +16,8 @@ export function SaurMap() {
   }, [isFetched])
 
   function sort(a: any, b: any) {
-    if (sortMethod === "asc") return b.genus.localeCompare(a.genus)
-    if (sortMethod === "desc") return a.genus.localeCompare(b.genus)
+    if (sortMethod === "asc") return a.genus.localeCompare(b.genus)
+    if (sortMethod === "desc") return b.genus.localeCompare(a.genus)
     if (sortMethod === "last") return b.added.localeCompare(a.added)
     if (sortMethod === "first") return a.added.localeCompare(b.added)
     if (sortMethod === "newer")
