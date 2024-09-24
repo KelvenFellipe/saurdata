@@ -10,7 +10,7 @@ export const router = t.router
 export const publicProcedure = t.procedure
 export const authenticatedProcedure = t.procedure.use((opts) => {
   const { ctx } = opts
-  console.log(ctx)
+//  console.log(ctx)
   if (ctx.session == null )
     throw new TRPCError({ code: "UNAUTHORIZED" })
 

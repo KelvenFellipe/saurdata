@@ -3,11 +3,12 @@ import { trpc } from "@/connection/client/client"
 import { SaurType } from "@/types/saurType"
 import { useEffect, useState } from "react"
 import { SortingData } from "../data/SortingData"
+import { Loading } from "../global/Loading"
 import { SelectComponent } from "../global/SelectComponent"
 import { MiniSaurCard } from "./saurCard"
 
 export function SaurMap() {
-  const { data = [], isFetched } = trpc.getSauria.useQuery()
+  const { data = [], isFetched, isLoading } = trpc.getSauria.useQuery()
   const [dataSauria, setDataSauria] = useState<Array<SaurType>>([])
   const [sortMethod, setSortMethod] = useState("")
 
@@ -34,10 +35,13 @@ export function SaurMap() {
   function changevalue(value: string) {
     setSortMethod(() => value)
   }
+  if (isLoading) {
+    return <Loading />
+  }
 
   return (
     <div className=" z-[0] ">
-      <div className="flex mx-3 my-2 ">
+      <div className="flex mx-3 my-2 justify-end ">
         <SelectComponent PlaceHolder={"Sorting"} data={SortingData} changevalue={changevalue} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit p-2">
@@ -52,8 +56,3 @@ export function SaurMap() {
     </div>
   )
 }
-
-//(a, b) => a.genus.localeCompare(b.genus)
-//(a, b) => b.genus.localeCompare(a.genus)
-//(a, b) => a.temporal.localeCompare(b.temporal)
-//(a, b) => b.temporal.localeCompare(a.temporal)

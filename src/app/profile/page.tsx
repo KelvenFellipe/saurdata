@@ -13,12 +13,12 @@ function profile() {
         {user.image == null ? null : (
           <img src={user.image} alt="User Avatar" className="w-40 h-40 rounded-xl " />
         )}
-        <div>
-          <Pencil className="size-3 absolute top-1 right-1 " />
+        <div className="flex">
+          <Pencil className="size-10 absolute top-1 right-1 bg-black/40 p-3 rounded-md opacity-0 hover:opacity-100" />
         </div>
       </div>
       <div>
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <p>{user.name}</p>
           <Pencil className="size-3" />
         </div>
