@@ -14,7 +14,7 @@ import {
 } from "@tanstack/react-table"
 import * as React from "react"
 
-import { getTime } from "@/components/gallery/saurCard"
+import { getTime } from "@/components/gallery/TimeHook"
 import { ButtonComponent2 } from "@/components/global/ButtonComponent"
 import { ButtonV } from "@/components/global/ButtonV"
 import { Button } from "@/components/ui/button"

@@ -1,9 +1,9 @@
-import { NotificationType } from "@/types/profileType";
-import { relations } from "drizzle-orm";
 import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
-export const type = pgEnum("type", ["dinosaur", "pterosaur"])
-export const userRole = pgEnum("role", ["ADMIN", "USER"])
+export const role = pgEnum("role", ['ADMIN', 'USER'])
+export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur'])
+export const test = pgEnum("type", ['tests'])
+
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -14,28 +14,28 @@ export const sauria = pgTable("sauria", {
 	family: text("family").notNull(),
 	type: type("type").notNull(),
 	description: text("description").default('').notNull(),
-  added: timestamp('added',{ withTimezone: true, mode: 'string' }).notNull().defaultNow()
-});
-
-export const session = pgTable("session", {
-	sessionToken: text("sessionToken").primaryKey().notNull(),
-	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
-	expires: timestamp("expires", { mode: 'string' }).notNull(),
+	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
 	name: text("name").notNull(),
 	email: text("email").notNull(),
-  role: userRole("role").default("USER").notNull(),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image").notNull(),
-	notifications: json("notifications").notNull().$type<NotificationType[]>().default([]),
+	notifications: json("notifications").default([]).notNull(),
+	role: role("role").default('USER').notNull(),
 },
 (table) => {
 	return {
 		userEmailUnique: unique("user_email_unique").on(table.email),
 	}
+});
+
+export const session = pgTable("session", {
+	sessionToken: text("sessionToken").primaryKey().notNull(),
+	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
+	expires: timestamp("expires", { mode: 'string' }).notNull(),
 });
 
 export const account = pgTable("account", {
@@ -56,22 +56,3 @@ export const account = pgTable("account", {
 		accountProviderProviderAccountIdPk: primaryKey({ columns: [table.provider, table.providerAccountId], name: "account_provider_providerAccountId_pk"}),
 	}
 });
-
-export const sessionRelations = relations(session, ({one}) => ({
-	user: one(user, {
-		fields: [session.userId],
-		references: [user.id]
-	}),
-}));
-
-export const userRelations = relations(user, ({many}) => ({
-	sessions: many(session),
-	accounts: many(account),
-}));
-
-export const accountRelations = relations(account, ({one}) => ({
-	user: one(user, {
-		fields: [account.userId],
-		references: [user.id]
-	}),
-}));

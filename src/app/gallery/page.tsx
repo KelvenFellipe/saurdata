@@ -1,4 +1,4 @@
-import { SaurMap } from "@/components/gallery/saurMap"
+import { SaurMap } from "@/components/gallery/SaurMap"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {

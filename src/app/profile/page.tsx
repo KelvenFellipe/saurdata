@@ -1,28 +1,26 @@
 "use client"
+import { ButtonComponent } from "@/components/global/ButtonComponent"
+import { Loading } from "@/components/global/Loading"
 import { Pencil } from "lucide-react"
 import { useSession } from "next-auth/react"
-import { redirect } from "next/navigation"
 
 function profile() {
   const user = useSession().data?.user
-  if (user === undefined) return redirect("/")
-
+  if (user === undefined) return <Loading />
+  //redirect("/")
   return (
-    <div className="select-none flex m-auto bg-zinc-800 w-fit p-4 space-x-4 rounded-lg mt-4">
-      <div className="relative flex">
+    <div className="select-none flex m-auto w-[600px] p-2 space-x-4 rounded-lg mt-4 bg-zinc-800/50">
+      <div className="flex shrink-0">
         {user.image == null ? null : (
-          <img src={user.image} alt="User Avatar" className="w-40 h-40 rounded-xl " />
+          <img src={user.image} alt="User Avatar" className="w-40 h-40 rounded-full " />
         )}
-        <div className="flex">
-          <Pencil className="size-10 absolute top-1 right-1 bg-black/40 p-3 rounded-md opacity-0 hover:opacity-100" />
-        </div>
       </div>
-      <div>
-        <div className="flex items-center ">
-          <p>{user.name}</p>
-          <Pencil className="size-3" />
-        </div>
+      <div className="flex flex-col w-full">
+        <p>{user.name}</p>
         <p>{user.email}</p>
+        <div className="flex mt-auto justify-end">
+          <ButtonComponent Icon1={Pencil} text="Edit Profile" />
+        </div>
       </div>
     </div>
   )

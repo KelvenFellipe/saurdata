@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { SortingData } from "../data/SortingData"
 import { Loading } from "../global/Loading"
 import { SelectComponent } from "../global/SelectComponent"
-import { MiniSaurCard } from "./saurCard"
+import { MiniSaurCard } from "./MiniSaurCard"
 import { useScrollPosition } from "./ScrollHook"
 
 export function SaurMap() {

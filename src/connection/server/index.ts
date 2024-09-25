@@ -1,6 +1,6 @@
 import { db } from "@/database"
 import { sauria, type, user } from "@/database/schema"
-import { eq } from "drizzle-orm"
+import { eq, sql } from "drizzle-orm"
 import z from "zod"
 import { adminProcedure, publicProcedure, router } from "./trpc"
 
@@ -60,8 +60,12 @@ export const appRouter = router({
   .query(async (opts) => {
     const { input } = opts
     return await db.select().from(user).where(eq(user.name, input))
+  }),
+  editEnum: adminProcedure.input(z.string()).mutation(async (opts) => {
+    const {input} = opts
+    console.log("typed: "+ input)
+    return await db.execute(sql.raw(`alter type test add value '${input}'`))
   })
-
 
 })
 
