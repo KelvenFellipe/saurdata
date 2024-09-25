@@ -6,15 +6,24 @@ import { SortingData } from "../data/SortingData"
 import { Loading } from "../global/Loading"
 import { SelectComponent } from "../global/SelectComponent"
 import { MiniSaurCard } from "./saurCard"
+import { useScrollPosition } from "./ScrollHook"
 
 export function SaurMap() {
   const { data = [], isFetched, isLoading } = trpc.getSauria.useQuery()
   const [dataSauria, setDataSauria] = useState<Array<SaurType>>([])
   const [sortMethod, setSortMethod] = useState("")
+  const [end, setEnd] = useState(18)
+  const scrollPosition = useScrollPosition()
 
   useEffect(() => {
-    setDataSauria(() => data)
-  }, [isFetched])
+    setDataSauria(() => data.slice(0, end))
+  }, [isFetched, end])
+
+  useEffect(() => {
+    if (scrollPosition > 95) {
+      setEnd(end => end + 18)
+    }
+  }, [scrollPosition])
 
   function sort(a: any, b: any) {
     if (sortMethod === "asc") return a.genus.localeCompare(b.genus)
@@ -50,6 +59,7 @@ export function SaurMap() {
           .map(item => (
             <div key={item.id} className="divide-y divide-solid">
               <MiniSaurCard {...item} />
+              {isLoading && <Loading />}
             </div>
           ))}
       </div>
