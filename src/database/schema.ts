@@ -2,8 +2,6 @@ import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uu
 
 export const role = pgEnum("role", ['ADMIN', 'USER'])
 export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur'])
-export const test = pgEnum("type", ['tests'])
-
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),

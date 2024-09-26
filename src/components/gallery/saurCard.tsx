@@ -30,7 +30,7 @@ export function SaurCard({ props }: any) {
                 <img
                   src={item}
                   alt={result.genus}
-                  className="rounded-3xl object-center max-w-[700px] max-h-[700px] hover:scale-105 transition ease-in-out duration-300"
+                  className="rounded-3xl object-center max-w-[700px] max-h-[700px] transition ease-in-out duration-300"
                 />
               </Link>
             ))
