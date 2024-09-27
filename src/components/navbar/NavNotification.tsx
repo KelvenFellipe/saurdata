@@ -14,8 +14,8 @@ export function NavNotification({ click, data, opened }: props) {
   return (
     <div className={`fixed z-[10] select-none`}>
       <div
-        className={`fixed z-[20] w-fit top-[56px] right-[72px] bg-zinc-800 text-white text-sm rounded-xl transition-[max-height]
-           duration-1000 overflow-hidden shadow-md shadow-black ${
+        className={`fixed z-[20] w-fit top-[56px] right-[72px] bg-[#fffffc] dark:bg-zinc-800 text-black dark:text-white text-sm rounded-xl transition-[max-height]
+           duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
              !open ? "max-h-0" : "max-h-full"
            } `}
       >
@@ -24,7 +24,7 @@ export function NavNotification({ click, data, opened }: props) {
             data.notifications.map((item, index) => (
               <p
                 key={index}
-                className="flex flex-row items-center space-x-[20px] px-4 py-3 hover:bg-zinc-700/50 font-bold ease-in-out duration-300"
+                className="flex flex-row items-center space-x-[20px] px-4 py-3 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 font-bold ease-in-out duration-300"
               >
                 {item.notification}
                 {item.read}

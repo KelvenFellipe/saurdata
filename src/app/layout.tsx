@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark scrollbar scrollbar-thumb-zinc-800 scrollbar-track-[#111316]">
-      <body className={cn(inter.className, "bg-zinc-200 dark:bg-[#111316]")}>
+      <body className={cn(inter.className, "bg-zinc-100 dark:bg-[#111316]")}>
         <Provider>
           <SessionProvider>
             <NavBar />

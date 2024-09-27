@@ -18,14 +18,14 @@ export function NavBar() {
 
   return (
     <div
-      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-white size-xl text-white justify-center text-center items-center
-      shadow-md shadow-black hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-[52px] "
+      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-zinc-100 size-xl text-black dark:text-white justify-center text-center items-center
+      shadow-md shadow-black/40 dark:shadow-black hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-[52px] "
     >
       <div className="flex items-center space-x-4 ">
         <button className="p-2 hover:bg-zinc-700/50 rounded-full ease-in-out duration-300">
           <Menu onClick={() => setMenu(!menu)} />
         </button>
-        <button className="flex items-center text-4xl text-white" onClick={() => router.push("/")}>
+        <button className="flex items-center text-4xl " onClick={() => router.push("/")}>
           <div className="space-x-2 flex items-center">
             <Logo4 classN={"h-9 w-9 text-teal-500 fill-current"} />
             <div className="">

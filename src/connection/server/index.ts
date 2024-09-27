@@ -9,6 +9,10 @@ export const appRouter = router({
     return await db.select().from(sauria)
   }),
 
+  getSauriaFamily: publicProcedure.query(async () => {
+    return await db.select({family: sauria.family}).from(sauria)
+  }),
+
   getSauriaByGenus: publicProcedure.input(z.string()).query(async (opts) => {
     const {input} = opts
     return await db.select().from(sauria).where(eq(sauria.genus, `${input}`))

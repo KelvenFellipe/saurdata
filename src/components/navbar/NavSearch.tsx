@@ -31,7 +31,7 @@ export function NavSearch() {
         onChange={e => setSearch(e.target.value)}
         value={search}
         type="text"
-        className={` w-full bg-zinc-800 text-sm p-2 ps-10 hover:bg-zinc-700/50 rounded-xl ease-in-out duration-300`}
+        className={` placeholder:text-zinc-600 dark:placeholder:text-zinc-400  w-full bg-zinc-200 dark:bg-zinc-800 text-sm p-2 ps-10 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-xl ease-in-out duration-300`}
         placeholder={placeholder}
         maxLength={30}
       />

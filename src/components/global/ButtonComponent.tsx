@@ -6,7 +6,7 @@ export function ButtonComponent({ text, Icon1, Icon2, redirect }: ButtonType) {
     <Link
       href={`/gallery/${redirect !== undefined ? redirect : ""}`}
       className={
-        "flex space-x-2 bg-zinc-800 w-fit px-4 py-1.5 rounded-2xl text-sm hover:bg-zinc-700/50  items-center"
+        "flex space-x-2 dark:bg-zinc-800 bg-zinc-300 w-fit px-4 py-1.5 rounded-2xl text-sm hover:bg-zinc-400/50 dark:hover:bg-zinc-700/50  items-center"
       }
     >
       {Icon1 !== undefined && <Icon1 className="size-5" />}
