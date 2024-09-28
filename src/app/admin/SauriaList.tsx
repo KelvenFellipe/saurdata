@@ -15,7 +15,7 @@ import {
 import * as React from "react"
 
 import { getTime } from "@/components/gallery/TimeHook"
-import { ButtonComponent2 } from "@/components/global/ButtonComponent"
+import { ButtonComponent } from "@/components/global/ButtonComponent"
 import { ButtonV } from "@/components/global/ButtonV"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -188,9 +188,9 @@ export const columns: ColumnDef<SauriaSchema>[] = [
       const [editData, setEditData] = useState<SauriaSchema>()
 
       return (
-        <div className="flex">
+        <div className="flex space-x-4">
           <ButtonV task={() => deleteSauria.mutate({ ...saur })} />
-          <ButtonComponent2
+          <ButtonComponent
             Icon1={Pencil}
             Click={() => setEditData(() => saur)}
             className="hover:text-[#ffAA00]"

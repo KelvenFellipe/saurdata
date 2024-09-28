@@ -1,7 +1,7 @@
 "use client"
 import { Trash2 } from "lucide-react"
 import { useState } from "react"
-import { ButtonComponent2 } from "./ButtonComponent"
+import { ButtonComponent } from "./ButtonComponent"
 
 export function ButtonV({ task }: any) {
   const [open, setOpen] = useState(false)
@@ -13,7 +13,7 @@ export function ButtonV({ task }: any) {
   }
   return (
     <div className="relative">
-      <ButtonComponent2
+      <ButtonComponent
         Icon1={Trash2}
         Click={() => setOpen(() => true)}
         className="hover:text-[#ff0000]"

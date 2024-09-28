@@ -1,6 +1,14 @@
 "use client"
 import { SaurType } from "@/types/saurType"
-import { BookOpenText, ChevronLeftIcon, ChevronRightIcon, ExternalLink, XIcon } from "lucide-react"
+import {
+  BookOpenText,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ExternalLink,
+  Share,
+  XIcon,
+} from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { ButtonComponent } from "../global/ButtonComponent"
 import { getTime } from "./TimeHook"
@@ -9,6 +17,7 @@ export function MiniSaurCard(props: SaurType) {
   const [indexCount, setIndexCount] = useState(0)
   const [open, setOpen] = useState(false)
   const ImgArray = props.img.split(", ")
+  const router = useRouter()
 
   if (indexCount < 0) {
     setIndexCount(() => 0)
@@ -59,8 +68,15 @@ export function MiniSaurCard(props: SaurType) {
         </div>
       </div>
       <div className="flex space-x-2">
-        <ButtonComponent Icon1={ExternalLink} text={"About"} redirect={props.genus} />
+        <ButtonComponent
+          Icon1={ExternalLink}
+          text={"About"}
+          Click={() => router.push(`/gallery/${props.genus}`)}
+        />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
+        <div className="flex-1 justify-end flex">
+          <ButtonComponent Icon1={Share} className="rounded-full hover:bg-zinc-800 p-2" />
+        </div>
       </div>
       {open && (
         <div className="fixed z-[50] no-doc-scroll">
