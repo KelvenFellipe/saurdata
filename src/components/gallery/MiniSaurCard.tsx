@@ -76,22 +76,21 @@ export function MiniSaurCard(props: SaurType) {
           Click={() => router.push(`/gallery/${props.genus}`)}
         />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
-        <div className="flex-1 justify-end flex">
+        <div className="flex-1 justify-end flex relative">
           <ButtonComponent
             Icon1={Share}
             className="rounded-full hover:bg-zinc-800 p-2"
-            Click={() => setShare(() => true)}
+            Click={() => setShare(true)}
           />
-          <div>
-            {share === true && (
-              <ShareButton
-                clickCopy={() =>
-                  navigator.clipboard.writeText(`localhost:3000/gallery/${props.genus}`)
-                }
-                click={() => () => setShare(() => false)}
-              />
-            )}
-          </div>
+
+          {share === true && (
+            <ShareButton
+              clickCopy={() =>
+                navigator.clipboard.writeText(`localhost:3000/gallery/${props.genus}`)
+              }
+              click={() => setShare(false)}
+            />
+          )}
         </div>
       </div>
       {open && (

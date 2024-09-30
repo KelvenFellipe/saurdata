@@ -49,15 +49,16 @@ export function SaurMap() {
   }
 
   return (
-    <div className=" z-[0] ">
+    <div className="z-[0]">
       <div className="flex mx-3 my-2 justify-end ">
         <SelectComponent PlaceHolder={"Sorting"} data={SortingData} changevalue={changevalue} />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit p-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit p-2 divide-y divide-solid">
+        <div className="hidden"></div>
         {dataSauria
           .sort((a, b) => sort(a, b))
           .map(item => (
-            <div key={item.id} className="divide-y divide-solid">
+            <div key={item.id} className="">
               <MiniSaurCard {...item} />
               {isLoading && <Loading />}
             </div>
