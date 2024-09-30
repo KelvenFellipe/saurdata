@@ -11,11 +11,13 @@ import {
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { ButtonComponent } from "../global/ButtonComponent"
+import { ShareButton } from "./ShareButton"
 import { getTime } from "./TimeHook"
 
 export function MiniSaurCard(props: SaurType) {
   const [indexCount, setIndexCount] = useState(0)
   const [open, setOpen] = useState(false)
+  const [share, setShare] = useState(false)
   const ImgArray = props.img.split(", ")
   const router = useRouter()
 
@@ -67,7 +69,7 @@ export function MiniSaurCard(props: SaurType) {
           ))}
         </div>
       </div>
-      <div className="flex space-x-2">
+      <div className="flex space-x-2 relative">
         <ButtonComponent
           Icon1={ExternalLink}
           text={"About"}
@@ -75,7 +77,21 @@ export function MiniSaurCard(props: SaurType) {
         />
         <ButtonComponent Icon1={BookOpenText} text={"Articles"} />
         <div className="flex-1 justify-end flex">
-          <ButtonComponent Icon1={Share} className="rounded-full hover:bg-zinc-800 p-2" />
+          <ButtonComponent
+            Icon1={Share}
+            className="rounded-full hover:bg-zinc-800 p-2"
+            Click={() => setShare(() => true)}
+          />
+          <div>
+            {share === true && (
+              <ShareButton
+                clickCopy={() =>
+                  navigator.clipboard.writeText(`localhost:3000/gallery/${props.genus}`)
+                }
+                click={() => () => setShare(() => false)}
+              />
+            )}
+          </div>
         </div>
       </div>
       {open && (

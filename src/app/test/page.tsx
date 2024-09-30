@@ -1,10 +1,11 @@
 "use client"
-import { SauriaTest } from "../admin/SauriaFormTest"
+
+import { ButtonComponent } from "@/components/global/ButtonComponent"
 
 function Page() {
   return (
-    <div>
-      <SauriaTest />
+    <div className="flex justify-center h-full items-center">
+      <ButtonComponent text="etstig" />
     </div>
   )
 }
