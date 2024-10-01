@@ -6,30 +6,35 @@ import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { MenuSection } from "./MenuSection"
 
-export function NavMenu({ click, opened }: { click: any; opened: boolean }) {
+export function NavMenu({ click }: { click: any }) {
   const path = usePathname()
   const [open, setOpen] = useState(false)
   const [family, setFamily] = useState<Array<string>>([])
   const { data: familyList = [], isFetched } = trpc.getSauriaFamily.useQuery()
 
   useEffect(() => {
-    setOpen(() => opened)
+    setOpen(() => true)
   }, [])
 
   useEffect(() => {
     const unique = [...new Map(familyList.map(f => [f.family, f])).values()]
     setFamily(() => unique.map(i => i.family))
   }, [isFetched])
-  if (family) console.log(family)
+
+  function handleClick() {
+    setOpen(() => false)
+    setTimeout(click, 1000)
+  }
+
   return (
     <div className="fixed z-[10] select-none">
       <div
         className={`h-fit z-[20] top-[56px] text-base bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white fixed rounded-r-xl overflow-hidden
-        shadow-md  shadow-black/40 dark:shadow-black transition-all duration-1000 divide-y divide-black px-2 ${
+        shadow-md  shadow-black/40 dark:shadow-black transition-all duration-1000 divide-y divide-black ${
           open ? "max-w-full" : "max-w-0"
         }`}
       >
-        <div className="my-2 w-[250px]">
+        <div className="m-2 w-[250px]">
           <Link
             href={"/"}
             className={`${
@@ -60,7 +65,7 @@ export function NavMenu({ click, opened }: { click: any; opened: boolean }) {
           name="Families"
         />
       </div>
-      <div className="fixed w-full h-full top-0 left-0 " onClick={click} />
+      <div className="fixed w-full h-full top-0 left-0 " onClick={handleClick} />
     </div>
   )
 }

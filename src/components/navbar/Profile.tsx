@@ -43,7 +43,7 @@ export function Profile() {
           </div>
         </button>
         <button
-          onClick={() => setSigned(() => !signed)}
+          onClick={() => setSigned(() => true)}
           className="p-1 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300"
         >
           {userData.image !== null && (
@@ -51,14 +51,10 @@ export function Profile() {
           )}
         </button>
         {signed === true && userData && (
-          <NavSigned click={() => setSigned(() => false)} user={userData} opened={true} />
+          <NavSigned click={() => setSigned(() => false)} user={userData} />
         )}
-        {notification === true && userData !== null && (
-          <NavNotification
-            click={() => setNotification(() => false)}
-            data={userData}
-            opened={true}
-          />
+        {notification === true && userData && (
+          <NavNotification click={() => setNotification(() => false)} data={userData} />
         )}
       </div>
     )

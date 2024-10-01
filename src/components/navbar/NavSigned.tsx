@@ -8,27 +8,31 @@ import { useEffect, useState } from "react"
 interface props {
   click: any
   user: ProfileType
-  opened: boolean
 }
 
-export function NavSigned({ user, click, opened }: props) {
+export function NavSigned({ user, click }: props) {
   const [open, setOpen] = useState(false)
   const [Lights, setLights] = useState("")
   const doc = document.documentElement.classList
-  const toggleTheme = () => {
+  const toggleTheme: any = () => {
     doc.toggle("dark")
     doc.value.includes("dark") ? setLights("translate-x-3") : setLights("translate-x-0")
   }
   useEffect(() => {
     doc.value.includes("dark") ? setLights("translate-x-3") : setLights("translate-x-0")
-    setOpen(() => opened)
+    setOpen(() => true)
   }, [])
+
+  function handleClick() {
+    setOpen(() => false)
+    setTimeout(click, 1000)
+  }
 
   return (
     <div className="fixed z-[10] select-none ">
       <div
-        className={`fixed z-[20] w-fit top-[56px] right-4 text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl transition-[max-height]
-           duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
+        className={`fixed z-[20] w-fit top-[56px] right-4 text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl
+           transition-[max-height] duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
              open ? "max-h-full" : "max-h-0"
            }`}
       >
@@ -76,7 +80,7 @@ export function NavSigned({ user, click, opened }: props) {
           </div>
         )}
       </div>
-      <div className="fixed w-full h-full top-0 left-0" onClick={click}></div>
+      <div className="fixed w-full h-full top-0 left-0" onClick={handleClick}></div>
     </div>
   )
 }

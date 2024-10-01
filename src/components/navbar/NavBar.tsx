@@ -41,7 +41,7 @@ export function NavBar() {
         <LoginButton click={() => setNotSigned(() => !notSigned)} />
       )}
 
-      {menu === true && <NavMenu click={() => setMenu(() => false)} opened={true} />}
+      {menu === true && <NavMenu click={() => setMenu(() => false)} />}
       {notSigned === true && <NavNotSigned click={() => setNotSigned(() => false)} />}
     </div>
   )

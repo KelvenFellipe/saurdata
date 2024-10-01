@@ -4,13 +4,18 @@ import { useEffect, useState } from "react"
 interface props {
   click: any
   data: ProfileType
-  opened: boolean
 }
-export function NavNotification({ click, data, opened }: props) {
+export function NavNotification({ click, data }: props) {
   const [open, setOpen] = useState(false)
   useEffect(() => {
-    setOpen(() => opened)
+    setOpen(() => true)
   }, [])
+
+  function handleClick() {
+    setOpen(() => false)
+    setTimeout(click, 1000)
+  }
+
   return (
     <div className={`fixed z-[10] select-none`}>
       <div
@@ -37,7 +42,7 @@ export function NavNotification({ click, data, opened }: props) {
           )}
         </div>
       </div>
-      <div className="fixed w-full h-full top-0 left-0" onClick={click}></div>
+      <div className="fixed w-full h-full top-0 left-0" onClick={handleClick}></div>
     </div>
   )
 }
