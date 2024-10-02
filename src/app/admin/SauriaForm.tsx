@@ -1,33 +1,41 @@
 "use client"
+import { Alert } from "@/components/global/Alert"
 import { trpc } from "@/connection/client/client"
 import { type } from "@/database/schema"
 import { sauriaSchemaNoID, SauriaSchemaNoID } from "@/types/sauriaSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export function SauriaForm({ click }: any) {
   const { register, handleSubmit } = useForm<SauriaSchemaNoID>({
     resolver: zodResolver(sauriaSchemaNoID),
   })
+  const [alert, setAlert] = useState(false)
+  const [genus, setGenus] = useState("")
 
   const utils = trpc.useContext()
   const addsauria = trpc.addSauria.useMutation({
     onSettled: () => {
-      utils.getSauria.invalidate()
-      click()
+      setTimeout(() => utils.getSauria.invalidate(), 2500)
     },
   })
 
-  function handle(values: any) {
-    // try {
-    addsauria.mutate(values)
-    // } catch {
-    //   console.error(Error)
-    // }
+  function handle(values: SauriaSchemaNoID) {
+    try {
+      addsauria.mutate(values)
+    } catch {
+      return <Alert text={"There was an Error"} />
+    } finally {
+      setAlert(() => true)
+      setTimeout(click, 4000)
+      setGenus(values.genus)
+    }
   }
-
+  if (alert)
+    return <Alert text={`${genus} was succesfully Added`} close={() => setAlert(() => false)} />
   return (
-    <div className="fixed max-w-full max-h-full flex select-none z-40">
+    <div className={`fixed max-w-full max-h-full flex select-none z-40 ${genus && "hidden"}`}>
       <div className="p-4 space-y-5 bg-[#111316] text-white text-sm w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <form
           className="flex flex-col text-white space-y-4 max-w-fit "

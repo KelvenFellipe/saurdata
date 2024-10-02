@@ -15,6 +15,7 @@ import {
 import * as React from "react"
 
 import { getTime } from "@/components/gallery/TimeHook"
+import { Alert } from "@/components/global/Alert"
 import { ButtonComponent } from "@/components/global/ButtonComponent"
 import { ButtonV } from "@/components/global/ButtonV"
 import { Button } from "@/components/ui/button"
@@ -178,18 +179,33 @@ export const columns: ColumnDef<SauriaSchema>[] = [
     cell: ({ row }) => {
       const saur = row.original
       const utils = trpc.useContext()
+      const [editData, setEditData] = useState<SauriaSchema>()
+      const [alert, setAlert] = useState(false)
+      const [genus, setGenus] = useState("")
 
       const deleteSauria = trpc.deleteSauria.useMutation({
         onSettled: () => {
-          utils.getSauria.invalidate()
+          setTimeout(() => utils.getSauria.invalidate(), 2500)
         },
       })
-
-      const [editData, setEditData] = useState<SauriaSchema>()
+      function handleDelete() {
+        try {
+          deleteSauria.mutate({ ...saur })
+        } catch {
+          return <Alert text={"There was an Error"} />
+        } finally {
+          setAlert(() => true)
+          setGenus(saur.genus)
+        }
+      }
+      if (alert)
+        return (
+          <Alert text={`${genus} was succesfully Deleted`} close={() => setAlert(() => false)} />
+        )
 
       return (
         <div className="flex space-x-4">
-          <ButtonV task={() => deleteSauria.mutate({ ...saur })} />
+          <ButtonV task={handleDelete} />
           <ButtonComponent
             Icon1={Pencil}
             Click={() => setEditData(() => saur)}

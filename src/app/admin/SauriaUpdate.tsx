@@ -1,8 +1,10 @@
 "use client"
+import { Alert } from "@/components/global/Alert"
 import { trpc } from "@/connection/client/client"
 import { type } from "@/database/schema"
 import { sauriaSchema, SauriaSchema } from "@/types/sauriaSchemas"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 export function SauriaUpdate({ click, data }: { data: SauriaSchema; click: any }) {
@@ -10,20 +12,35 @@ export function SauriaUpdate({ click, data }: { data: SauriaSchema; click: any }
     resolver: zodResolver(sauriaSchema),
     defaultValues: data,
   })
+  const [alert, setAlert] = useState(false)
+  const [genus, setGenus] = useState("")
+
   const utils = trpc.useContext()
   const editSauria = trpc.editSauria.useMutation({
     onSettled: () => {
-      utils.getSauria.invalidate()
-      click()
+      setTimeout(() => utils.getSauria.invalidate(), 2500)
     },
   })
+  function handle(values: SauriaSchema) {
+    try {
+      editSauria.mutate(values)
+    } catch {
+      return <Alert text={"There was an Error"} />
+    } finally {
+      setAlert(() => true)
+      setTimeout(click, 4000)
+      setGenus(values.genus)
+    }
+  }
+  if (alert)
+    return <Alert text={`${genus} was succesfully Updated`} close={() => setAlert(() => false)} />
 
   return (
     <div className="fixed max-w-full max-h-full flex select-none z-40">
       <div className="p-4 space-y-5 bg-[#111316] text-white text-sm w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <form
           className="flex flex-col text-white space-y-4 max-w-fit "
-          onSubmit={handleSubmit((values: SauriaSchema) => editSauria.mutate(values))}
+          onSubmit={handleSubmit((values: SauriaSchema) => handle(values))}
         >
           <div className="space-x-4 justify-between flex">
             <select
