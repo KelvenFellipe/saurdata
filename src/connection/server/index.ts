@@ -8,7 +8,9 @@ export const appRouter = router({
   getSauria: publicProcedure.query(async () => {
     return await db.select().from(sauria)
   }),
-
+  getSauriaNew: publicProcedure.query(async () => {
+    return (await db.select().from(sauria)).sort((a, b) => b.added.localeCompare(a.added))
+  }),
   getSauriaFamily: publicProcedure.query(async () => {
     return await db.select({family: sauria.family}).from(sauria)
   }),
