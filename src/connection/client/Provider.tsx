@@ -7,7 +7,7 @@ import { trpc } from "./client"
 
 const url =
   process.env.NODE_ENV === "production"
-    ? "https://death-wish-guild.vercel.app/api/trpc"
+    ? "https://saurdata.vercel.app/api/trpc"
     : "http://localhost:3000/api/trpc"
 
 export default function Provider({ children }: { children: React.ReactNode }) {
