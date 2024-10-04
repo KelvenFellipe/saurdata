@@ -50,7 +50,7 @@ export function SaurMap() {
 
   return (
     <div className="z-[0]">
-      <div className="flex mx-3 my-2 justify-end ">
+      <div className="flex mx-3 my-2 mt-5 justify-end select-none">
         <SelectComponent PlaceHolder={"Sorting"} data={SortingData} changevalue={changevalue} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit p-2 divide-y divide-solid">

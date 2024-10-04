@@ -1,7 +1,8 @@
 "use client"
+import { DataTableDemo } from "@/components/admin/SauriaList"
 import { useSession } from "next-auth/react"
 import { redirect } from "next/navigation"
-import { DataTableDemo } from "./SauriaList"
+
 
 export default function DemoPage() {
   const { data } = useSession()
