@@ -80,7 +80,10 @@ export function NavSigned({ user, click }: props) {
           </div>
         )}
       </div>
-      <div className="fixed w-full h-full top-0 left-0" onClick={handleClick}></div>
+      <div
+        className={`fixed w-full h-full top-0 left-0 ${!open && "hidden"}`}
+        onClick={handleClick}
+      ></div>
     </div>
   )
 }

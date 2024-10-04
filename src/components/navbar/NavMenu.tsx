@@ -65,7 +65,10 @@ export function NavMenu({ click }: { click: any }) {
           name="Families"
         />
       </div>
-      <div className="fixed w-full h-full top-0 left-0 " onClick={handleClick} />
+      <div
+        className={`fixed w-full h-full top-0 left-0 ${!open && "hidden"}`}
+        onClick={handleClick}
+      />
     </div>
   )
 }
