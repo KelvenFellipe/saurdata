@@ -4,6 +4,7 @@ import { Menu } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import { LoadingProfile } from "./LoadingProfile"
 import { LoginButton } from "./LoginButton"
 import { NavMenu } from "./NavMenu"
 import { NavNotSigned } from "./NavNotSigned"
@@ -35,7 +36,9 @@ export function NavBar() {
         </button>
       </div>
       <NavSearch />
-      {status === "authenticated" && session.user !== undefined ? (
+      {status == "loading" ? (
+        <LoadingProfile />
+      ) : status === "authenticated" ? (
         <Profile />
       ) : (
         <LoginButton click={() => setNotSigned(() => !notSigned)} />
