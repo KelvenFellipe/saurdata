@@ -1,7 +1,6 @@
 "use client"
-import { Bell, Fingerprint } from "lucide-react"
+import { Bell } from "lucide-react"
 import { useSession } from "next-auth/react"
-import Link from "next/link"
 import { useState } from "react"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
@@ -15,14 +14,6 @@ export function Profile() {
 
     return (
       <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
-        {userData.role === "ADMIN" && (
-          <Link
-            href={"/admin"}
-            className="p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300"
-          >
-            <Fingerprint className="" />
-          </Link>
-        )}
         <button
           className="p-[10px] hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full relative ease-in-out duration-300"
           onClick={() => setNotification(() => !notification)}

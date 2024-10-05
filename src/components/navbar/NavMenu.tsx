@@ -1,12 +1,14 @@
 "use client"
 import { trpc } from "@/connection/client/client"
-import { Bone, Home } from "lucide-react"
+import { Bone, Fingerprint, Home } from "lucide-react"
+import { useSession } from "next-auth/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import { MenuSection } from "./MenuSection"
 
 export function NavMenu({ click }: { click: any }) {
+  const { data } = useSession()
   const path = usePathname()
   const [open, setOpen] = useState(false)
   const [family, setFamily] = useState<Array<string>>([])
@@ -53,6 +55,19 @@ export function NavMenu({ click }: { click: any }) {
             <Bone />
             <p>Gallery</p>
           </Link>
+          {data?.user.role === "ADMIN" && (
+            <Link
+              href={"/admin"}
+              className={`${
+                path === "/admin"
+                  ? "text-black dark:text-white bg-zinc-300 dark:bg-zinc-800 mt-[500px]"
+                  : ""
+              } flex px-6 py-3 items-center space-x-4 p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 ease-in-out duration-500 rounded-xl`}
+            >
+              <Fingerprint />
+              <p>Admin</p>
+            </Link>
+          )}
         </div>
         <MenuSection
           stuff={
