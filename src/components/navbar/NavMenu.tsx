@@ -31,7 +31,7 @@ export function NavMenu({ click }: { click: any }) {
   return (
     <div className="fixed z-[10] select-none">
       <div
-        className={`h-fit z-[20] top-[56px] text-base bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white fixed rounded-r-xl overflow-hidden
+        className={`h-fit z-[20] top-[56px] left-0 text-base bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white fixed rounded-r-xl overflow-hidden
         shadow-md  shadow-black/40 dark:shadow-black transition-all duration-1000 divide-y divide-black ${
           open ? "max-w-full" : "max-w-0"
         }`}

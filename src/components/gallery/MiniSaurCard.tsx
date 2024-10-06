@@ -63,7 +63,7 @@ export function MiniSaurCard(props: SaurType) {
             <img
               key={item.length}
               src={item}
-              className={`aspect-video object-cover cursor-pointer`}
+              className={`object-cover aspect-video w-full cursor-pointer`}
               onClick={() => setOpen(() => true)}
             />
           ))}
@@ -79,7 +79,7 @@ export function MiniSaurCard(props: SaurType) {
         <div className="flex-1 justify-end flex relative">
           <ButtonComponent
             Icon1={Share}
-            className="rounded-full hover:bg-zinc-800 p-2"
+            className="rounded-full dark:hover:bg-zinc-800 hover:bg-zinc-300 p-2"
             Click={() => setShare(true)}
           />
 
