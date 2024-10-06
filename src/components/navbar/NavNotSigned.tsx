@@ -3,8 +3,8 @@ import { GoogleSign } from "@/components/login/googleSign"
 
 export function NavNotSigned({ click }: any) {
   return (
-    <div className="fixed max-w-full max-h-full flex select-none">
-      <div className="p-4 space-y-5 text-white bg-zinc-800 w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+    <div className="fixed max-w-full max-h-full flex select-none z-[100]">
+      <div className="p-4 space-y-5 text-white bg-zinc-800 w-fit rounded-xl z-10 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-md shadow-black/40 dark:shadow-black">
         <p>Log In providers</p>
         <GitSign />
         <GoogleSign />

@@ -97,7 +97,7 @@ export function MiniSaurCard(props: SaurType) {
         <div className="fixed z-[50] no-doc-scroll">
           <img
             src={ImgArray[indexCount]}
-            className="fixed z-40 max-h-screen max-w-screen-xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="fixed z-40 max-h-screen max-w-screen top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           />
           <button
             className=" fixed z-[200] right-6 top-6 bg-black/20 hover:bg-black/70 ease-in-out duration-300 rounded-full h-10 w-10 items-center justify-center flex"
