@@ -19,7 +19,7 @@ export function NavBar() {
 
   return (
     <div
-      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-zinc-100 size-xl text-black dark:text-white justify-center text-center items-center
+      className="stickytop-0 z-50 grid grid-cols-3 gap-3 px-4 bg-zinc-100 size-xl text-black dark:text-white justify-center text-center items-center
       shadow-md shadow-black/40 dark:shadow-black hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-[52px] "
     >
       <div className="flex items-center space-x-4 ">
@@ -29,20 +29,25 @@ export function NavBar() {
         <button className="flex items-center text-4xl " onClick={() => router.push("/")}>
           <div className="space-x-2 flex items-center">
             <Logo4 classN={"h-9 w-9 text-teal-500 fill-current"} />
-            <div className="">
+            <div className="hidden md:flex">
               <p className="text-2xl font-bold ">saurdata</p>
             </div>
           </div>
         </button>
       </div>
-      <NavSearch />
-      {status == "loading" ? (
-        <LoadingProfile />
-      ) : status === "authenticated" ? (
-        <Profile />
-      ) : (
-        <LoginButton click={() => setNotSigned(() => !notSigned)} />
-      )}
+      <div className="hidden md:block">
+        <NavSearch />
+      </div>
+
+      <div className="col-span-2 md:col-span-1">
+        {status == "loading" ? (
+          <LoadingProfile />
+        ) : status === "authenticated" ? (
+          <Profile />
+        ) : (
+          <LoginButton click={() => setNotSigned(() => !notSigned)} />
+        )}
+      </div>
 
       {menu === true && <NavMenu click={() => setMenu(() => false)} />}
       {notSigned === true && <NavNotSigned click={() => setNotSigned(() => false)} />}

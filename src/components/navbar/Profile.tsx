@@ -2,6 +2,7 @@
 import { Bell } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useState } from "react"
+import { MiniNavSearch } from "./MiniNavSearch"
 import { NavNotification } from "./NavNotification"
 import { NavSigned } from "./NavSigned"
 
@@ -13,7 +14,9 @@ export function Profile() {
     const userData = data?.user
 
     return (
-      <div className="flex space-x-4 items-center justify-between p-1 ml-auto">
+      <div className="flex space-x-4 items-center justify-end p-1 flex-1">
+        <MiniNavSearch />
+
         <button
           className="p-[10px] hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full relative ease-in-out duration-300"
           onClick={() => setNotification(() => !notification)}

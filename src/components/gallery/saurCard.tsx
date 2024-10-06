@@ -18,12 +18,12 @@ export function SaurCard({ props }: any) {
   }
   if (result !== null && result !== undefined) {
     return (
-      <div className="flex flex-col dark:bg-black bg-white max-w-fit rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 dark:bg-black bg-white max-w-fit rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
         <Link href={"/gallery"}>
           <X className="absolute right-1 top-1 size-7" />
         </Link>
 
-        <div key={result.id} className="flex">
+        <div key={result.id} className="flex flex-col">
           {result.img.includes(", ") ? (
             result.img.split(", ").map(item => (
               <Link href={item}>

@@ -59,9 +59,7 @@ export function NavMenu({ click }: { click: any }) {
             <Link
               href={"/admin"}
               className={`${
-                path === "/admin"
-                  ? "text-black dark:text-white bg-zinc-300 dark:bg-zinc-800 mt-[500px]"
-                  : ""
+                path === "/admin" ? "text-black dark:text-white bg-zinc-300 dark:bg-zinc-800" : ""
               } flex px-6 py-3 items-center space-x-4 p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 ease-in-out duration-500 rounded-xl`}
             >
               <Fingerprint />
