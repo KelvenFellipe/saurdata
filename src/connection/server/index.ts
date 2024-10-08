@@ -2,7 +2,7 @@ import { db } from "@/database"
 import { sauria, type, user } from "@/database/schema"
 import { eq } from "drizzle-orm"
 import z from "zod"
-import { adminProcedure, publicProcedure, router } from "./trpc"
+import { adminProcedure, authenticatedProcedure, publicProcedure, router } from "./trpc"
 
 export const appRouter = router({
   getSauria: publicProcedure.query(async () => {
@@ -62,12 +62,27 @@ export const appRouter = router({
     const { input } = opts
     return await db.select().from(user).where(eq(user.id, input))
   }),
+
   getUsersByName: adminProcedure.input(z.string())
   .query(async (opts) => {
     const { input } = opts
     return await db.select().from(user).where(eq(user.name, input))
   }),
 
+  getNotification: authenticatedProcedure.input(z.string())
+  .query(async (optes) => {
+    const {input} = optes
+    return await db.select({id: user.id, notification: user.notifications}).from(user).where(eq(user.id, input))
+  }),
+
+  updateNotification: authenticatedProcedure.input(
+    z.object({
+      id: z.string(),
+      notification: z.array(z.object({read: z.boolean(), notification: z.string()}))
+  })).mutation(async (opts) => {
+    const { input } = opts
+      return await db.update(user).set(input).where(eq(user.id, `${input.id}`))
+  })
 })
 
 export type AppRouter = typeof appRouter

@@ -4,7 +4,7 @@ export interface ProfileType {
   email: string
   emailVerified: string | null
   image: string
-  notifications: NotificationType[]
+  notifications: Array<NotificationType>
   role: "ADMIN" | "USER"
 }
 

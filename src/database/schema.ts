@@ -1,3 +1,4 @@
+import { NotificationType } from "@/types/profileType";
 import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 export const role = pgEnum("role", ['ADMIN', 'USER'])
@@ -21,7 +22,7 @@ export const user = pgTable("user", {
 	email: text("email").notNull(),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image").notNull(),
-	notifications: json("notifications").default([]).notNull(),
+	notifications: json("notifications").default([]).notNull().$type<Array<NotificationType>>(),
 	role: role("role").default('USER').notNull(),
 },
 (table) => {
