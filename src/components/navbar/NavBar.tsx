@@ -43,7 +43,7 @@ export function NavBar() {
         {status == "loading" ? (
           <LoadingProfile />
         ) : status === "authenticated" ? (
-          <Profile />
+          <Profile user={session.user} />
         ) : (
           <LoginButton click={() => setNotSigned(() => !notSigned)} />
         )}

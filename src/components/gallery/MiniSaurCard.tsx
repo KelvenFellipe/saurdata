@@ -86,7 +86,7 @@ export function MiniSaurCard(props: SaurType) {
           {share === true && (
             <ShareButton
               clickCopy={() =>
-                navigator.clipboard.writeText(`localhost:3000/gallery/${props.genus}`)
+                navigator.clipboard.writeText(`https://saurdata.vercel.app/gallery/${props.genus}`)
               }
               click={() => setShare(false)}
             />
