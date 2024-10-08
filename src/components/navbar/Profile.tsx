@@ -9,10 +9,12 @@ import { NavSigned } from "./NavSigned"
 export function Profile() {
   const [notification, setNotification] = useState(false)
   const [signed, setSigned] = useState(false)
+  const [count, setCount] = useState(0)
   const { data, status } = useSession()
+
   if (data) {
     const userData = data?.user
-
+    userData.notifications.forEach(item => item.read === false && setCount(() => count + 1))
     return (
       <div className="flex space-x-4 items-center justify-end p-1 flex-1">
         <MiniNavSearch />
@@ -23,17 +25,15 @@ export function Profile() {
         >
           <Bell className="size-5" />
           <div className="absolute w-fit h-fit -top-1 -right-1">
-            {userData.notifications !== null && (
-              <p
-                className={`${
-                  userData.notifications.length <= 9 ? "w-8" : "w-10"
-                } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full ${
-                  userData.notifications.length === 0 && "hidden"
-                }`}
-              >
-                {userData.notifications.length <= 9 ? userData.notifications.length : "9+"}
-              </p>
-            )}
+            <p
+              className={`${
+                count <= 9 ? "w-8" : "w-10"
+              } h-8 text-2xl m-auto scale-50 bg-teal-500 text-white rounded-full ${
+                count === 0 && "hidden"
+              }`}
+            >
+              {count <= 9 ? count : "9+"}
+            </p>
           </div>
         </button>
         <button

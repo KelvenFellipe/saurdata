@@ -81,7 +81,7 @@ export const appRouter = router({
       notification: z.array(z.object({read: z.boolean(), notification: z.string()}))
   })).mutation(async (opts) => {
     const { input } = opts
-      return await db.update(user).set(input).where(eq(user.id, `${input.id}`))
+      return await db.update(user).set({notifications: input.notification}).where(eq(user.id, `${input.id}`))
   })
 })
 
