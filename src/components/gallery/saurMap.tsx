@@ -16,14 +16,14 @@ export function SaurMap() {
   const scrollPosition = useScrollPosition()
 
   useEffect(() => {
-    setDataSauria(() => data.slice(0, end))
+    setDataSauria(() => data)
   }, [isFetched, end])
 
-  useEffect(() => {
-    if (scrollPosition > 95) {
-      setEnd(end => end + 18)
-    }
-  }, [scrollPosition])
+  // useEffect(() => {
+  //   if (scrollPosition > 95) {
+  //     setEnd(end => end + 18)
+  //   }
+  // }, [scrollPosition])
 
   function sort(a: any, b: any) {
     if (sortMethod === "asc") return a.genus.localeCompare(b.genus)

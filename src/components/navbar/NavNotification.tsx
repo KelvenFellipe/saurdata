@@ -48,7 +48,9 @@ export function NavNotification({ click, data }: props) {
           {notifications !== null && notifications.length !== 0 ? (
             notifications.map((item, index) => (
               <div className="flex items-center " key={index}>
-                {!item.read && <div className="w-[2px] h-[44px] bg-teal-500 p-[2px] "></div>}
+                {!item.read && (
+                  <div className="w-[2px] h-[44px] ml-[2px] rounded-sm bg-teal-500 p-[2px] "></div>
+                )}
                 <div
                   className={`flex flex-row items-center space-x-[20px] px-4 py-3 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 font-bold ease-in-out duration-300 w-full ${
                     item.read && "text-zinc-400"
