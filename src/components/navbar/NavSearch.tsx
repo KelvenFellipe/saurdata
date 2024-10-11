@@ -5,16 +5,21 @@ import { SaurType } from "@/types/saurType"
 import { CircleX, Search } from "lucide-react"
 import { useEffect, useState } from "react"
 
-export function NavSearch() {
+export function NavSearch({ onClose }: { onClose?: any }) {
   const [search, setSearch] = useState("")
   const [placeholder, setPlaceholder] = useState("search")
   const [open, setOpen] = useState(false)
   const [responseData, setResponseData] = useState<Array<SaurType>>([])
-  const { data: sauria = [], isFetched } = trpc.getSauria.useQuery()
+  const { data: sauria = [] } = trpc.getSauria.useQuery()
 
   function reset(item: string) {
     setPlaceholder(() => item)
     setSearch(() => "")
+    onClose()
+  }
+  function close() {
+    setOpen(false)
+    onClose()
   }
   useEffect(() => {
     setOpen(true)
@@ -55,7 +60,7 @@ export function NavSearch() {
             ) : (
               <div
                 className="max-h-[310px] my-2 scrollbar-thin overflow-y-auto scrollbar-track-zinc-800 scrollbar-thumb-[#111316] z-[20]"
-                onClick={() => setOpen(() => false)}
+                onClick={close}
               >
                 {responseData.map(item => (
                   <SearchResponse data={item} key={item.id} click={() => reset(item.genus)} />
@@ -67,7 +72,7 @@ export function NavSearch() {
       </div>
       <div
         className={`fixed left-0 top-0 w-full h-screen z-[-10] ${!open && "hidden"}`}
-        onClick={() => setOpen(false)}
+        onClick={close}
       />
     </div>
   )

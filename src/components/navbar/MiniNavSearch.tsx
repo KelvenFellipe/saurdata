@@ -7,13 +7,19 @@ export function MiniNavSearch() {
   const [open, setOpen] = useState(false)
   return (
     <div>
-      <Search className="flex md:hidden" onClick={() => setOpen(true)} />
+      <div className="flex md:hidden cursor-pointer p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300">
+        <Search onClick={() => setOpen(() => true)} />
+      </div>
+
       {open && (
         <div className="fixed top-0 left-0 w-full z-[60] p-2 ">
-          <div className="bg-black" onReset={() => setOpen(false)}>
-            <NavSearch />
+          <div className="bg-black">
+            <NavSearch onClose={() => setOpen(() => false)} />
           </div>
-          <div className="w-full h-screen bg-black/40" onClick={() => setOpen(false)} />
+          <div
+            className={`w-full h-screen bg-black/40 ${!open && "hidden"}`}
+            onClick={() => setOpen(() => false)}
+          />
         </div>
       )}
     </div>
