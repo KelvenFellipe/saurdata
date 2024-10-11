@@ -23,7 +23,7 @@ export function NavSearch({ onClose }: { onClose?: any }) {
   }
   useEffect(() => {
     setOpen(true)
-    setResponseData(() => sauria.filter(item => item.genus.includes(search)))
+    setResponseData(() => sauria.filter(item => item.genus.includes(search.toLowerCase())))
   }, [search])
 
   return (

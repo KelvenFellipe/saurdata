@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { LoadingProfile } from "./LoadingProfile"
 import { LoginButton } from "./LoginButton"
+import { MiniNavSearch } from "./MiniNavSearch"
 import { NavMenu } from "./NavMenu"
 import { NavNotSigned } from "./NavNotSigned"
 import { NavSearch } from "./NavSearch"
@@ -45,7 +46,10 @@ export function NavBar() {
         ) : status === "authenticated" ? (
           <Profile user={session.user} />
         ) : (
-          <LoginButton click={() => setNotSigned(() => !notSigned)} />
+          <div className="space-x-4 flex items-center justify-end">
+            <MiniNavSearch />
+            <LoginButton click={() => setNotSigned(() => !notSigned)} />
+          </div>
         )}
       </div>
 
