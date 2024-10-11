@@ -12,16 +12,15 @@ export function MiniNavSearch() {
       </div>
 
       {open && (
-        <div className="fixed top-0 left-0 w-full z-[60] p-2 ">
-          <div className="bg-black">
-            <NavSearch onClose={() => setOpen(() => false)} />
-          </div>
-          <div
-            className={`w-full h-screen bg-black/40 ${!open && "hidden"}`}
-            onClick={() => setOpen(() => false)}
-          />
+        <div className="fixed top-0 left-0 w-full z-[60] p-2 bg-black">
+          <NavSearch onClose={() => setOpen(() => false)} />
         </div>
       )}
+
+      <div
+        className={`fixed w-full h-screen left-0 top-0 bg-black/40 ${!open && "hidden"}`}
+        onClick={() => setOpen(() => false)}
+      />
     </div>
   )
 }
