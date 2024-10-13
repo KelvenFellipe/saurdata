@@ -15,14 +15,13 @@ export function NavSearch({ onClose }: { onClose?: any }) {
   function reset(item: string) {
     setPlaceholder(() => item)
     setSearch(() => "")
-    onClose()
+    onClose
   }
   function close() {
     setOpen(false)
-    onClose()
+    onClose
   }
   useEffect(() => {
-    setOpen(true)
     setResponseData(() => sauria.filter(item => item.genus.includes(search.toLowerCase())))
   }, [search])
 
@@ -32,6 +31,7 @@ export function NavSearch({ onClose }: { onClose?: any }) {
         <Search className="block size-5 w-10 pl-1 absolute" />
 
         <input
+          onClick={() => setOpen(true)}
           onChange={e => setSearch(e.target.value)}
           value={search}
           type="text"
@@ -71,7 +71,7 @@ export function NavSearch({ onClose }: { onClose?: any }) {
         )}
       </div>
       <div
-        className={`fixed left-0 top-0 w-full h-screen z-[-10] ${!open && "hidden"}`}
+        className={`fixed left-0 top-0 w-full h-screen z-[0] ${!open && "hidden"}`}
         onClick={close}
       />
     </div>
