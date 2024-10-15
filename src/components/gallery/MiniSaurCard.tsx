@@ -1,16 +1,10 @@
 "use client"
 import { SaurType } from "@/types/saurType"
-import {
-  BookOpenText,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  ExternalLink,
-  Share,
-  XIcon,
-} from "lucide-react"
+import { BookOpenText, ChevronLeftIcon, ChevronRightIcon, ExternalLink, Share } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { ButtonComponent } from "../global/ButtonComponent"
+import { ImageOVerlay } from "./ImageOverlay"
 import { ShareButton } from "./ShareButton"
 import { getTime } from "./TimeHook"
 
@@ -93,21 +87,7 @@ export function MiniSaurCard(props: SaurType) {
           )}
         </div>
       </div>
-      {open && (
-        <div className="fixed z-[50] no-doc-scroll">
-          <img
-            src={ImgArray[indexCount]}
-            className="fixed z-40 max-h-screen max-w-screen top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-          />
-          <button
-            className=" fixed z-[200] right-6 top-6 bg-black/20 hover:bg-black/70 text-white ease-in-out duration-300 rounded-full h-10 w-10 items-center justify-center flex"
-            onClick={() => setOpen(() => false)}
-          >
-            <XIcon className="size-8" />
-          </button>
-          <div className="fixed w-full h-full top-0 left-0 backdrop-blur-lg bg-black/80"></div>
-        </div>
-      )}
+      {open && <ImageOVerlay src={ImgArray[indexCount]} onClick={() => setOpen(() => false)} />}
     </div>
   )
 }
