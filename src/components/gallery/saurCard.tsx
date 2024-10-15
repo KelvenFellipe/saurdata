@@ -1,13 +1,15 @@
 import { trpc } from "@/connection/client/client"
 import { SaurType } from "@/types/saurType"
-import { X } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
 import { Loading } from "../global/Loading"
+import { ImageOVerlay } from "./ImageOverlay"
+import { TemporalRange } from "./TemporalRange"
 
 export function SaurCard({ props }: any) {
   const { data = [], isFetched, isLoading } = trpc.getSauriaByGenus.useQuery(props)
   const [result, setResult] = useState<SaurType>()
+  const [open, setOpen] = useState(false)
+  const [imgs, setImgs] = useState("")
 
   useEffect(() => {
     setResult(() => data[0])
@@ -18,49 +20,54 @@ export function SaurCard({ props }: any) {
   }
   if (result !== null && result !== undefined) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 dark:bg-black bg-white max-w-fit rounded-xl m-auto text-zinc-400 p-4 text-lg relative ">
-        <Link href={"/gallery"}>
-          <X className="absolute right-1 top-1 size-7" />
-        </Link>
+      <div className=" rounded-xl m-auto text-white p-4 text-lg relative ">
+        <div className="grid grid-cols-2 grid-rows-4 h-fit w-fit items-center ml-4 ">
+          <p className="col-span-2 text-2xl ">
+            {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
+          </p>
+          <TemporalRange age={result.temporal} />
+          
+          <p className="col-span-2">{result.family}</p>
+          <div className="col-span-2 flex">
+            Species:
+            <div>
+              {result.species.split(", ").map(item => (
+                <p key={item}>{item}</p>
+              ))}
+            </div>
+          </div>
+          <p className="col-span-2">Temporal range: {result.temporal} million years</p>
+        </div>
 
-        <div key={result.id} className="flex flex-col">
+        <div key={result.id} className="flex flex-col cursor-pointer max-w-[400px]">
           {result.img.includes(", ") ? (
-            result.img.split(", ").map(item => (
-              <Link href={item}>
+            result.img
+              .split(", ")
+              .map(item => (
                 <img
+                  key={item}
                   src={item}
                   alt={result.genus}
-                  className="rounded-3xl object-center w-fit h-fit transition ease-in-out duration-300"
+                  className="rounded-md object-center w-fit h-fit transition ease-in-out duration-300"
+                  onClick={() => (setImgs(item), setOpen(() => true))}
                 />
-              </Link>
-            ))
+              ))
           ) : (
-            <Link href={result.img}>
-              <img
-                src={result.img}
-                alt={result.genus}
-                className="rounded-3xl object-center w-fit"
-              />
-            </Link>
+            <img
+              key={result.id}
+              src={result.img}
+              alt={result.genus}
+              className="rounded-md object-center w-fit"
+              onClick={() => (setImgs(result.img), setOpen(() => true))}
+            />
           )}
-          <div className="grid grid-cols-2 grid-rows-4 h-[180px] w-[392px] items-center ml-4 ">
-            <p className="col-span-2 text-2xl ">{result.genus}</p>
-            <p className="col-span-2">{result.family}</p>
-            <p className="col-span-2 flex">
-              Species:
-              <div>
-                {result.species.split(", ").map(item => (
-                  <p>{item}</p>
-                ))}
-              </div>
-            </p>
-            <p className="col-span-2">Temporal range: {result.temporal} million years</p>
-          </div>
         </div>
+
         <p className="mt-3 flex justify-stretch h-max ">{result.description}</p>
+        {open && <ImageOVerlay src={imgs} onClick={() => setOpen(() => false)} />}
       </div>
     )
   }
 }
-
+//grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
 
