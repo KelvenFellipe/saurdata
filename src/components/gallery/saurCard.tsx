@@ -21,13 +21,15 @@ export function SaurCard({ props }: any) {
   if (result !== null && result !== undefined) {
     return (
       <div className=" rounded-xl m-auto text-white p-4 text-lg relative ">
-        <div className="grid grid-cols-2 grid-rows-4 h-fit w-fit items-center ml-4 ">
-          <p className="col-span-2 text-2xl ">
-            {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
-          </p>
-          <TemporalRange age={result.temporal} />
-          
-          <p className="col-span-2">{result.family}</p>
+        <div className="flex flex-col h-fit w-fit items-center ml-4 ">
+          <div className="space-y-3">
+            <p className="text-2xl">
+              {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
+            </p>
+            <p className="">{result.family.charAt(0).toUpperCase() + result.family.slice(1)}</p>
+            <TemporalRange age={result.temporal} />
+          </div>
+
           <div className="col-span-2 flex">
             Species:
             <div>
@@ -36,7 +38,6 @@ export function SaurCard({ props }: any) {
               ))}
             </div>
           </div>
-          <p className="col-span-2">Temporal range: {result.temporal} million years</p>
         </div>
 
         <div key={result.id} className="flex flex-col cursor-pointer max-w-[400px]">
