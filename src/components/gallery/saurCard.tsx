@@ -20,51 +20,53 @@ export function SaurCard({ props }: any) {
   }
   if (result !== null && result !== undefined) {
     return (
-      <div className=" rounded-xl m-auto text-white p-4 text-lg relative ">
-        <div className="flex flex-col h-fit w-fit items-center ml-4 ">
-          <div className="space-y-3">
-            <p className="text-2xl">
-              {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
-            </p>
-            <p className="">{result.family.charAt(0).toUpperCase() + result.family.slice(1)}</p>
-            <TemporalRange age={result.temporal} />
-          </div>
+      <div className="grid grid-cols-3 rounded-xl m-auto text-white p-4 text-lg relative mx-40 space-x-10">
+        <p className="mt-3 flex justify-stretch h-max col-span-2">{result.description}</p>
+        <div className="bg-background p-4 rounded-xl w-fit">
+          <div className="flex flex-col h-[400px]   ml-4">
+            <div className="space-y-3">
+              <p className="text-2xl">
+                {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
+              </p>
+              <p className="">{result.family.charAt(0).toUpperCase() + result.family.slice(1)}</p>
+              <TemporalRange age={result.temporal} />
+            </div>
 
-          <div className="col-span-2 flex">
-            Species:
-            <div>
-              {result.species.split(", ").map(item => (
-                <p key={item}>{item}</p>
-              ))}
+            <div className="flex flex-col text-start">
+              <p>Species:</p>
+              <div>
+                {result.species.split(", ").map(item => (
+                  <p key={item}>{item}</p>
+                ))}
+              </div>
             </div>
           </div>
+
+          <div key={result.id} className="flex flex-col cursor-pointer w-[400px]">
+            {result.img.includes(", ") ? (
+              result.img
+                .split(", ")
+                .map(item => (
+                  <img
+                    key={item}
+                    src={item}
+                    alt={result.genus}
+                    className="rounded-md object-center w-fit h-fit transition ease-in-out duration-300"
+                    onClick={() => (setImgs(item), setOpen(() => true))}
+                  />
+                ))
+            ) : (
+              <img
+                key={result.id}
+                src={result.img}
+                alt={result.genus}
+                className="rounded-md object-center w-fit"
+                onClick={() => (setImgs(result.img), setOpen(() => true))}
+              />
+            )}
+          </div>
         </div>
 
-        <div key={result.id} className="flex flex-col cursor-pointer max-w-[400px]">
-          {result.img.includes(", ") ? (
-            result.img
-              .split(", ")
-              .map(item => (
-                <img
-                  key={item}
-                  src={item}
-                  alt={result.genus}
-                  className="rounded-md object-center w-fit h-fit transition ease-in-out duration-300"
-                  onClick={() => (setImgs(item), setOpen(() => true))}
-                />
-              ))
-          ) : (
-            <img
-              key={result.id}
-              src={result.img}
-              alt={result.genus}
-              className="rounded-md object-center w-fit"
-              onClick={() => (setImgs(result.img), setOpen(() => true))}
-            />
-          )}
-        </div>
-
-        <p className="mt-3 flex justify-stretch h-max ">{result.description}</p>
         {open && <ImageOVerlay src={imgs} onClick={() => setOpen(() => false)} />}
       </div>
     )
