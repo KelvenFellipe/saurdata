@@ -67,10 +67,16 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "rotate-pulse": {
+          from: {transform: "scale(1) rotate(0deg)"}, 
+          "50%": {transform: "scale(.70) rotate(360deg)"}, 
+          to: {transform: "scale(1) rotate(720deg)"}, 
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "rotate-pulse": "rotate-pulse 2s infinite",
       },
     },
   },
