@@ -50,7 +50,7 @@ export function TemporalRange({ age }: { age: string }) {
       </p>
 
       <div className="w-fit h-20 my-2 flex relative select-none text-xs items-center">
-        <div className="flex absolute top-0 " style={{ left: 252 - where - 8 }}>
+        <div className="flex absolute top-0 " style={{ left: 252 - where - 7 }}>
           <CornerLeftDown className={`flex size-5 rounded-sm justify-end mt-1`} />
           <p className="w-[50px]">{where + " Ma"}</p>
         </div>

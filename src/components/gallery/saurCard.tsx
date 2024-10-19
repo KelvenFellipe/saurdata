@@ -14,7 +14,7 @@ export function SaurCard({ props }: any) {
   useEffect(() => {
     setResult(() => data[0])
   }, [isFetched])
-
+  console.log(result?.added)
   if (isLoading) {
     return <Loading />
   }
@@ -23,26 +23,30 @@ export function SaurCard({ props }: any) {
       <div className="grid grid-cols-3 rounded-xl m-auto text-white p-4 text-lg relative mx-40 space-x-10">
         <p className="mt-3 flex justify-stretch h-max col-span-2">{result.description}</p>
         <div className="bg-background p-4 rounded-xl w-fit">
-          <div className="flex flex-col h-[400px]   ml-4">
+          <div className="flex flex-col    ml-4">
             <div className="space-y-3">
               <p className="text-2xl">
                 {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
               </p>
               <p className="">{result.family.charAt(0).toUpperCase() + result.family.slice(1)}</p>
-              <TemporalRange age={result.temporal} />
+              <div className="ml-2">
+                <TemporalRange age={result.temporal} />
+              </div>
             </div>
 
-            <div className="flex flex-col text-start">
+            <div className="flex flex-col text-start space-y-2">
               <p>Species:</p>
-              <div>
+              <div className="space-y-1">
                 {result.species.split(", ").map(item => (
-                  <p key={item}>{item}</p>
+                  <p key={item} className="pl-4">
+                    {item}
+                  </p>
                 ))}
               </div>
             </div>
           </div>
 
-          <div key={result.id} className="flex flex-col cursor-pointer w-[400px]">
+          <div key={result.id} className="flex flex-col cursor-pointer w-[400px] mt-2">
             {result.img.includes(", ") ? (
               result.img
                 .split(", ")
