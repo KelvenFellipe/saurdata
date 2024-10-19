@@ -1,6 +1,7 @@
 import { NavBar } from "@/components/navbar/NavBar"
 import Provider from "@/connection/client/Provider"
 import { cn } from "@/lib/utils"
+import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
@@ -24,6 +25,7 @@ export default function RootLayout({
         <Provider>
           <SessionProvider>
             <NavBar />
+            <Analytics />
             <div>{children}</div>
           </SessionProvider>
         </Provider>
