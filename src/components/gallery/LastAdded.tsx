@@ -21,23 +21,31 @@ export function LastAdded() {
   }
 
   return (
-    <div className="w-[300px] rounded-xl relative space-y-2 text-sm ">
+    <div className="fixed w-[300px] rounded-xl space-y-2 text-sm">
       <p className="h-10 bg-black rounded-xl flex justify-center items-center">Last Added</p>
-      {result.map(item => (
-        <div
-          className="flex h-fit overflow-hidden bg-black p-2 rounded-xl space-x-2 cursor-pointer"
-          onClick={() => router.push(`/gallery/${item.genus}`)}
-        >
-          <div className="flex flex-col flex-1 space-y-2 flex-wrap">
-            <div className="max-w-[200px] max-h-[100px] text-wrap truncate">{item.description}</div>
+      <div
+        className={`max-h-[800px] overflow-y-scroll scrollbar-none space-y-2 ${
+          lenght > 6 && "hover:w-[310px] hover:scrollbar-thin"
+        } scrollbar-thumb-transparent-transparent`}
+      >
+        {result.map(item => (
+          <div
+            className="flex h-fit overflow-auto bg-black p-2 rounded-xl space-x-2 cursor-pointer"
+            onClick={() => router.push(`/gallery/${item.genus}`)}
+          >
+            <div className="flex flex-col flex-1 space-y-2 flex-wrap">
+              <div className="max-w-[200px] max-h-[100px] text-wrap truncate">
+                {item.description}
+              </div>
+            </div>
+            <img
+              src={item.img.includes(", ") ? item.img.split(", ")[0] : item.img}
+              alt={item.genus}
+              className="h-[100px] w-[100px] aspect-square object-cover blur-[0.5px] rounded-lg "
+            />
           </div>
-          <img
-            src={item.img.includes(", ") ? item.img.split(", ")[0] : item.img}
-            alt={item.genus}
-            className="h-[100px] w-[100px] aspect-square object-cover blur-[0.5px] rounded-lg "
-          />
-        </div>
-      ))}
+        ))}
+      </div>
       <p
         className="h-10 bg-black rounded-xl flex justify-center items-center cursor-pointer"
         onClick={() => setLenght(() => lenght + 6)}
