@@ -4,7 +4,6 @@ import { trpc } from "@/connection/client/client"
 import { SaurType } from "@/types/saurType"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { Loading } from "../global/Loading"
 
 export function LastAdded() {
   const { data = [], isFetched, isLoading } = trpc.getSauriaNew.useQuery()
@@ -16,12 +15,8 @@ export function LastAdded() {
     setResult(() => data.slice(0, lenght))
   }, [isFetched, lenght])
 
-  if (isLoading) {
-    return <Loading />
-  }
-
   return (
-    <div className="fixed w-[300px] rounded-xl space-y-2 text-sm">
+    <div className={`fixed w-[300px] rounded-xl space-y-2 text-sm ${isLoading && "hidden"}`}>
       <p className="h-10 bg-black rounded-xl flex justify-center items-center">Last Added</p>
       <div
         className={`max-h-[800px] overflow-y-scroll scrollbar-none space-y-2 ${
