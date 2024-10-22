@@ -16,11 +16,11 @@ export function LastAdded() {
   }, [isFetched, lenght])
 
   return (
-    <div className={`fixed w-[300px] rounded-xl space-y-2 text-sm ${isLoading && "hidden"}`}>
+    <div className={`w-[300px] rounded-xl space-y-2 text-sm ${isLoading && "hidden"}`}>
       <p className="h-10 bg-black rounded-xl flex justify-center items-center">Last Added</p>
       <div
         className={`max-h-[800px] overflow-y-scroll scrollbar-none space-y-2 ${
-          lenght > 6 && "hover:w-[310px] hover:scrollbar-thin"
+          lenght > 6 && "hover:max-w-[310px] hover:scrollbar-thin"
         } scrollbar-thumb-transparent-transparent`}
       >
         {result.map(item => (
