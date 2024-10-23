@@ -47,14 +47,16 @@ function Main() {
         <div className={`m-4 ${isLoading && "hidden"}`}>
           <SelectComponent PlaceHolder={"Sorting"} data={SortingData} changevalue={changevalue} />
         </div>
-
-        {dataSauria
-          .sort((a, b) => sort(a, b))
-          .map(dino => (
-            <div className="divide-y divide-solid">
-              <MiniSaurCard {...dino} />
-            </div>
-          ))}
+        <div className="divide-y divide-solid">
+          <div className="hidden"></div>
+          {dataSauria
+            .sort((a, b) => sort(a, b))
+            .map(dino => (
+              <div key={dino.id}>
+                <MiniSaurCard {...dino} />
+              </div>
+            ))}
+        </div>
       </div>
 
       <div className="sticky top-20 hidden md:flex col-span-1 h-screen">
