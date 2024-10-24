@@ -2,6 +2,7 @@
 import { SortingData } from "@/components/data/SortingData"
 import { LastAdded } from "@/components/gallery/LastAdded"
 import { MiniSaurCard } from "@/components/gallery/MiniSaurCard"
+import { sort } from "@/components/gallery/sorting"
 import { Loading } from "@/components/global/Loading"
 import { SelectComponent } from "@/components/global/SelectComponent"
 import { trpc } from "@/connection/client/client"
@@ -17,27 +18,6 @@ function Main() {
     setDataSauria(() => data)
   }, [isFetched])
 
-  function changevalue(value: string) {
-    setSortMethod(() => value)
-  }
-
-  function sort(a: any, b: any) {
-    if (sortMethod === "asc") return a.genus.localeCompare(b.genus)
-    if (sortMethod === "desc") return b.genus.localeCompare(a.genus)
-    if (sortMethod === "last") return b.added.localeCompare(a.added)
-    if (sortMethod === "first") return a.added.localeCompare(b.added)
-    if (sortMethod === "newer")
-      return a.temporal.localeCompare(b.temporal, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-    if (sortMethod === "older")
-      return b.temporal.localeCompare(a.temporal, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-  }
-
   if (isLoading) return <Loading />
 
   return (
@@ -45,12 +25,16 @@ function Main() {
       <div className="hidden lg:flex"></div>
       <div className="col-span-4 md:col-span-2 max-w-[800px] ">
         <div className={`m-4 ${isLoading && "hidden"}`}>
-          <SelectComponent PlaceHolder={"Sorting"} data={SortingData} changevalue={changevalue} />
+          <SelectComponent
+            PlaceHolder={"Sorting"}
+            data={SortingData}
+            changevalue={e => setSortMethod(() => e)}
+          />
         </div>
         <div className="divide-y divide-solid">
-          <div className="hidden"></div>
+          <div className="hidden" />
           {dataSauria
-            .sort((a, b) => sort(a, b))
+            .sort((a, b) => sort(a, b, sortMethod))
             .map(dino => (
               <div key={dino.id}>
                 <MiniSaurCard {...dino} />
@@ -58,7 +42,6 @@ function Main() {
             ))}
         </div>
       </div>
-
       <div className="sticky top-20 hidden md:flex col-span-1 h-screen">
         <LastAdded />
       </div>

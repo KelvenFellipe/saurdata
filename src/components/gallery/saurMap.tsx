@@ -7,6 +7,7 @@ import { Loading } from "../global/Loading"
 import { SelectComponent } from "../global/SelectComponent"
 import { MiniSaurCard } from "./MiniSaurCard"
 import { useScrollPosition } from "./ScrollHook"
+import { sort } from "./sorting"
 
 export function SaurMap() {
   const { data = [], isFetched, isLoading } = trpc.getSauria.useQuery()
@@ -25,22 +26,6 @@ export function SaurMap() {
   //   }
   // }, [scrollPosition])
 
-  function sort(a: any, b: any) {
-    if (sortMethod === "asc") return a.genus.localeCompare(b.genus)
-    if (sortMethod === "desc") return b.genus.localeCompare(a.genus)
-    if (sortMethod === "last") return b.added.localeCompare(a.added)
-    if (sortMethod === "first") return a.added.localeCompare(b.added)
-    if (sortMethod === "newer")
-      return a.temporal.localeCompare(b.temporal, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-    if (sortMethod === "older")
-      return b.temporal.localeCompare(a.temporal, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-  }
   function changevalue(value: string) {
     setSortMethod(() => value)
   }
@@ -56,7 +41,7 @@ export function SaurMap() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit p-2 divide-y divide-solid">
         <div className="hidden"></div>
         {dataSauria
-          .sort((a, b) => sort(a, b))
+          .sort((a, b) => sort(a, b, sortMethod))
           .map(item => (
             <div key={item.id} className="">
               <MiniSaurCard {...item} />

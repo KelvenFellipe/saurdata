@@ -23,7 +23,7 @@ export function Profile({ user }: { user: ProfileType }) {
   }, [noti])
 
   return (
-    <div className="flex space-x-4 items-center justify-end p-1 flex-1">
+    <div className="flex space-x-4 items-center justify-end p-1 flex-1 select-none">
       <MiniNavSearch />
 
       <button
