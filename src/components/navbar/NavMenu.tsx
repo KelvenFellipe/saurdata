@@ -67,16 +67,15 @@ export function NavMenu({ click }: { click: any }) {
             </Link>
           )}
         </div>
-        <MenuSection
-          stuff={
-            <div className="mb-2 text-start pl-6 font-normal">
-              {family.map(item => (
-                <p className="py-1">{item}</p>
-              ))}
-            </div>
-          }
-          name="Families"
-        />
+        <MenuSection name="Families">
+          <div className="mb-2 text-start pl-6 font-normal">
+            {family.map(item => (
+              <p key={item} className="py-1">
+                {item}
+              </p>
+            ))}
+          </div>
+        </MenuSection>
       </div>
       <div
         className={`fixed w-full h-full top-0 left-0 ${!open && "hidden"}`}
