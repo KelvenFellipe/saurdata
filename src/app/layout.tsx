@@ -11,7 +11,8 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Saurdata",
-  description: "archosauria",
+  description:
+    "Saurdata is an online fossil gallery of reptiles, containing information about various genus.",
 }
 
 export default function RootLayout({
