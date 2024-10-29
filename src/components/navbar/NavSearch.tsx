@@ -5,7 +5,7 @@ import { SaurType } from "@/types/saurType"
 import { CircleX, Search } from "lucide-react"
 import { useEffect, useState } from "react"
 
-export function NavSearch({ onClose }: { onClose?: any }) {
+export function NavSearch({ onClose }: { onClose: Function }) {
   const [search, setSearch] = useState("")
   const [placeholder, setPlaceholder] = useState("search")
   const [open, setOpen] = useState(false)
@@ -15,11 +15,10 @@ export function NavSearch({ onClose }: { onClose?: any }) {
   function reset(item: string) {
     setPlaceholder(() => item)
     setSearch(() => "")
-    onClose
+    onClose()
   }
   function close() {
     setOpen(false)
-    onClose
   }
   useEffect(() => {
     setResponseData(() => sauria.filter(item => item.genus.includes(search.toLowerCase())))

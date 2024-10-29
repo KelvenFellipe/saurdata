@@ -37,7 +37,7 @@ export function NavBar() {
         </button>
       </div>
       <div className="hidden md:block">
-        <NavSearch />
+        <NavSearch onClose={console.log} />
       </div>
 
       <div className="col-span-2 md:col-span-1">
