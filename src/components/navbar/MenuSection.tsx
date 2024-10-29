@@ -4,10 +4,10 @@ import { useState } from "react"
 
 interface MenuSection {
   name: string
-  stuff: any
+  children: React.ReactNode
 }
 
-export function MenuSection({ name, stuff }: MenuSection) {
+export function MenuSection({ name, children }: MenuSection) {
   const [open, setOpen] = useState(false)
   return (
     <div className={``}>
@@ -21,11 +21,9 @@ export function MenuSection({ name, stuff }: MenuSection) {
         />
       </button>
       <div
-        className={`px-2 overflow-hidden transition-all duration-1000 ${
-          open ? "max-h-full" : "max-h-0 opacity-0"
-        }`}
+        className={`transition-all overflow-hidden duration-500 h-auto ${open ? "" : "max-h-0"}`}
       >
-        {stuff}
+        {children}
       </div>
     </div>
   )
