@@ -4,12 +4,13 @@ import { Menu } from "lucide-react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { LoadingProfile } from "./LoadingProfile"
+import { LoadingNotification, LoadingProfile } from "./LoadingProfile"
 import { LoginButton } from "./LoginButton"
 import { MiniNavSearch } from "./MiniNavSearch"
 import { NavMenu } from "./NavMenu"
 import { NavNotSigned } from "./NavNotSigned"
 import { NavSearch } from "./NavSearch"
+import { NotificationIcon } from "./NotificationsIcon"
 import { Profile } from "./Profile"
 
 export function NavBar() {
@@ -20,11 +21,11 @@ export function NavBar() {
 
   return (
     <div
-      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-zinc-100 size-xl text-black dark:text-white justify-center text-center items-center
-      shadow-md shadow-black/40 dark:shadow-black hover:duration-300 duration-300 dark:bg-[#111316] text-xl w-[100%] h-[52px] "
+      className="sticky top-0 z-50 grid grid-cols-3 gap-3 px-4 bg-zinc-100 dark:bg-[#111316] size-xl text-black dark:text-white justify-center text-center items-center
+       shadow-md shadow-black/40 dark:shadow-black hover:duration-300 duration-300  text-xl w-full h-[52px] "
     >
       <div className="flex items-center space-x-4 ">
-        <button className="p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300">
+        <button className="p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300 hidden lg:flex">
           <Menu onClick={() => setMenu(!menu)} />
         </button>
         <button className="flex items-center text-4xl " onClick={() => router.push("/")}>
@@ -40,7 +41,7 @@ export function NavBar() {
         <NavSearch onClose={console.log} />
       </div>
 
-      <div className="col-span-2 md:col-span-1">
+      <div className="col-span-2 md:col-span-1 hidden lg:flex">
         {status == "loading" ? (
           <LoadingProfile />
         ) : status === "authenticated" ? (
@@ -48,6 +49,21 @@ export function NavBar() {
         ) : (
           <div className="space-x-4 flex items-center justify-end">
             <MiniNavSearch />
+            <LoginButton click={() => setNotSigned(() => !notSigned)} />
+          </div>
+        )}
+      </div>
+
+      <div className="col-span-2 md:col-span-1 flex lg:hidden">
+        {status == "loading" ? (
+          <LoadingNotification />
+        ) : status === "authenticated" ? (
+          <div className="flex flex-1 space-x-4 justify-end">
+            <MiniNavSearch />
+            <NotificationIcon user={session.user} mobile={true} />
+          </div>
+        ) : (
+          <div className="space-x-4 flex items-center justify-end">
             <LoginButton click={() => setNotSigned(() => !notSigned)} />
           </div>
         )}
