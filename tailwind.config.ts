@@ -78,6 +78,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "rotate-pulse": "rotate-pulse 2s infinite",
       },
+      fontSize: {
+        xxs: '0.625rem',
+      },
     },
   },
   plugins: [
