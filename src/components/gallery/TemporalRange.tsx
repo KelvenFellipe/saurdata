@@ -49,7 +49,7 @@ export function TemporalRange({ age }: { age: string }) {
         {when}, {age} Ma
       </p>
 
-      <div className="w-fit h-20 my-2 flex relative select-none text-xs items-center ">
+      <div className="w-fit h-20 my-2 flex relative select-none text-xs items-center  ">
         <div className="flex absolute top-0 " style={{ left: 252 - where - 7 }}>
           <CornerLeftDown className={`flex size-5 rounded-sm justify-end mt-1`} />
           <p className="w-[60px]">{where + " Ma"}</p>
@@ -71,15 +71,15 @@ export function TemporalRange({ age }: { age: string }) {
           <p className="text-red-600">252</p>
         </div>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center ">
           <div className="flex text-center ">
-            <div className="w-[51px] flex h-6 items-center justify-center bg-zinc-600 ">
+            <div className="w-[51px] flex h-6 items-center justify-center bg-zinc-600 text-white">
               triassic
             </div>
-            <div className="w-[56px] flex h-6 items-center justify-center bg-zinc-500">
+            <div className="w-[56px] flex h-6 items-center justify-center bg-zinc-500 text-white">
               jurassic
             </div>
-            <div className="w-[79px] flex h-6 items-center justify-center bg-zinc-400">
+            <div className="w-[79px] flex h-6 items-center justify-center bg-zinc-400 text-white">
               cretaceous
             </div>
           </div>
@@ -91,8 +91,12 @@ export function TemporalRange({ age }: { age: string }) {
         </div>
 
         <div className="w-[66px]  flex text-center items-center">
-          <div className="w-[43px] flex h-8 items-center justify-center bg-orange-500">P</div>
-          <div className="w-[23px] flex h-8 items-center justify-center bg-orange-600">N</div>
+          <div className="w-[43px] flex h-8 items-center justify-center bg-orange-500 text-white">
+            P
+          </div>
+          <div className="w-[23px] flex h-8 items-center justify-center bg-orange-600 text-white">
+            N
+          </div>
         </div>
       </div>
     </div>

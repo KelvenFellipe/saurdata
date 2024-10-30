@@ -20,11 +20,11 @@ export function SaurCard({ props }: any) {
   }
   if (result !== null && result !== undefined) {
     return (
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:mx-20 rounded-xl text-white p-4 text-lg relative lg:space-x-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:mx-20 rounded-xl text-black dark:text-white p-4 text-lg relative lg:space-x-10">
         <p className="mt-3 justify-stretch h-max col-span-2 hidden lg:flex">{result.description}</p>
         <div className="bg-background p-4 rounded-xl w-fit col-span-1 ">
           <div className="flex flex-col ml-4">
-            <div className="space-y-3">
+            <div className="space-y-3 ">
               <p className="text-2xl">
                 {result.genus.charAt(0).toUpperCase() + result.genus.slice(1)}
               </p>
