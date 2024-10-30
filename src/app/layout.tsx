@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import { SessionProvider } from "next-auth/react"
 import { Inter } from "next/font/google"
+import { NabvarMobile } from "../components/navbar/NavbarMobile"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -26,8 +27,10 @@ export default function RootLayout({
         <Provider>
           <SessionProvider>
             <NavBar />
+            <NabvarMobile />
             <Analytics />
             <div>{children}</div>
+            <div className="h-[52px] lg:hidden" />
           </SessionProvider>
         </Provider>
       </body>
