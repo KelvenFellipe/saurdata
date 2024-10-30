@@ -47,7 +47,7 @@ export function NavBar() {
         ) : status === "authenticated" ? (
           <Profile user={session.user} />
         ) : (
-          <div className="space-x-4 flex items-center justify-end">
+          <div className="space-x-4 flex items-center justify-end flex-1">
             <MiniNavSearch />
             <LoginButton click={() => setNotSigned(() => !notSigned)} />
           </div>
@@ -63,8 +63,8 @@ export function NavBar() {
             <NotificationIcon user={session.user} mobile={true} />
           </div>
         ) : (
-          <div className="space-x-4 flex items-center justify-end">
-            <LoginButton click={() => setNotSigned(() => !notSigned)} />
+          <div className="space-x-4 flex flex-1 items-center justify-end">
+            <MiniNavSearch />
           </div>
         )}
       </div>
