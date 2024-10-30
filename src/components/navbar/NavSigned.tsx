@@ -8,9 +8,10 @@ import { useEffect, useState } from "react"
 interface props {
   click: any
   user: ProfileType
+  mobile?: boolean
 }
 
-export function NavSigned({ user, click }: props) {
+export function NavSigned({ user, click, mobile = false }: props) {
   const [open, setOpen] = useState(false)
   const [Lights, setLights] = useState("")
   const doc = document.documentElement.classList
@@ -29,12 +30,12 @@ export function NavSigned({ user, click }: props) {
   }
 
   return (
-    <div className="fixed z-[10] select-none ">
+    <div className="absolute z-[10] select-none ">
       <div
-        className={`fixed z-[20] w-fit top-[56px] right-4 text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl
+        className={`fixed z-[20] right-4 w-fit text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl
            transition-[max-height] duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
-             open ? "max-h-full" : "max-h-0"
-           }`}
+             mobile ? "bottom-[56px]" : "top-[56px]"
+           } ${open ? "max-h-full" : "max-h-0"}`}
       >
         {user.image && (
           <div className="grid grid-cols-1 my-2">

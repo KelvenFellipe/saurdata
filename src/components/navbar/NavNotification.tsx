@@ -6,8 +6,9 @@ import { useEffect, useState } from "react"
 interface props {
   click: any
   data: ProfileType
+  mobile?: boolean
 }
-export function NavNotification({ click, data }: props) {
+export function NavNotification({ click, data, mobile = false }: props) {
   const [open, setOpen] = useState(false)
   const [notifications, setNotifications] = useState<Array<NotificationType>>([])
 
@@ -37,12 +38,12 @@ export function NavNotification({ click, data }: props) {
   }
 
   return (
-    <div className={`fixed z-[10] select-none`}>
+    <div className={`absolute z-[10] select-none`}>
       <div
-        className={`fixed z-[20] w-[300px] top-[56px] right-[72px] bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white text-sm rounded-xl transition-[max-height]
+        className={`fixed z-[20] w-[300px] top-[56px]  bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white text-sm rounded-xl transition-[max-height]
            duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
-             !open ? "max-h-0" : "max-h-full"
-           } `}
+             mobile ? "right-4" : "right-[64px]"
+           } ${!open ? "max-h-0" : "max-h-full"} `}
       >
         <div className="my-2 space-y-1 overflow-auto max-h-[380px] scrollbar-thin scrollbar-track-zinc-800 scrollbar-thumb-[#111316]">
           {notifications !== null && notifications.length !== 0 ? (
