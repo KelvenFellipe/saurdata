@@ -58,11 +58,11 @@ export function NavSearch({ onClose }: { onClose: Function }) {
               </div>
             ) : (
               <div
-                className="max-h-[310px] my-2 scrollbar-thin overflow-y-auto scrollbar-track-zinc-800 scrollbar-thumb-[#111316] z-[20]"
+                className="max-h-[310px] my-2 overflow-auto scrollbar-none hover:scrollbar-thin pr-[10px] hover:pr-0 scrollbar-track-zinc-800 scrollbar-thumb-[#111316] z-[20]"
                 onClick={close}
               >
                 {responseData.map(item => (
-                  <SearchResponse data={item} key={item.id} click={() => reset(item.genus)} />
+                  <SearchResponse data={item} key={item.id} onClick={() => reset(item.genus)} />
                 ))}
               </div>
             )}
