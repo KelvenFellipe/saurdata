@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react"
 function profile() {
   const user = useSession().data?.user
   if (user === undefined) return <Loading />
-  //redirect("/")
+
   return (
     <div className="select-none grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-auto max-w-screen p-2 space-x-4 rounded-lg mt-4 bg-zinc-800/50">
       <div className="flex shrink-0">
