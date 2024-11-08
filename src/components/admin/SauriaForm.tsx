@@ -20,10 +20,19 @@ export function SauriaForm({ click }: any) {
       setTimeout(() => utils.getSauria.invalidate(), 2500)
     },
   })
+  const addnotification = trpc.updateNotification.useMutation({
+    onSettled: () => {
+      utils.getNotification.invalidate()
+    },
+  })
 
   function handle(values: SauriaSchemaNoID) {
     try {
       addsauria.mutate(values)
+      addnotification.mutate({
+        id: "1254ea58-5b24-4bc7-baf1-d307a3741230",
+        notification: [{ notification: "was added", read: false }],
+      })
     } catch {
       return <Alert text={"There was an Error"} />
     } finally {
