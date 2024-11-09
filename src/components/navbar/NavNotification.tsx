@@ -14,6 +14,7 @@ export function NavNotification({ click, data, mobile = false }: props) {
   const [open, setOpen] = useState(false)
   const [options, setOptions] = useState(false)
   const [Index, setIndex] = useState(0)
+  const { data: notificatioArray = [], isSuccess } = trpc.getNotification.useQuery(data.id)
   const [notifications, setNotifications] = useState<Array<NotificationType>>([])
 
   const utils = trpc.useContext()
@@ -24,9 +25,9 @@ export function NavNotification({ click, data, mobile = false }: props) {
   })
 
   useEffect(() => {
-    setNotifications(data.notifications)
+    setNotifications(notificatioArray[0].notification)
     setOpen(() => true)
-  }, [])
+  }, [isSuccess])
 
   function notifi(index: number) {
     if (notifications[index].read === false) {

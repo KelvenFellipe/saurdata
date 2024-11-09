@@ -25,21 +25,27 @@ export function SauriaForm({ click }: any) {
       utils.getNotification.invalidate()
     },
   })
-
+  const { data = [] } = trpc.getNotification.useQuery("1254ea58-5b24-4bc7-baf1-d307a3741230")
   function handle(values: SauriaSchemaNoID) {
-    try {
-      addsauria.mutate(values)
-      addnotification.mutate({
-        id: "1254ea58-5b24-4bc7-baf1-d307a3741230",
-        notification: [{ notification: "was added", read: false }],
-      })
-    } catch {
-      return <Alert text={"There was an Error"} />
-    } finally {
-      setAlert(() => true)
-      setTimeout(click, 4000)
-      setGenus(values.genus)
-    }
+    const now = new Date(Date.now()).toISOString()
+
+    if (data)
+      try {
+        addsauria.mutate(values)
+        addnotification.mutate({
+          id: "1254ea58-5b24-4bc7-baf1-d307a3741230",
+          notification: [
+            ...data[0].notification,
+            { notification: `${values.genus} was added`, read: false, when: now },
+          ],
+        })
+      } catch {
+        return <Alert text={"There was an Error"} />
+      } finally {
+        setAlert(() => true)
+        setTimeout(click, 4000)
+        setGenus(values.genus)
+      }
   }
   if (alert)
     return <Alert text={`${genus} was succesfully Added`} close={() => setAlert(() => false)} />

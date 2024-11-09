@@ -11,5 +11,5 @@ export interface ProfileType {
 export interface NotificationType{
   notification: string
   read: boolean
-
+  when: string
 }
