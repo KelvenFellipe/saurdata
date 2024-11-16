@@ -4,6 +4,7 @@ import { NotificationType, ProfileType } from "@/types/profileType"
 import { EllipsisVertical } from "lucide-react"
 import { useEffect, useState } from "react"
 import { NotificationOptions } from "./NotificationOptions"
+import { getTime } from "../gallery/TimeHook"
 
 interface props {
   click: any
@@ -53,17 +54,21 @@ export function NavNotification({ click, data, mobile = false }: props) {
         <div className="my-2 space-y-1 overflow-auto max-h-[380px] w-[500px] scrollbar-none hover:scrollbar-thin pr-[10px] hover:pr-0 scrollbar-track-zinc-800 scrollbar-thumb-[#111316]">
           {notifications !== null && notifications.length !== 0 ? (
             notifications.map((item, index) => (
-              <div className="flex items-center " key={index}>
-                <div
-                  className={`flex flex-row relative justify-between items-center space-x-[20px] pl-4 px-1 py-1 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 font-bold ease-in-out duration-300 w-full ${
-                    item.read && "text-zinc-400"
-                  }`}
-                  onClick={() => notifi(index)}
-                >
-                  {!item.read && (
-                    <div className="w-1 h-[44px] rounded-sm bg-teal-500 absolute left-[2px]"></div>
-                  )}
-                  {item.notification}
+              <div
+                className={`flex flex-col relative space-x-[20px] pl-4 px-1 py-1 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 font-bold ease-in-out duration-300 w-full ${
+                  item.read && "text-zinc-400"
+                }`}
+                onClick={() => notifi(index)}
+                key={index}
+              >
+                <div className="justify-between flex flex-1 w-auto items-center">
+                  <div>
+                    {!item.read && (
+                      <div className="w-1 h-[44px] rounded-sm bg-teal-500 absolute left-[2px]"></div>
+                    )}
+                    {item.notification}
+                  </div>
+
                   <div
                     className="text-white rounded-full active:bg-zinc-700 w-10 h-10 p-1 flex justify-center items-center cursor-pointer"
                     onClick={() => (setOptions(true), setIndex(index))}
@@ -73,6 +78,9 @@ export function NavNotification({ click, data, mobile = false }: props) {
                   {options && Index === index && (
                     <NotificationOptions onClick={() => setOptions(false)} />
                   )}
+                </div>
+                <div className="text-xs justify-normal flex text-zinc-600">
+                  {getTime(item.when)}
                 </div>
               </div>
             ))
