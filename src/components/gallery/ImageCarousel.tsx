@@ -20,13 +20,13 @@ export function ImageCarousel({ Imgs }: props) {
     <div className="overflow-hidden relative rounded-xl select-none">
       <ChevronLeftIcon
         onClick={() => setIndexCount(indexCount - 1)}
-        className={`absolute size-8 top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 text-white ${
+        className={`absolute size-8 top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 text-white shadow-sm shadow-black/40 cursor-pointer ${
           indexCount === 0 && "-translate-x-10"
         }`}
       />
       <ChevronRightIcon
         onClick={() => setIndexCount(indexCount + 1)}
-        className={`absolute size-8 top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 text-white ${
+        className={`absolute size-8 top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/20 hover:bg-black/70 ease-in-out duration-300 z-30 text-white shadow-sm shadow-black/40 cursor-pointer ${
           indexCount === Imgs.length - 1 && "translate-x-10"
         }`}
       />

@@ -19,9 +19,7 @@ export function MiniSaurCard(props: SaurType) {
       className="flex flex-col text-base hover:bg-zinc-300/50 dark:hover:bg-zinc-800/50 duration-300 hover:duration-300 p-4 py-1.5 rounded-xl min-w-[200px] m-1 space-y-2 select-none"
     >
       <div className="flex flex-col md:flex-row md:items-center">
-        <p className="text-lg font-bold flex-1">
-          {props.genus.charAt(0).toUpperCase() + props.genus.slice(1) + ", " + props.temporal}
-        </p>
+        <p className="text-lg font-bold flex-1 capitalize">{props.genus}</p>
         <div className="flex">
           <p className="text-xs text-zinc-700 dark:text-zinc-300 ">
             {props.type + "/" + props.family + " • " + getTime(props.added)}
