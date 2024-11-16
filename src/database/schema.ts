@@ -16,6 +16,23 @@ export const sauria = pgTable("sauria", {
 	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });
 
+export const types = pgTable("types", {
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+  name: text("name").notNull(),
+  temporal: text("temporal").notNull(),
+  description: text("description").default('').notNull(),
+  added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+})
+
+export const families = pgTable("families", {
+  id: uuid("id").defaultRandom().primaryKey().notNull(),
+  name: text("name").notNull(),
+  type: type("type").notNull().references(() => types.id, { onDelete: "cascade" } ),
+  temporal: text("temporal").notNull(),
+  description: text("description").default('').notNull(),
+  added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+})
+
 export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
 	name: text("name").notNull(),
