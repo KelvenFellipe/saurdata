@@ -1,8 +1,9 @@
+import { pgTable, foreignKey, pgEnum, uuid, text, timestamp, unique, json, primaryKey, integer } from "drizzle-orm/pg-core"
 import { NotificationType } from "@/types/profileType";
-import { integer, json, pgEnum, pgTable, primaryKey, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 export const role = pgEnum("role", ['ADMIN', 'USER'])
 export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur'])
+
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -10,28 +11,11 @@ export const sauria = pgTable("sauria", {
 	species: text("species").notNull(),
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
-	family: text("family").notNull(),
-	type: type("type").notNull(),
+	family: text("family").notNull().references(() => families.name, { onDelete: "cascade", onUpdate: "cascade" } ),
+	type: text("type").references(() => types.name),
 	description: text("description").default('').notNull(),
 	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });
-
-export const types = pgTable("types", {
-  id: uuid("id").defaultRandom().primaryKey().notNull(),
-  name: text("name").notNull(),
-  temporal: text("temporal").notNull(),
-  description: text("description").default('').notNull(),
-  added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
-})
-
-export const families = pgTable("families", {
-  id: uuid("id").defaultRandom().primaryKey().notNull(),
-  name: text("name").notNull(),
-  type: type("type").notNull().references(() => types.id, { onDelete: "cascade" } ),
-  temporal: text("temporal").notNull(),
-  description: text("description").default('').notNull(),
-  added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
-})
 
 export const user = pgTable("user", {
 	id: text("id").primaryKey().notNull(),
@@ -52,6 +36,21 @@ export const session = pgTable("session", {
 	sessionToken: text("sessionToken").primaryKey().notNull(),
 	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
 	expires: timestamp("expires", { mode: 'string' }).notNull(),
+});
+
+export const types = pgTable("types", {
+	name: text("name").primaryKey().notNull(),
+	temporal: text("temporal").notNull(),
+	description: text("description").default('').notNull(),
+	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+});
+
+export const families = pgTable("families", {
+	name: text("name").primaryKey().notNull(),
+	type: text("type").notNull().references(() => types.name, { onDelete: "cascade", onUpdate: "cascade" } ),
+	temporal: text("temporal").notNull(),
+	description: text("description").default('').notNull(),
+	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 });
 
 export const account = pgTable("account", {
