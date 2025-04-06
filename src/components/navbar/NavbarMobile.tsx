@@ -4,12 +4,12 @@ import { ProfileIcon } from "@/components/navbar/ProfileIcon"
 import { Bone, Fingerprint, Home, ScrollText, User } from "lucide-react"
 import { useSession } from "next-auth/react"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 import { NavNotSigned } from "./NavNotSigned"
+import { cn } from "@/lib/utils"
 
-export function NabvarMobile() {
-  const router = useRouter()
+export function NavbarMobile() {
   const [menu, setMenu] = useState(false)
   const [notSigned, setNotSigned] = useState(false)
   const { data: session, status } = useSession()
@@ -22,18 +22,20 @@ export function NabvarMobile() {
     >
       <Link
         href={"/"}
-        className={`${
-          path === "/" ? "text-black dark:text-white" : ""
-        } h-10 w-10 flex flex-col justify-center items-center  ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2xl`}
+        className={cn(
+          path === "/" ? "text-black dark:text-white" : "",
+          "h-10 w-10 flex flex-col justify-center items-center  ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2"
+        )}
       >
         <Home className=" text-black dark:text-white size-5"></Home>
         <p className="text-xxs">Home</p>
       </Link>
       <Link
         href={"/gallery"}
-        className={`${
-          path === "/gallery" ? "text-black dark:text-white" : ""
-        } h-10 w-10 flex flex-col justify-center items-center ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2xl`}
+        className={cn(
+          path === "/gallery" ? "text-black dark:text-white" : "",
+          "h-10 w-10 flex flex-col justify-center items-center  ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2"
+        )}
       >
         <Bone className="text-black dark:text-white size-5" />
         <p className="text-xxs">Gallery</p>
@@ -41,9 +43,10 @@ export function NabvarMobile() {
       {session?.user.role === "ADMIN" && (
         <Link
           href={"/admin"}
-          className={`${
-            path === "/admin" ? "text-black dark:text-white bg-zinc-300 dark:bg-zinc-800" : ""
-          } h-10 w-10 flex flex-col justify-center items-center ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2xl`}
+          className={cn(
+            path === "/admin" ? "text-black dark:text-white bg-zinc-300 dark:bg-zinc-800" : "",
+            "h-10 w-10 flex flex-col justify-center items-center ease-in-out duration-500 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-2xl"
+          )}
         >
           <Fingerprint className="text-black dark:text-white size-5" />
           <p className="text-xxs">Admin</p>
@@ -65,7 +68,7 @@ export function NabvarMobile() {
           />
         )}
       </div>
-      {notSigned === true && <NavNotSigned click={() => setNotSigned(() => false)} />}
+      {notSigned && <NavNotSigned setOpen={setNotSigned} />}
     </div>
   )
 }

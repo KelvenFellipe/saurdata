@@ -1,7 +1,7 @@
 "use client"
 
 import { trpc } from "@/connection/client/client"
-import { SaurType } from "@/types/saurType"
+import { SaurType } from "@/types/schemaTypes"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 

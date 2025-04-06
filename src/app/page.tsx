@@ -6,7 +6,7 @@ import { sort } from "@/components/gallery/sorting"
 import { Loading } from "@/components/global/Loading"
 import { SelectComponent } from "@/components/global/SelectComponent"
 import { trpc } from "@/connection/client/client"
-import { SaurType } from "@/types/saurType"
+import { SaurType } from "@/types/schemaTypes"
 import { useEffect, useState } from "react"
 
 function Main() {

@@ -1,9 +1,31 @@
-import { pgTable, foreignKey, pgEnum, uuid, text, timestamp, unique, json, primaryKey, integer } from "drizzle-orm/pg-core"
-import { NotificationType } from "@/types/profileType";
+import { pgTable, foreignKey, pgEnum, text, timestamp, uuid, boolean, unique, json, primaryKey, integer } from "drizzle-orm/pg-core"
+  import { sql } from "drizzle-orm"
 
 export const role = pgEnum("role", ['ADMIN', 'USER'])
+export const status = pgEnum("status", ['READ', 'UNREAD', 'HIDDEN'])
 export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur'])
 
+
+export const families = pgTable("families", {
+	name: text("name").primaryKey().notNull(),
+	type: text("type").notNull().references(() => types.name, { onDelete: "cascade", onUpdate: "cascade" } ),
+	temporal: text("temporal").notNull(),
+	description: text("description").default('').notNull(),
+	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+});
+
+export const types = pgTable("types", {
+	name: text("name").primaryKey().notNull(),
+	temporal: text("temporal").notNull(),
+	description: text("description").default('').notNull(),
+	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+});
+
+export const session = pgTable("session", {
+	sessionToken: text("sessionToken").primaryKey().notNull(),
+	userId: uuid("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
+	expires: timestamp("expires", { mode: 'string' }).notNull(),
+});
 
 export const sauria = pgTable("sauria", {
 	id: uuid("id").defaultRandom().primaryKey().notNull(),
@@ -15,15 +37,15 @@ export const sauria = pgTable("sauria", {
 	type: text("type").references(() => types.name),
 	description: text("description").default('').notNull(),
 	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+	disabled: boolean("disabled").default(false).notNull(),
 });
 
 export const user = pgTable("user", {
-	id: text("id").primaryKey().notNull(),
+	id: uuid("id").defaultRandom().primaryKey().notNull(),
 	name: text("name").notNull(),
 	email: text("email").notNull(),
 	emailVerified: timestamp("emailVerified", { mode: 'string' }),
 	image: text("image").notNull(),
-	notifications: json("notifications").default([]).notNull().$type<Array<NotificationType>>(),
 	role: role("role").default('USER').notNull(),
 },
 (table) => {
@@ -32,29 +54,16 @@ export const user = pgTable("user", {
 	}
 });
 
-export const session = pgTable("session", {
-	sessionToken: text("sessionToken").primaryKey().notNull(),
-	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
-	expires: timestamp("expires", { mode: 'string' }).notNull(),
-});
-
-export const types = pgTable("types", {
-	name: text("name").primaryKey().notNull(),
-	temporal: text("temporal").notNull(),
-	description: text("description").default('').notNull(),
-	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
-});
-
-export const families = pgTable("families", {
-	name: text("name").primaryKey().notNull(),
-	type: text("type").notNull().references(() => types.name, { onDelete: "cascade", onUpdate: "cascade" } ),
-	temporal: text("temporal").notNull(),
-	description: text("description").default('').notNull(),
-	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+export const notification = pgTable("notification", {
+	id: uuid("id").defaultRandom().notNull().primaryKey(),
+	createdAt: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
+    userId: uuid("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
+	content: text("content").default(''),
+	status: status("status").default('UNREAD').notNull(),
 });
 
 export const account = pgTable("account", {
-	userId: text("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
+	userId: uuid("userId").notNull().references(() => user.id, { onDelete: "cascade" } ),
 	type: text("type").notNull(),
 	provider: text("provider").notNull(),
 	providerAccountId: text("providerAccountId").notNull(),

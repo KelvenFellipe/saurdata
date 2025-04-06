@@ -1,10 +1,10 @@
 import { trpc } from "@/connection/client/client"
-import { SaurType } from "@/types/saurType"
 import { useEffect, useState } from "react"
 import { Loading } from "../global/Loading"
 import { MenuSection } from "../navbar/MenuSection"
 import { ImageCarousel } from "./ImageCarousel"
 import { TemporalRange } from "./TemporalRange"
+import { SaurType } from "@/types/schemaTypes"
 
 export function SaurCard({ props }: any) {
   const { data = [], isFetched, isLoading } = trpc.getSauriaByGenus.useQuery(props)

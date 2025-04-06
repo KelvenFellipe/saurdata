@@ -1,6 +1,6 @@
-import { ProfileType } from "@/types/profileType"
 import { useState } from "react"
 import { NavSigned } from "./NavSigned"
+import { ProfileType } from "@/types/schemaTypes"
 
 export function ProfileIcon({ user, mobile = false }: { user: ProfileType; mobile?: boolean }) {
   const [signed, setSigned] = useState(false)
@@ -15,7 +15,7 @@ export function ProfileIcon({ user, mobile = false }: { user: ProfileType; mobil
       </button>
       <div className="relative">
         {signed === true && user && (
-          <NavSigned click={() => setSigned(() => false)} user={user} mobile={mobile} />
+          <NavSigned open={signed} setOpen={setSigned} user={user} mobile={mobile} />
         )}
       </div>
     </div>

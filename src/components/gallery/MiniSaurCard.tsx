@@ -1,5 +1,4 @@
 "use client"
-import { SaurType } from "@/types/saurType"
 import { BookOpenText, ExternalLink, Share } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -7,6 +6,7 @@ import { ButtonComponent } from "../global/ButtonComponent"
 import { ImageCarousel } from "./ImageCarousel"
 import { ShareButton } from "./ShareButton"
 import { getTime } from "./TimeHook"
+import { SaurType } from "@/types/schemaTypes"
 
 export function MiniSaurCard(props: SaurType) {
   const [share, setShare] = useState(false)

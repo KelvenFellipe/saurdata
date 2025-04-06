@@ -1,8 +1,8 @@
-import { SaurType } from "@/types/saurType"
+import { SaurType } from "@/types/schemaTypes"
 import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 
-export const SearchResponse = ({ data, onClick }: { data: SaurType; onClick: any }) => {
+export const SearchResponse = ({ data, onClick }: { data: SaurType; onClick?: any }) => {
   const router = useRouter()
   return (
     <div

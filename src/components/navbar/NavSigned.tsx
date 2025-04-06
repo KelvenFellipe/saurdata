@@ -1,41 +1,44 @@
 "use client"
-import { ProfileType } from "@/types/profileType"
+import { cn } from "@/lib/utils"
+import { ProfileType } from "@/types/schemaTypes"
 import { Circle, LogOut, Moon, StarIcon } from "lucide-react"
 import { signOut } from "next-auth/react"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { Dispatch, SetStateAction, useEffect, useState } from "react"
 
 interface props {
-  click: any
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
   user: ProfileType
   mobile?: boolean
 }
 
-export function NavSigned({ user, click, mobile = false }: props) {
-  const [open, setOpen] = useState(false)
-  const [Lights, setLights] = useState("")
+export function NavSigned({ user, open, setOpen, mobile = false }: props) {
+  const [state, setState] = useState({ open: open, lights: "" })
   const doc = document.documentElement.classList
   const toggleTheme: any = () => {
     doc.toggle("dark")
-    doc.value.includes("dark") ? setLights("translate-x-3") : setLights("translate-x-0")
   }
+
   useEffect(() => {
-    doc.value.includes("dark") ? setLights("translate-x-3") : setLights("translate-x-0")
-    setOpen(() => true)
-  }, [])
+    doc.value.includes("dark")
+      ? setState({ ...state, lights: "translate-x-3" })
+      : setState({ ...state, lights: "translate-x-0" })
+  })
 
   function handleClick() {
-    setOpen(() => false)
-    setTimeout(click, 1000)
+    setState({ ...state, open: false })
+    setTimeout(() => setOpen(() => false), 500)
   }
 
   return (
     <div className="absolute z-[10] select-none ">
       <div
-        className={`fixed z-[20] right-4 w-fit text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl
-           transition-[max-height] duration-1000 overflow-hidden shadow-md shadow-black/40 dark:shadow-black ${
-             mobile ? "bottom-[56px]" : "top-[56px]"
-           } ${open ? "max-h-full" : "max-h-0"}`}
+        className={cn(
+          state.open ? "max-h-full" : "max-h-0",
+          mobile ? "bottom-[56px]" : "top-[56px]",
+          "fixed z-[20] right-4 w-fit text-sm bg-zinc-100 dark:bg-zinc-800 text-black dark:text-white rounded-xl transition-[max-height] duration-500 overflow-hidden shadow-md shadow-black/40 dark:shadow-black"
+        )}
       >
         {user.image && (
           <div className="grid grid-cols-1 my-2">
@@ -62,11 +65,14 @@ export function NavSigned({ user, click, mobile = false }: props) {
               <Moon className="size-6" />
               <p>Dark Mode</p>
               <div
-                className={` flex h-6 w-9 rounded-2xl transition-colors ${
-                  Lights === "translate-x-3" ? "bg-teal-500" : "bg-zinc-400 "
-                } `}
+                className={cn(
+                  state.lights === "translate-x-3" ? "bg-teal-500" : "bg-zinc-400",
+                  "flex h-6 w-9 rounded-2xl transition-colors"
+                )}
               >
-                <Circle className={`size-6 text-white fill-current duration-500 ${Lights} `} />
+                <Circle
+                  className={cn(state.lights, "size-6 text-white fill-current duration-500")}
+                />
               </div>
             </div>
 
@@ -82,7 +88,7 @@ export function NavSigned({ user, click, mobile = false }: props) {
         )}
       </div>
       <div
-        className={`fixed w-full h-full top-0 left-0 ${!open && "hidden"}`}
+        className={cn(!state.open && "hidden", "fixed w-full h-full top-0 left-0")}
         onClick={handleClick}
       ></div>
     </div>

@@ -1,5 +1,31 @@
 import { relations } from "drizzle-orm/relations";
-import { families, sauria, types, user, session, account } from "./schema";
+import { types, families, user, session, sauria, notification, account } from "./schema";
+
+export const familiesRelations = relations(families, ({one, many}) => ({
+	type: one(types, {
+		fields: [families.type],
+		references: [types.name]
+	}),
+	saurias: many(sauria),
+}));
+
+export const typesRelations = relations(types, ({many}) => ({
+	families: many(families),
+	saurias: many(sauria),
+}));
+
+export const sessionRelations = relations(session, ({one}) => ({
+	user: one(user, {
+		fields: [session.userId],
+		references: [user.id]
+	}),
+}));
+
+export const userRelations = relations(user, ({many}) => ({
+	sessions: many(session),
+	notifications: many(notification),
+	accounts: many(account),
+}));
 
 export const sauriaRelations = relations(sauria, ({one}) => ({
 	family: one(families, {
@@ -12,29 +38,11 @@ export const sauriaRelations = relations(sauria, ({one}) => ({
 	}),
 }));
 
-export const familiesRelations = relations(families, ({one, many}) => ({
-	saurias: many(sauria),
-	type: one(types, {
-		fields: [families.type],
-		references: [types.name]
-	}),
-}));
-
-export const typesRelations = relations(types, ({many}) => ({
-	saurias: many(sauria),
-	families: many(families),
-}));
-
-export const sessionRelations = relations(session, ({one}) => ({
+export const notificationRelations = relations(notification, ({one}) => ({
 	user: one(user, {
-		fields: [session.userId],
+		fields: [notification.userId],
 		references: [user.id]
 	}),
-}));
-
-export const userRelations = relations(user, ({many}) => ({
-	sessions: many(session),
-	accounts: many(account),
 }));
 
 export const accountRelations = relations(account, ({one}) => ({

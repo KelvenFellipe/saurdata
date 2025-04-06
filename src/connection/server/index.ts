@@ -1,12 +1,12 @@
 import { db } from "@/database"
-import { sauria, type, user } from "@/database/schema"
+import { notification, sauria, type, user } from "@/database/schema"
 import { eq } from "drizzle-orm"
 import z from "zod"
 import { adminProcedure, authenticatedProcedure, publicProcedure, router } from "./trpc"
 
 export const appRouter = router({
   getSauria: publicProcedure.query(async () => {
-    return await db.select().from(sauria)
+    return await db.select().from(sauria).where(eq(sauria.disabled, false))
   }),
   getSauriaNew: publicProcedure.query(async () => {
     return (await db.select().from(sauria)).sort((a, b) => b.added.localeCompare(a.added))
@@ -70,18 +70,9 @@ export const appRouter = router({
   }),
 
   getNotification: authenticatedProcedure.input(z.string())
-  .query(async (optes) => {
-    const {input} = optes
-    return await db.select({id: user.id, notification: user.notifications}).from(user).where(eq(user.id, input))
-  }),
-
-  updateNotification: authenticatedProcedure.input(
-    z.object({
-      id: z.string(),
-      notification: z.array(z.object({read: z.boolean(), notification: z.string(), when: z.string()}))
-  })).mutation(async (opts) => {
-    const { input } = opts
-      return await db.update(user).set({notifications: input.notification}).where(eq(user.id, `${input.id}`))
+  .query(async (opts) => {
+    const {input} = opts
+    return await db.select().from(notification).where(eq(notification.userId, input))
   })
 })
 

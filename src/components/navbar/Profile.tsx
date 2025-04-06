@@ -1,5 +1,5 @@
 "use client"
-import { ProfileType } from "@/types/profileType"
+import { ProfileType } from "@/types/schemaTypes"
 import { MiniNavSearch } from "./MiniNavSearch"
 import { NotificationIcon } from "./NotificationsIcon"
 import { ProfileIcon } from "./ProfileIcon"

@@ -26,11 +26,11 @@ export function NavBar() {
     >
       <div className="flex items-center space-x-4 ">
         <button className="p-2 hover:bg-zinc-300/50 dark:hover:bg-zinc-700/50 rounded-full ease-in-out duration-300 hidden lg:flex">
-          <Menu onClick={() => setMenu(!menu)} />
+          <Menu onClick={() => setMenu(true)} />
         </button>
         <button className="flex items-center text-4xl " onClick={() => router.push("/")}>
           <div className="space-x-2 flex items-center">
-            <Logo4 classN={"h-9 w-9 text-teal-500 fill-current"} />
+            <Logo4 classN="h-9 w-9 text-teal-500 fill-current" />
             <div className="hidden md:flex">
               <p className="text-2xl font-bold ">saurdata</p>
             </div>
@@ -38,7 +38,7 @@ export function NavBar() {
         </button>
       </div>
       <div className="hidden md:block">
-        <NavSearch onClose={console.log} />
+        <NavSearch />
       </div>
 
       <div className="col-span-2 md:col-span-1 hidden lg:flex">
@@ -49,7 +49,7 @@ export function NavBar() {
         ) : (
           <div className="space-x-4 flex items-center justify-end flex-1">
             <MiniNavSearch />
-            <LoginButton click={() => setNotSigned(() => !notSigned)} />
+            <LoginButton setOpen={setNotSigned} />
           </div>
         )}
       </div>
@@ -69,8 +69,8 @@ export function NavBar() {
         )}
       </div>
 
-      {menu === true && <NavMenu click={() => setMenu(() => false)} />}
-      {notSigned === true && <NavNotSigned click={() => setNotSigned(() => false)} />}
+      {menu && <NavMenu open={menu} setOpen={setMenu} />}
+      {notSigned && <NavNotSigned setOpen={setNotSigned} />}
     </div>
   )
 }

@@ -1,8 +1,8 @@
 "use client"
 import { Search } from "lucide-react"
-
 import { useState } from "react"
 import { NavSearch } from "./NavSearch"
+import { cn } from "@/lib/utils"
 
 export function MiniNavSearch() {
   const [open, setOpen] = useState(false)
@@ -15,10 +15,10 @@ export function MiniNavSearch() {
 
       {open && (
         <div className="fixed top-0 left-0 w-full z-[60] p-2 bg-black">
-          <NavSearch onClose={() => setOpen(false)} />
+          <NavSearch onClose={setOpen} />
           <div
-            className={`fixed w-full h-screen left-0 top-0 bg-black/40 ${!open && "hidden"}`}
-            onClick={() => setOpen(() => false)}
+            className={cn(!open && "hidden", "fixed w-full h-screen left-0 top-0 bg-black/40")}
+            onClick={() => setOpen(false)}
           />
         </div>
       )}
