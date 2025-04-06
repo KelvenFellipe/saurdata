@@ -34,7 +34,7 @@ export const sauria = pgTable("sauria", {
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
 	family: text("family").notNull().references(() => families.name, { onDelete: "cascade", onUpdate: "cascade" } ),
-	type: text("type").references(() => types.name).default('undefined').notNull(),
+	type: type("type").references(() => types.name).default('undefined').notNull(),
 	description: text("description").default('').notNull(),
 	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	disabled: boolean("disabled").default(false).notNull(),
