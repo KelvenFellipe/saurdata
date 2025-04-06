@@ -1,22 +1,13 @@
 import { db } from "@/database"
 import { user } from "@/database/schema"
-import { NotificationType } from "@/types/profileType"
+import { ProfileType } from "@/types/schemaTypes"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
 import { eq } from "drizzle-orm"
 import NextAuth, { DefaultSession } from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Google from "next-auth/providers/google"
 
-export type ExtendedUser = DefaultSession["user"] & {
-  id: string
-  name: string
-  email: string
-  emailVerified: string | null
-  image: string
-  notifications: NotificationType[]
-  role: "ADMIN" | "USER"
-}
-
+export type ExtendedUser = DefaultSession["user"] & ProfileType
 declare module "next-auth"{
   interface Session{
     user: ExtendedUser
@@ -32,9 +23,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if(session.user && token.role){
         session.user.role = token.role as "ADMIN" | "USER"
       }
-      if(session.user && token.notifications){
-        session.user.notifications = token.notifications as NotificationType[]
-      }
+
     return session
     },
     async jwt({ token }){
@@ -44,7 +33,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!existingUser) return token
 
       token.role = existingUser[0].role
-      token.notifications = existingUser[0].notifications
+
 
     return token
     },
