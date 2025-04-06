@@ -3,7 +3,7 @@ import { pgTable, foreignKey, pgEnum, text, timestamp, uuid, boolean, unique, js
 
 export const role = pgEnum("role", ['ADMIN', 'USER'])
 export const status = pgEnum("status", ['READ', 'UNREAD', 'HIDDEN'])
-export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur'])
+export const type = pgEnum("type", ['dinosaur', 'pterosaur', 'mosasaur', 'undefined'])
 
 
 export const families = pgTable("families", {
@@ -34,7 +34,7 @@ export const sauria = pgTable("sauria", {
 	temporal: text("temporal").notNull(),
 	img: text("img").notNull(),
 	family: text("family").notNull().references(() => families.name, { onDelete: "cascade", onUpdate: "cascade" } ),
-	type: text("type").references(() => types.name),
+	type: text("type").references(() => types.name).default('undefined').notNull(),
 	description: text("description").default('').notNull(),
 	added: timestamp("added", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	disabled: boolean("disabled").default(false).notNull(),
