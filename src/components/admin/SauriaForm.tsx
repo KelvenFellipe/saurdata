@@ -20,11 +20,6 @@ export function SauriaForm({ click }: any) {
       setTimeout(() => utils.getSauria.invalidate(), 2500)
     },
   })
-  const addnotification = trpc.updateNotification.useMutation({
-    onSettled: () => {
-      utils.getNotification.invalidate()
-    },
-  })
   const { data = [] } = trpc.getNotification.useQuery("1254ea58-5b24-4bc7-baf1-d307a3741230")
   function handle(values: SauriaSchemaNoID) {
     const now = new Date(Date.now()).toISOString()
@@ -32,13 +27,6 @@ export function SauriaForm({ click }: any) {
     if (data)
       try {
         addsauria.mutate(values)
-        addnotification.mutate({
-          id: "1254ea58-5b24-4bc7-baf1-d307a3741230",
-          notification: [
-            ...data[0].notification,
-            { notification: `${values.genus} was added`, read: false, when: now },
-          ],
-        })
       } catch {
         return <Alert text={"There was an Error"} />
       } finally {
